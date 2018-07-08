@@ -1,4 +1,3 @@
-using System;
 using XForm.Forms;
 using XForm.Tests.Mocks;
 using Xunit;
@@ -13,7 +12,7 @@ namespace XForm.Tests.Tests
         }
         
         [Fact]
-        public void CreateFormTest()
+        public void TestCreateForm()
         {
             var form = Form.Create();
             
