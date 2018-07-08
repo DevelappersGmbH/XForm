@@ -37,17 +37,23 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="IosForm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FormView.cs" />
+    <Compile Include="Sources\FormTableViewSource.cs" />
+    <Compile Include="FieldViews\LabelFieldView.cs" />
+    <Compile Include="FieldViews\LabelFieldView.designer.cs">
+      <DependentUpon>LabelFieldView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XForm\XForm.csproj">
       <Project>{5af56109-470c-4e4e-8aac-1b124bbed62e}</Project>
       <Name>XForm</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="FieldViews\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
