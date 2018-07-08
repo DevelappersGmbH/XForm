@@ -107,6 +107,7 @@
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Views\MainView.xib" />
+    <InterfaceDefinition Include="LabelFieldView.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -130,6 +131,10 @@
     <ProjectReference Include="..\Sample.Core\Sample.Core.csproj">
       <Project>{eaf3e235-9681-4a1e-aaef-0a140d6119d8}</Project>
       <Name>Sample.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XForm\XForm.csproj">
+      <Project>{5AF56109-470C-4E4E-8AAC-1B124BBED62E}</Project>
+      <Name>XForm</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

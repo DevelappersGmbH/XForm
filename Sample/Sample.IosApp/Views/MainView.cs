@@ -1,8 +1,7 @@
-﻿using System;
+using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Ios.Presenters.Attributes;
 using MvvmCross.Platforms.Ios.Views;
 using Sample.Core.ViewModels;
-using UIKit;
 
 namespace Sample.IosApp.Views
 {
@@ -16,6 +15,12 @@ namespace Sample.IosApp.Views
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            var set = this.CreateBindingSet<MainView, MainViewModel>();
+
+            set.Bind(FormView).For(v => v.Form).To(vm => vm.Form);
+            
+            set.Apply();
         }
     }
 }
