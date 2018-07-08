@@ -9,4 +9,8 @@
     <ProjectReference Include="..\..\XForm\XForm.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MvvmCross" Version="6.1.2" />
+  </ItemGroup>
+
 </Project>
