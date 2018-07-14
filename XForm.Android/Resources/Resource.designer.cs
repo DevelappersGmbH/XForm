@@ -2572,14 +2572,14 @@ namespace XForm.Android
 			// aapt resource value: 0x7f070061
 			public static int list_item = 2131165281;
 			
-			// aapt resource value: 0x7f0700b1
-			public static int masked = 2131165361;
+			// aapt resource value: 0x7f0700b2
+			public static int masked = 2131165362;
 			
 			// aapt resource value: 0x7f0700a2
 			public static int media_actions = 2131165346;
 			
-			// aapt resource value: 0x7f0700af
-			public static int message = 2131165359;
+			// aapt resource value: 0x7f0700b0
+			public static int message = 2131165360;
 			
 			// aapt resource value: 0x7f070031
 			public static int middle = 2131165233;
@@ -2827,14 +2827,17 @@ namespace XForm.Android
 			// aapt resource value: 0x7f070026
 			public static int useLogo = 2131165222;
 			
+			// aapt resource value: 0x7f0700af
+			public static int valueEditText = 2131165359;
+			
 			// aapt resource value: 0x7f07009b
 			public static int valueTextView = 2131165339;
 			
 			// aapt resource value: 0x7f070016
 			public static int view_offset_helper = 2131165206;
 			
-			// aapt resource value: 0x7f0700b0
-			public static int visible = 2131165360;
+			// aapt resource value: 0x7f0700b1
+			public static int visible = 2131165361;
 			
 			// aapt resource value: 0x7f07003c
 			public static int withText = 2131165244;
@@ -3082,7 +3085,10 @@ namespace XForm.Android
 			public static int support_simple_spinner_dropdown_item = 2130903100;
 			
 			// aapt resource value: 0x7f03003d
-			public static int tooltip = 2130903101;
+			public static int TextInputFieldView = 2130903101;
+			
+			// aapt resource value: 0x7f03003e
+			public static int tooltip = 2130903102;
 			
 			static Layout()
 			{

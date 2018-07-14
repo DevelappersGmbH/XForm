@@ -3,7 +3,7 @@ using XForm.Fields.Interfaces;
 
 namespace XForm.Ios.FieldViews.Bases
 {
-    public abstract class ValueFieldView<TField, TValue> : FieldView<TField> where TField : IField, IValueField<TValue>
+    public abstract class ValueFieldView<TField, TValue> : FieldView<TField> where TField : class, IField, IValueField<TValue>
     {
         protected ValueFieldView(IntPtr handle) : base(handle)
         {
@@ -30,6 +30,14 @@ namespace XForm.Ios.FieldViews.Bases
 
         protected virtual void ValueChanged(TValue value)
         {
+        }
+
+        protected void SetValue(TValue value)
+        {
+            if (Field == null)
+                return;
+
+            Field.Value = value;
         }
     }
 }

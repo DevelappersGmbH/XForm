@@ -1,3 +1,5 @@
+using System;
+using System.Threading;
 using XForm.Fields.Interfaces;
 
 namespace XForm.Fields.Bases
@@ -10,11 +12,13 @@ namespace XForm.Fields.Bases
         {
             Value = value;
         }
+
+        public event EventHandler ValueChanged; 
         
         public TValue Value
         {
             get => _value;
-            set => Set(ref _value, value);
+            set => Set(ref _value, value, ValueChanged);
         }
     }
 }

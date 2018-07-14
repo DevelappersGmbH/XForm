@@ -22,7 +22,7 @@ namespace XForm.Android.FieldViews.Bases
         public abstract void BindTo(IField field);
     }
 
-    public abstract class FieldView<TField> : FieldView where TField: IField
+    public abstract class FieldView<TField> : FieldView where TField : class, IField
     {
         protected FieldView(ViewGroup parent, int layoutToInflate) : base(parent, layoutToInflate)
         {
@@ -72,8 +72,10 @@ namespace XForm.Android.FieldViews.Bases
             }
         }
 
-        public virtual void TitleChanged(string value)
+        protected virtual void TitleChanged(string value)
         {
         }
+        
+        
     }
 }

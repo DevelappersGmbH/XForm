@@ -10,8 +10,8 @@ namespace Sample.Core.ViewModels
 {
     public class MainViewModel: MvxViewModel
     {
-        private readonly LabelField _sizingLabelField = new LabelField("Sizing Label", "Text"); 
-        private readonly LabelField _sizingLabelField2 = new LabelField("Sizing Label", "Text"); 
+        private readonly LabelField _sizingLabelField = new LabelField("Value", "Text"); 
+        private readonly TextInputField _textInputField = new TextInputField("Text"); 
         
         public Form Form { get; private set; }
         
@@ -19,30 +19,22 @@ namespace Sample.Core.ViewModels
         {
             await base.Initialize();
             
+            var sizingLabelField = new LabelField("ValueChanged", "Text");
+
+            _textInputField.ValueChanged += (sender, args) => sizingLabelField.Value = _textInputField.Value; 
+            
             Form = Form.Create(new List<IField>
             {
+                sizingLabelField,
                 _sizingLabelField,
-                new LabelField("title", "value"),
-                new LabelField("title 1", "value 1"),
-                new LabelField("title 2", "value 2 value 2 value 2 value 2 value 2 value 2 value 2 value 2"),
-                new LabelField("title 2", "value 2 value 2 value 2 value 2 value 2 value 2 value 2 value 2"),
-                new LabelField("title 2", "value 2 value 2 value 2 value 2 value 2 value 2 value 2 value 2"),
-                new LabelField("title 2", "value 2 value 2 value 2 value 2 value 2 value 2 value 2 value 2"),
-                new LabelField("title 2", "value 2 value 2 value 2 value 2 value 2 value 2 value 2 value 2"),
-                new LabelField("title 2", "value 2 value 2 value 2 value 2 value 2 value 2 value 2 value 2"),
-                new LabelField("title 2", "value 2 value 2 value 2 value 2 value 2 value 2 value 2 value 2"),
-                new LabelField("title 2", "value 2 value 2 value 2 value 2 value 2 value 2 value 2 value 2"),
-                new LabelField("title 2", "value 2 value 2 value 2 value 2 value 2 value 2 value 2 value 2"),
-                new LabelField("title 2", "value 2 value 2 value 2 value 2 value 2 value 2 value 2 value 2"),
-                _sizingLabelField2,
-                new ButtonField("Add text", new MvxCommand(HandleInsertLabelCommand))
+                _textInputField,
+                new ButtonField("Set text", new MvxCommand(HandleInsertLabelCommand))
             });
         }
 
         private void HandleInsertLabelCommand()
         {
-            _sizingLabelField.Value += " Text";
-            _sizingLabelField2.Value += " Text";
+            _sizingLabelField.Value = _textInputField.Value;
         }
     }
 }

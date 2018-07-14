@@ -31,7 +31,7 @@ namespace XForm.Ios.FieldViews.Bases
         }
     }
     
-    public abstract class FieldView<TField> : FieldView where TField: IField
+    public abstract class FieldView<TField> : FieldView where TField: class, IField 
     {
         protected FieldView(IntPtr handle) : base(handle)
         {

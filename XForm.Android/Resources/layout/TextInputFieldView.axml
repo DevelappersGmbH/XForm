@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:padding="10sp">
     <TextView
         android:id="@+id/titleTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minWidth="100sp"
-        android:maxWidth="200sp"
-        android:gravity="center_vertical"
-        android:textAppearance="?android:attr/textAppearanceListItem"
-        android:text="Text Text Text Text Text Text Text Text"
-        android:layout_marginRight="10dp" />
-    <TextView
-        android:id="@+id/valueTextView"
+        android:textAppearance="?android:attr/textAppearanceListItemSmall"
+        android:text="Title" />
+    <EditText
+        android:id="@+id/valueEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:textAppearance="?android:attr/textAppearanceListItemSecondary"
-        android:text="Detail Text Detail Text Detail Text Detail Text Detail Text Detail Text Detail Text" />
+        android:text="Value"
+        android:layout_marginLeft="-4dp"
+        android:layout_marginRight="-4dp" />
 </LinearLayout>

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -8,7 +9,7 @@ namespace XForm.Binding
     {
         public event PropertyChangedEventHandler PropertyChanged;
         
-        protected bool Set<T>(ref T field, T newValue, [CallerMemberName] string propertyName = null)
+        protected bool Set<T>(ref T field, T newValue, EventHandler customChangedEventHandler = null, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, newValue))
             {
@@ -18,6 +19,7 @@ namespace XForm.Binding
             field = newValue;
 
             OnPropertyChanged(propertyName);
+            customChangedEventHandler?.Invoke(this, new EventArgs());
             
             return true;
         }

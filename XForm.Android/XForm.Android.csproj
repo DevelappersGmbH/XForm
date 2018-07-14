@@ -116,6 +116,7 @@
     <Compile Include="FormViews\FormView.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FieldViews\TextInputFieldView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -124,6 +125,7 @@
     <AndroidResource Include="Resources\values\Strings.xml" />
     <AndroidResource Include="Resources\layout\LabelFieldView.axml" />
     <AndroidResource Include="Resources\layout\ButtonFieldView.axml" />
+    <AndroidResource Include="Resources\layout\TextInputFieldView.axml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XForm\XForm.csproj">

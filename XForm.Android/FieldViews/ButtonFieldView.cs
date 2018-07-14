@@ -22,7 +22,7 @@ namespace XForm.Android.FieldViews
                 _button.Click -= HandleButtonClick;
         }
 
-        public override void TitleChanged(string value)
+        protected override void TitleChanged(string value)
         {
             base.TitleChanged(value);
 

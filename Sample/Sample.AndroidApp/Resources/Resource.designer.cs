@@ -5012,6 +5012,7 @@ namespace Sample.AndroidApp
 			global::XForm.Android.Resource.Id.uniform = global::Sample.AndroidApp.Resource.Id.uniform;
 			global::XForm.Android.Resource.Id.up = global::Sample.AndroidApp.Resource.Id.up;
 			global::XForm.Android.Resource.Id.useLogo = global::Sample.AndroidApp.Resource.Id.useLogo;
+			global::XForm.Android.Resource.Id.valueEditText = global::Sample.AndroidApp.Resource.Id.valueEditText;
 			global::XForm.Android.Resource.Id.valueTextView = global::Sample.AndroidApp.Resource.Id.valueTextView;
 			global::XForm.Android.Resource.Id.view_offset_helper = global::Sample.AndroidApp.Resource.Id.view_offset_helper;
 			global::XForm.Android.Resource.Id.visible = global::Sample.AndroidApp.Resource.Id.visible;
@@ -5088,6 +5089,7 @@ namespace Sample.AndroidApp
 			global::XForm.Android.Resource.Layout.select_dialog_multichoice_material = global::Sample.AndroidApp.Resource.Layout.select_dialog_multichoice_material;
 			global::XForm.Android.Resource.Layout.select_dialog_singlechoice_material = global::Sample.AndroidApp.Resource.Layout.select_dialog_singlechoice_material;
 			global::XForm.Android.Resource.Layout.support_simple_spinner_dropdown_item = global::Sample.AndroidApp.Resource.Layout.support_simple_spinner_dropdown_item;
+			global::XForm.Android.Resource.Layout.TextInputFieldView = global::Sample.AndroidApp.Resource.Layout.TextInputFieldView;
 			global::XForm.Android.Resource.Layout.tooltip = global::Sample.AndroidApp.Resource.Layout.tooltip;
 			global::XForm.Android.Resource.String.abc_action_bar_home_description = global::Sample.AndroidApp.Resource.String.abc_action_bar_home_description;
 			global::XForm.Android.Resource.String.abc_action_bar_up_description = global::Sample.AndroidApp.Resource.String.abc_action_bar_up_description;
@@ -8632,14 +8634,14 @@ namespace Sample.AndroidApp
 			// aapt resource value: 0x7f0a0063
 			public const int list_item = 2131361891;
 			
-			// aapt resource value: 0x7f0a00b4
-			public const int masked = 2131361972;
+			// aapt resource value: 0x7f0a00b5
+			public const int masked = 2131361973;
 			
 			// aapt resource value: 0x7f0a00a5
 			public const int media_actions = 2131361957;
 			
-			// aapt resource value: 0x7f0a00b2
-			public const int message = 2131361970;
+			// aapt resource value: 0x7f0a00b3
+			public const int message = 2131361971;
 			
 			// aapt resource value: 0x7f0a0033
 			public const int middle = 2131361843;
@@ -8887,14 +8889,17 @@ namespace Sample.AndroidApp
 			// aapt resource value: 0x7f0a0028
 			public const int useLogo = 2131361832;
 			
+			// aapt resource value: 0x7f0a00b2
+			public const int valueEditText = 2131361970;
+			
 			// aapt resource value: 0x7f0a009d
 			public const int valueTextView = 2131361949;
 			
 			// aapt resource value: 0x7f0a0016
 			public const int view_offset_helper = 2131361814;
 			
-			// aapt resource value: 0x7f0a00b3
-			public const int visible = 2131361971;
+			// aapt resource value: 0x7f0a00b4
+			public const int visible = 2131361972;
 			
 			// aapt resource value: 0x7f0a003e
 			public const int withText = 2131361854;
@@ -9145,7 +9150,10 @@ namespace Sample.AndroidApp
 			public const int support_simple_spinner_dropdown_item = 2130968637;
 			
 			// aapt resource value: 0x7f04003e
-			public const int tooltip = 2130968638;
+			public const int TextInputFieldView = 2130968638;
+			
+			// aapt resource value: 0x7f04003f
+			public const int tooltip = 2130968639;
 			
 			static Layout()
 			{

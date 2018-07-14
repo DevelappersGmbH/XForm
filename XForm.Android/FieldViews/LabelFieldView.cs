@@ -16,7 +16,7 @@ namespace XForm.Android.FieldViews
             _valueTextView = ItemView.FindViewById<TextView>(Resource.Id.valueTextView);
         }
 
-        public override void TitleChanged(string value)
+        protected override void TitleChanged(string value)
         {
             base.TitleChanged(value);
 
