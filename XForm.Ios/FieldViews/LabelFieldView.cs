@@ -1,14 +1,13 @@
 ﻿using System;
-
 using Foundation;
 using UIKit;
 using XForm.Fields;
+using XForm.Ios.FieldViews.Bases;
 
 namespace XForm.Ios.FieldViews
 {
-    public partial class LabelFieldView : UITableViewCell
+    public partial class LabelFieldView : FieldView<LabelField>
     {
-        public static readonly NSString Key = new NSString("LabelFieldView");
         public static readonly UINib Nib;
 
         static LabelFieldView()
@@ -20,7 +19,7 @@ namespace XForm.Ios.FieldViews
         {
         }
 
-        public void BindToField(LabelField field)
+        public override void BindTo(LabelField field)
         {
             TitleLabel.Text = field.Title;
             ValueLabel.Text = field.Value;

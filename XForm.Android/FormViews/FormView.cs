@@ -3,6 +3,7 @@ using Android.Content;
 using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Util;
+using XForm.Android.Adapters;
 using XForm.Forms;
 
 namespace XForm.Android.FormViews
@@ -13,7 +14,8 @@ namespace XForm.Android.FormViews
         private Form _form;
         
         private LinearLayoutManager _layoutManager;
-        private Adapters.Adapter _adapter;
+        private FormAdapter _adapter;
+        private FieldViewLocator _fieldViewLocator;
 
         protected FormView(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
         {
@@ -44,12 +46,18 @@ namespace XForm.Android.FormViews
             }
         }
 
+        public FieldViewLocator FieldViewLocator
+        {
+            get => _fieldViewLocator ?? Form?.FieldViewLocator;
+            set => _fieldViewLocator = value;
+        }
+
         private void Initialize(Context context)
         {
             _layoutManager = new LinearLayoutManager(context);
             SetLayoutManager(_layoutManager);
             
-            _adapter = new Adapters.Adapter();
+            _adapter = new FormAdapter(this);
             SetAdapter(_adapter);
         }
     }

@@ -1,3 +1,5 @@
+using XForm.Android.FieldViews;
+using XForm.Fields;
 using XForm.Forms;
 
 namespace XForm.Android.Forms
@@ -6,7 +8,14 @@ namespace XForm.Android.Forms
     {
         public static void Register()
         {
-            Form.FormCreateFunc = () => new AndroidForm();
+            FormCreateFunc = () => new AndroidForm();
+        }
+
+        protected override void RegisterFieldViews(FieldViewLocator locator)
+        {
+            base.RegisterFieldViews(locator);
+            
+            locator.Register<LabelField, LabelFieldView>();
         }
     }
 }

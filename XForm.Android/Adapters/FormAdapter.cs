@@ -2,15 +2,25 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using Android.Support.V7.Widget;
 using Android.Views;
-using XForm.Android.FieldViews;
-using XForm.Fields;
+using XForm.Android.FieldViews.Bases;
+using XForm.Android.Forms;
+using XForm.Android.FormViews;
 using XForm.Fields.Interfaces;
 
 namespace XForm.Android.Adapters
 {
-    public class Adapter : RecyclerView.Adapter
+    public class FormAdapter : RecyclerView.Adapter
     {
+        private readonly FormView _formView;
+        private readonly FieldViewCreator _fieldViewCreator;
+        
         private ObservableCollection<IField> _fields;
+
+        public FormAdapter(FormView formView)
+        {
+            _formView = formView;
+            _fieldViewCreator = new FieldViewCreator();
+        }
 
         public ObservableCollection<IField> Fields
         {
@@ -33,16 +43,21 @@ namespace XForm.Android.Adapters
 
         public override int ItemCount => Fields?.Count ?? 0;
 
+        public override int GetItemViewType(int position)
+        {
+            var viewType = _formView.FieldViewLocator.ViewTypeForField(FieldAt(position));
+            return _fieldViewCreator.ItemViewType(viewType);
+        }
+
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
-            return LabelFieldView.Create(parent);
+            return _fieldViewCreator.CreateFieldView(parent, viewType);
         }
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
-            var item = Fields[position];
-
-            ((LabelFieldView) holder).BindTo((LabelField) item);
+            var field = FieldAt(position);
+            ((FieldView) holder).BindTo(field);
         }      
 
         #endregion  
@@ -55,5 +70,10 @@ namespace XForm.Android.Adapters
         }
 
         #endregion
+
+        private IField FieldAt(int position)
+        {
+            return Fields[position];
+        }
     }
 }

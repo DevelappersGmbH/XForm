@@ -3,20 +3,25 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using Foundation;
 using UIKit;
-using XForm.Fields;
 using XForm.Fields.Interfaces;
 using XForm.Ios.FieldViews;
+using XForm.Ios.FieldViews.Bases;
+using XForm.Ios.Forms;
 using XForm.Ios.FormViews;
 
 namespace XForm.Ios.Sources
 {
     internal class FormTableViewSource: UITableViewSource {
         private readonly FormView _formView;
+        private readonly FieldViewCreator _fieldViewCreator;
+        
         private ObservableCollection<IField> _fields;
 
         public FormTableViewSource(FormView formView)
         {
             _formView = formView;
+            _fieldViewCreator = new FieldViewCreator(formView);
+            
             formView.RegisterNibForCellReuse(LabelFieldView.Nib, nameof(LabelFieldView));
         }
 
@@ -46,19 +51,7 @@ namespace XForm.Ios.Sources
         
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
-            var field = FieldAt(indexPath);
-            
-            switch (field)
-            {
-                case LabelField labelField:
-                    var view = (LabelFieldView) tableView.DequeueReusableCell(nameof(LabelFieldView), indexPath);
-                    
-                    view.BindToField(labelField);
-                    return view;
-                
-                default:
-                    throw new NotImplementedException();
-            }
+            return CreateOrGetFieldView(indexPath, FieldAt(indexPath));
         }
 
         #endregion
@@ -77,6 +70,16 @@ namespace XForm.Ios.Sources
         private IField FieldAt(NSIndexPath indexPath)
         {
             return Fields[indexPath.Row];
+        }
+        
+        private FieldView CreateOrGetFieldView(NSIndexPath indexPath, IField field)
+        {
+            var viewType = _formView.FieldViewLocator.ViewTypeForField(field);
+            var view = _fieldViewCreator.CreateOrGetFieldView(viewType, indexPath);
+            
+            view.BindTo(field);
+
+            return view;
         }
 
         #endregion

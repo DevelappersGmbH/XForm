@@ -27,7 +27,7 @@ namespace XForm.Forms
             ViewTypes.Add(fieldKey, fieldViewType);
         }
 
-        protected Type ViewTypeForField(IField field)
+        public Type ViewTypeForField(IField field)
         {
             var fieldKey = field.GetType().FullName;
             

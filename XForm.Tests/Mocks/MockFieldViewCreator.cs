@@ -6,7 +6,7 @@ namespace XForm.Tests.Mocks
 {
     public class MockFieldViewCreator : FieldViewCreator
     {
-        public override IFieldView CreateFieldView(Type fieldViewType)
+        public IFieldView CreateFieldView(Type fieldViewType)
         {
             return (IFieldView) Activator.CreateInstance(fieldViewType);
         }

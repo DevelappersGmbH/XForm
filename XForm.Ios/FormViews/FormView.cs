@@ -11,7 +11,9 @@ namespace XForm.Ios.FormViews
     public class FormView: UITableView
     {
         private FormTableViewSource _source;
+        
         private Form _form;
+        private FieldViewLocator _fieldViewLocator;
 
         public FormView(CGRect frame) : base(frame)
         {
@@ -31,6 +33,12 @@ namespace XForm.Ios.FormViews
                 _form = value;
                 _source.Fields = value?.Fields;
             }
+        }
+
+        public FieldViewLocator FieldViewLocator
+        {
+            get => _fieldViewLocator ?? Form?.FieldViewLocator;
+            set => _fieldViewLocator = value;
         }
 
         private void Setup()

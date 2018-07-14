@@ -106,9 +106,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Adapters\Adapter.cs" />
+    <Compile Include="Adapters\FormAdapter.cs" />
+    <Compile Include="FieldViews\Bases\FieldView.cs" />
     <Compile Include="FieldViews\LabelFieldView.cs" />
     <Compile Include="Forms\AndroidForm.cs" />
+    <Compile Include="Forms\FieldViewCreator.cs" />
     <Compile Include="FormViews\FormView.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
