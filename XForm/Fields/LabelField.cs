@@ -4,9 +4,8 @@ namespace XForm.Fields
 {
     public class LabelField: ValueField<string>
     {
-        public LabelField(string title, string value) : base(title)
+        public LabelField(string title, string value) : base(title, value)
         {
-            Value = value;
         }
     }
 }

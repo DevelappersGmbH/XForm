@@ -21,12 +21,14 @@ namespace XForm.Android.FieldViews
             if (_button != null) 
                 _button.Click -= HandleButtonClick;
         }
-        
-        public override void BindTo(ButtonField field)
+
+        public override void TitleChanged(string value)
         {
-            _button.Text = field.Title;
+            base.TitleChanged(value);
+
+            _button.Text = value;
         }
-        
+
         private void HandleButtonClick(object sender, EventArgs e)
         {
             var command = Field.Value;

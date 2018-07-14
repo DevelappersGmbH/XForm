@@ -43,6 +43,9 @@ namespace XForm.Ios.FormViews
 
         private void Setup()
         {
+            RowHeight = AutomaticDimension;
+            EstimatedRowHeight = 70;
+            
             _source = new FormTableViewSource(this);
             Source = _source;
         }

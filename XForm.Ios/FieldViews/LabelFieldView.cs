@@ -6,7 +6,7 @@ using XForm.Ios.FieldViews.Bases;
 
 namespace XForm.Ios.FieldViews
 {
-    public partial class LabelFieldView : FieldView<LabelField>
+    public partial class LabelFieldView : ValueFieldView<LabelField, string>
     {
         public static readonly UINib Nib;
 
@@ -19,10 +19,20 @@ namespace XForm.Ios.FieldViews
         {
         }
 
-        public override void BindTo(LabelField field)
+        public override void TitleChanged(string value)
         {
-            TitleLabel.Text = field.Title;
-            ValueLabel.Text = field.Value;
+            base.TitleChanged(value);
+
+            TitleLabel.Text = value;
+        }
+
+        protected override void ValueChanged(string value)
+        {
+            base.ValueChanged(value);
+
+            ValueLabel.Text = value;
+            
+            NotifyContentHeightChanged();
         }
     }
 }

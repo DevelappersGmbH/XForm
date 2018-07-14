@@ -38,6 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FieldViews\Bases\FieldView.cs" />
+    <Compile Include="FieldViews\Bases\ValueFieldView.cs" />
     <Compile Include="Forms\FieldViewCreator.cs" />
     <Compile Include="Forms\IosForm.cs" />
     <Compile Include="FormViews\FormView.cs" />

@@ -10,6 +10,9 @@ namespace Sample.Core.ViewModels
 {
     public class MainViewModel: MvxViewModel
     {
+        private readonly LabelField _sizingLabelField = new LabelField("Sizing Label", "Text"); 
+        private readonly LabelField _sizingLabelField2 = new LabelField("Sizing Label", "Text"); 
+        
         public Form Form { get; private set; }
         
         public override async Task Initialize()
@@ -18,17 +21,28 @@ namespace Sample.Core.ViewModels
             
             Form = Form.Create(new List<IField>
             {
+                _sizingLabelField,
                 new LabelField("title", "value"),
                 new LabelField("title 1", "value 1"),
-                new LabelField("title 2", "value 2"),
-                new LabelField("title title title title", "value value value value value"),
-                new ButtonField("Insert label", new MvxCommand(HandleInsertLabelCommand))
+                new LabelField("title 2", "value 2 value 2 value 2 value 2 value 2 value 2 value 2 value 2"),
+                new LabelField("title 2", "value 2 value 2 value 2 value 2 value 2 value 2 value 2 value 2"),
+                new LabelField("title 2", "value 2 value 2 value 2 value 2 value 2 value 2 value 2 value 2"),
+                new LabelField("title 2", "value 2 value 2 value 2 value 2 value 2 value 2 value 2 value 2"),
+                new LabelField("title 2", "value 2 value 2 value 2 value 2 value 2 value 2 value 2 value 2"),
+                new LabelField("title 2", "value 2 value 2 value 2 value 2 value 2 value 2 value 2 value 2"),
+                new LabelField("title 2", "value 2 value 2 value 2 value 2 value 2 value 2 value 2 value 2"),
+                new LabelField("title 2", "value 2 value 2 value 2 value 2 value 2 value 2 value 2 value 2"),
+                new LabelField("title 2", "value 2 value 2 value 2 value 2 value 2 value 2 value 2 value 2"),
+                new LabelField("title 2", "value 2 value 2 value 2 value 2 value 2 value 2 value 2 value 2"),
+                _sizingLabelField2,
+                new ButtonField("Add text", new MvxCommand(HandleInsertLabelCommand))
             });
         }
 
         private void HandleInsertLabelCommand()
         {
-            Form.InsertField(2, new LabelField("New field", "Yeah an new field"));
+            _sizingLabelField.Value += " Text";
+            _sizingLabelField2.Value += " Text";
         }
     }
 }

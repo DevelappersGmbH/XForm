@@ -76,10 +76,20 @@ namespace XForm.Ios.Sources
         {
             var viewType = _formView.FieldViewLocator.ViewTypeForField(field);
             var view = _fieldViewCreator.CreateOrGetFieldView(viewType, indexPath);
+
+            view.ContentHeightChanged -= HandleContentHeightChanged;
             
             view.BindTo(field);
 
+            view.ContentHeightChanged += HandleContentHeightChanged;
+
             return view;
+        }
+
+        private void HandleContentHeightChanged(object sender, EventArgs e)
+        {
+            _formView.BeginUpdates();
+            _formView.EndUpdates();
         }
 
         #endregion

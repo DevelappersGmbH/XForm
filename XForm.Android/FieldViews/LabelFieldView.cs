@@ -5,7 +5,7 @@ using XForm.Fields;
 
 namespace XForm.Android.FieldViews
 {
-    public class LabelFieldView: FieldView<LabelField>
+    public class LabelFieldView: ValueFieldView<LabelField, string>
     {
         private readonly TextView _titleTextView;
         private readonly TextView _valueTextView;
@@ -16,10 +16,18 @@ namespace XForm.Android.FieldViews
             _valueTextView = ItemView.FindViewById<TextView>(Resource.Id.valueTextView);
         }
 
-        public override void BindTo(LabelField item)
+        public override void TitleChanged(string value)
         {
-            _titleTextView.Text = item.Title;
-            _valueTextView.Text = item.Value;
+            base.TitleChanged(value);
+
+            _titleTextView.Text = value;
+        }
+
+        protected override void ValueChanged(string value)
+        {
+            base.ValueChanged(value);
+
+            _valueTextView.Text = value;
         }
     }
 }

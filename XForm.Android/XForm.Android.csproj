@@ -108,6 +108,7 @@
   <ItemGroup>
     <Compile Include="Adapters\FormAdapter.cs" />
     <Compile Include="FieldViews\Bases\FieldView.cs" />
+    <Compile Include="FieldViews\Bases\ValueFieldView.cs" />
     <Compile Include="FieldViews\ButtonFieldView.cs" />
     <Compile Include="FieldViews\LabelFieldView.cs" />
     <Compile Include="Forms\AndroidForm.cs" />

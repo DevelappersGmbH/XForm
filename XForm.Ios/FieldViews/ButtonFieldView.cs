@@ -31,12 +31,14 @@ namespace XForm.Ios.FieldViews
 
             Button.TouchUpInside += ButtonTouchUpInside;
         }
-        
-        public override void BindTo(ButtonField field)
+
+        public override void TitleChanged(string value)
         {
-            Button.SetTitle(field.Title, UIControlState.Normal);
+            base.TitleChanged(value);
+            
+            Button.SetTitle(value, UIControlState.Normal);
         }
-        
+
         private void ButtonTouchUpInside(object sender, EventArgs e)
         {
             var command = Field.Value;

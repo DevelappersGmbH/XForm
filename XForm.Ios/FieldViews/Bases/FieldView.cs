@@ -1,6 +1,6 @@
 using System;
+using System.ComponentModel;
 using UIKit;
-using XForm.Fields.Bases;
 using XForm.Fields.Interfaces;
 using XForm.FieldViews;
 
@@ -11,14 +11,23 @@ namespace XForm.Ios.FieldViews.Bases
         protected FieldView(IntPtr handle) : base(handle)
         {
         }
-        
-        public abstract void BindTo(IField field);
+
+        public virtual void BindTo(IField field)
+        {
+        }
 
         public override void AwakeFromNib()
         {
             base.AwakeFromNib();
 
             SelectionStyle = UITableViewCellSelectionStyle.None;
+        }
+
+        public event EventHandler ContentHeightChanged;
+
+        public void NotifyContentHeightChanged()
+        {
+            ContentHeightChanged?.Invoke(this, new EventArgs());
         }
     }
     
@@ -27,17 +36,55 @@ namespace XForm.Ios.FieldViews.Bases
         protected FieldView(IntPtr handle) : base(handle)
         {
         }
-        
+
+        ~FieldView()
+        {
+            if (Field != null)
+                Field.PropertyChanged -= FieldPropertyChanged;
+        }
+
         public TField Field { get; private set; }
 
         public override void BindTo(IField field)
         {
-            var typedField = (TField) field;
-
-            Field = typedField;
-            BindTo(typedField);
+            base.BindTo(field);
+            
+            BindTo((TField) field);
         }
 
-        public abstract void BindTo(TField field);
+        protected virtual void BindTo(TField field)
+        {
+            if (Equals(Field, field))
+                return;
+
+            if (Field != null) 
+                Field.PropertyChanged -= FieldPropertyChanged;
+            
+            Field = field;
+
+            if (Field != null)
+                Field.PropertyChanged += FieldPropertyChanged;
+
+            TitleChanged(Field?.Title);
+        }
+
+        private void FieldPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            FieldPropertyChanged(e.PropertyName);
+        }
+
+        protected virtual void FieldPropertyChanged(string propertyName)
+        {
+            switch (propertyName)
+            {
+                case nameof(Field.Title):
+                    TitleChanged(Field?.Title);
+                    break;
+            }
+        }
+
+        public virtual void TitleChanged(string value)
+        {
+        }
     }
 }

@@ -1,8 +1,9 @@
+using System.ComponentModel;
 using XForm.Forms;
 
 namespace XForm.Fields.Interfaces
 {
-    public interface IField
+    public interface IField : INotifyPropertyChanged
     {
         Form Form { get; set; }
         
