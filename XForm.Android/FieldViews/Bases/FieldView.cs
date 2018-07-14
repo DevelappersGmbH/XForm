@@ -21,15 +21,20 @@ namespace XForm.Android.FieldViews.Bases
         public abstract void BindTo(IField field);
     }
 
-    public abstract class FieldView<TField> : FieldView
+    public abstract class FieldView<TField> : FieldView where TField: IField
     {
         protected FieldView(ViewGroup parent, int layoutToInflate) : base(parent, layoutToInflate)
         {
         }
 
+        public TField Field { get; private set; }
+
         public override void BindTo(IField field)
         {
-            BindTo((TField) field);
+            var typedField = (TField) field;
+
+            Field = typedField;
+            BindTo(typedField);
         }
 
         public abstract void BindTo(TField field);

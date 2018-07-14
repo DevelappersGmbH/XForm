@@ -108,6 +108,7 @@
   <ItemGroup>
     <Compile Include="Adapters\FormAdapter.cs" />
     <Compile Include="FieldViews\Bases\FieldView.cs" />
+    <Compile Include="FieldViews\ButtonFieldView.cs" />
     <Compile Include="FieldViews\LabelFieldView.cs" />
     <Compile Include="Forms\AndroidForm.cs" />
     <Compile Include="Forms\FieldViewCreator.cs" />
@@ -121,6 +122,7 @@
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
     <AndroidResource Include="Resources\layout\LabelFieldView.axml" />
+    <AndroidResource Include="Resources\layout\ButtonFieldView.axml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XForm\XForm.csproj">

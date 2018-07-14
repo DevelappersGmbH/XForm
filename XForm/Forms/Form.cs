@@ -44,6 +44,12 @@ namespace XForm.Forms
             Fields = new ObservableCollection<IField>(fieldList);
         }
 
+        public void InsertField(int index, IField field)
+        {
+            field.Form = this;
+            Fields.Insert(index, field);
+        }
+
         protected virtual void RegisterFieldViews(FieldViewLocator locator)
         {
         }

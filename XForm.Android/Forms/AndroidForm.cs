@@ -16,6 +16,7 @@ namespace XForm.Android.Forms
             base.RegisterFieldViews(locator);
             
             locator.Register<LabelField, LabelFieldView>();
+            locator.Register<ButtonField, ButtonFieldView>();
         }
     }
 }

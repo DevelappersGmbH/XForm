@@ -107,7 +107,6 @@
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Views\MainView.xib" />
-    <InterfaceDefinition Include="LabelFieldView.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
