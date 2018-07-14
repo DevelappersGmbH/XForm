@@ -38,11 +38,18 @@ namespace XForm.Tests.Tests
             Assert.NotNull(form.Fields);
             Assert.NotEmpty(form.Fields);
             
-            Assert.Collection(form.Fields, field =>
-            {
-                Assert.IsType<LabelField>(field);
-                Assert.NotNull(field.Form);
-            });
+            Assert.Collection(form.Fields, 
+                              field => AssertLabelView(field, "Label", "Label Value"),
+                              field => AssertLabelView(field, "Label 2", "Label value 2"));
+        }
+
+        private static void AssertLabelView(IField field, string title, string value)
+        {
+            Assert.IsType<LabelField>(field);
+            Assert.NotNull(field.Form);
+            
+            Assert.Equal(field.Title, title);
+            Assert.Equal((field as LabelField)?.Value, value);
         }
     }
 }
