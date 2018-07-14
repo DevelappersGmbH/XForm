@@ -3,6 +3,7 @@ using Android.Content;
 using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Util;
+using Android.Views;
 using XForm.Android.Adapters;
 using XForm.Forms;
 
@@ -54,6 +55,8 @@ namespace XForm.Android.FormViews
 
         private void Initialize(Context context)
         {
+            DescendantFocusability = DescendantFocusability.BeforeDescendants;
+            
             _layoutManager = new LinearLayoutManager(context);
             SetLayoutManager(_layoutManager);
             
