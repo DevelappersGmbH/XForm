@@ -6,6 +6,7 @@ using UIKit;
 using XForm.Fields;
 using XForm.Fields.Interfaces;
 using XForm.Ios.FieldViews;
+using XForm.Ios.FormViews;
 
 namespace XForm.Ios.Sources
 {

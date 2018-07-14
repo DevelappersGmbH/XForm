@@ -5,7 +5,7 @@ using UIKit;
 using XForm.Forms;
 using XForm.Ios.Sources;
 
-namespace XForm.Ios
+namespace XForm.Ios.FormViews
 {
     [Register("FormView")]
     public class FormView: UITableView

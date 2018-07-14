@@ -1,6 +1,6 @@
 using XForm.Forms;
 
-namespace XForm.Ios
+namespace XForm.Ios.Forms
 {
     public class IosForm: Form
     {

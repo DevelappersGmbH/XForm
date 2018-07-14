@@ -6,6 +6,7 @@
 //
 using Foundation;
 using System.CodeDom.Compiler;
+using XForm.Ios.FormViews;
 
 namespace Sample.IosApp.Views
 {
@@ -13,7 +14,7 @@ namespace Sample.IosApp.Views
 	partial class MainView
 	{
 		[Outlet]
-		XForm.Ios.FormView FormView { get; set; }
+		FormView FormView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{

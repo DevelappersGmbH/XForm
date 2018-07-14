@@ -37,9 +37,9 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IosForm.cs" />
+    <Compile Include="Forms\IosForm.cs" />
+    <Compile Include="FormViews\FormView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="FormView.cs" />
     <Compile Include="Sources\FormTableViewSource.cs" />
     <Compile Include="FieldViews\LabelFieldView.cs" />
     <Compile Include="FieldViews\LabelFieldView.designer.cs">
