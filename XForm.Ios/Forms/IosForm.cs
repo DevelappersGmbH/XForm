@@ -18,7 +18,10 @@ namespace XForm.Ios.Forms
             locator.Register<LabelField, LabelFieldView>();
             locator.Register<ButtonField, ButtonFieldView>();
             
-            locator.Register<TextInputField, TextInputFieldView>();
+            locator.Register<SingleLineTextField, SingleLineTextFieldView>();
+            
+            locator.Register<DecimalInputField, DecimalInputFieldView>();
+            locator.Register<NumberInputField, NumberInputFieldView>();
         }
     }
 }

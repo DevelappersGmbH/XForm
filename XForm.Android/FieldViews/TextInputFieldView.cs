@@ -2,11 +2,11 @@
 using Android.Views;
 using Android.Widget;
 using XForm.Android.FieldViews.Bases;
-using XForm.Fields;
+using XForm.Fields.Bases;
 
 namespace XForm.Android.FieldViews
 {
-    public class TextInputFieldView : ValueFieldView<TextInputField, string>
+    public class TextInputFieldView : ValueFieldView<TextField, string>
     {
         private readonly TextView _titleTextView;
         private readonly EditText _valueEditText;

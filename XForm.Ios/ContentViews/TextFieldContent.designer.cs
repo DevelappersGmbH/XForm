@@ -7,27 +7,27 @@
 using Foundation;
 using System.CodeDom.Compiler;
 
-namespace XForm.Ios.FieldViews
+namespace XForm.Ios.ContentViews
 {
-	[Register ("LabelFieldView")]
-	partial class LabelFieldView
+	[Register ("TextFieldContent")]
+	partial class TextFieldContent
 	{
 		[Outlet]
-		UIKit.UILabel TitleLabel { get; set; }
+		UIKit.UILabel TitleLabel_ { get; set; }
 
 		[Outlet]
-		UIKit.UILabel ValueLabel { get; set; }
+		UIKit.UITextField ValueTextField_ { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (TitleLabel != null) {
-				TitleLabel.Dispose ();
-				TitleLabel = null;
+			if (TitleLabel_ != null) {
+				TitleLabel_.Dispose ();
+				TitleLabel_ = null;
 			}
 
-			if (ValueLabel != null) {
-				ValueLabel.Dispose ();
-				ValueLabel = null;
+			if (ValueTextField_ != null) {
+				ValueTextField_.Dispose ();
+				ValueTextField_ = null;
 			}
 		}
 	}

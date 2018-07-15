@@ -2,7 +2,6 @@ using Foundation;
 using MvvmCross.Platforms.Ios.Core;
 using Sample.Core;
 using UIKit;
-using XForm.Ios;
 using XForm.Ios.Forms;
 
 namespace Sample.IosApp

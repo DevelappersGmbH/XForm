@@ -1,8 +1,10 @@
 using System;
 using System.ComponentModel;
 using UIKit;
+using XForm.Fields.Bases;
 using XForm.Fields.Interfaces;
 using XForm.FieldViews;
+using XForm.Ios.ContentViews.Interfaces;
 
 namespace XForm.Ios.FieldViews.Bases
 {
@@ -11,18 +13,9 @@ namespace XForm.Ios.FieldViews.Bases
         protected FieldView(IntPtr handle) : base(handle)
         {
         }
-
-        public virtual void BindTo(IField field)
-        {
-        }
-
-        public override void AwakeFromNib()
-        {
-            base.AwakeFromNib();
-
-            SelectionStyle = UITableViewCellSelectionStyle.None;
-        }
-
+        
+        public abstract void BindTo(IField field);
+        
         public event EventHandler ContentHeightChanged;
 
         public void NotifyContentHeightChanged()
@@ -31,9 +24,49 @@ namespace XForm.Ios.FieldViews.Bases
         }
     }
     
-    public abstract class FieldView<TField> : FieldView where TField: class, IField 
+    public abstract class FieldView<TFieldContent> : FieldView 
+        where TFieldContent : IFieldContent
     {
-        protected FieldView(IntPtr handle) : base(handle)
+        protected FieldView(IntPtr handle, Func<TFieldContent> createContent) : base(handle)
+        {
+            Content = createContent();
+            
+            Setup();
+        }
+
+        private void Setup()
+        {
+            var view = Content.ContentView;
+            
+            view.PreservesSuperviewLayoutMargins = true;
+            view.TranslatesAutoresizingMaskIntoConstraints = false;
+            
+            AddSubview(view);
+            
+            NSLayoutConstraint.ActivateConstraints(new[]
+            {
+                LeftAnchor.ConstraintEqualTo(view.LeftAnchor),
+                RightAnchor.ConstraintEqualTo(view.RightAnchor),
+                TopAnchor.ConstraintEqualTo(view.TopAnchor),
+                BottomAnchor.ConstraintEqualTo(view.BottomAnchor)
+            });
+            
+            SelectionStyle = UITableViewCellSelectionStyle.None;  
+        }
+
+        protected TFieldContent Content { get; }
+
+        public sealed override void AwakeFromNib()
+        {
+            base.AwakeFromNib();
+        }
+    }
+    
+    public abstract class FieldView<TField, TFieldContent> : FieldView<TFieldContent>
+        where TField : Field
+        where TFieldContent : IFieldContent
+    {
+        protected FieldView(IntPtr handle, Func<TFieldContent> createContent) : base(handle, createContent)
         {
         }
 
@@ -45,10 +78,8 @@ namespace XForm.Ios.FieldViews.Bases
 
         public TField Field { get; private set; }
 
-        public override void BindTo(IField field)
+        public sealed override void BindTo(IField field)
         {
-            base.BindTo(field);
-            
             BindTo((TField) field);
         }
 
@@ -83,7 +114,7 @@ namespace XForm.Ios.FieldViews.Bases
             }
         }
 
-        public virtual void TitleChanged(string value)
+        protected virtual void TitleChanged(string value)
         {
         }
     }

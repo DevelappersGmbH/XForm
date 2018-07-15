@@ -6,20 +6,21 @@
 //
 using Foundation;
 using System.CodeDom.Compiler;
+using XForm.Ios.FormViews;
 
-namespace XForm.Ios.FieldViews
+namespace Sample.IosApp.Views
 {
-	[Register ("ButtonFieldView")]
-	partial class ButtonFieldView
+	[Register ("InputFieldsFormView")]
+	partial class InputFieldsFormView
 	{
 		[Outlet]
-		UIKit.UIButton Button { get; set; }
+		FormView FormView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (Button != null) {
-				Button.Dispose ();
-				Button = null;
+			if (FormView != null) {
+				FormView.Dispose ();
+				FormView = null;
 			}
 		}
 	}

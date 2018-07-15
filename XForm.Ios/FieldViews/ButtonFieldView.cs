@@ -1,38 +1,33 @@
-﻿using System;
-using Foundation;
+using System;
+using System.Windows.Input;
 using UIKit;
 using XForm.Fields;
+using XForm.Ios.ContentViews;
+using XForm.Ios.ContentViews.Interfaces;
 using XForm.Ios.FieldViews.Bases;
 
 namespace XForm.Ios.FieldViews
 {
-    public partial class ButtonFieldView : FieldView<ButtonField>
+    public class ButtonFieldView: ValueFieldView<ButtonField, IButtonFieldContent, ICommand>
     {
-        public static readonly UINib Nib;
-
-        static ButtonFieldView()
-        {
-            Nib = UINib.FromName("ButtonFieldView", NSBundle.MainBundle);
-        }
-
-        protected ButtonFieldView(IntPtr handle) : base(handle)
+        public ButtonFieldView(IntPtr handle) : this(handle, () => new ButtonFieldContent())
         {
         }
-
+        
+        public ButtonFieldView(IntPtr handle, Func<IButtonFieldContent> createContent) : base(handle, createContent)
+        {
+            Button.TouchUpInside += ButtonTouchUpInside;
+        }
+        
         ~ButtonFieldView()
         {
             if (Button != null)
                 Button.TouchUpInside -= ButtonTouchUpInside;
         }
 
-        public override void AwakeFromNib()
-        {
-            base.AwakeFromNib();
+        public UIButton Button => Content.Button;
 
-            Button.TouchUpInside += ButtonTouchUpInside;
-        }
-
-        public override void TitleChanged(string value)
+        protected override void TitleChanged(string value)
         {
             base.TitleChanged(value);
             

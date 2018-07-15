@@ -1,10 +1,9 @@
 using System;
-using System.Threading;
 using XForm.Fields.Interfaces;
 
 namespace XForm.Fields.Bases
 {
-    public abstract class ValueField<TValue>: Field, IValueField<TValue>
+    public abstract class ValueField<TValue> : Field, IValueField<TValue>
     {
         private TValue _value;
 
@@ -13,8 +12,8 @@ namespace XForm.Fields.Bases
             Value = value;
         }
 
-        public event EventHandler ValueChanged; 
-        
+        public event EventHandler ValueChanged;
+
         public TValue Value
         {
             get => _value;

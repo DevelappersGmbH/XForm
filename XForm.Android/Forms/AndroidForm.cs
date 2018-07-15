@@ -1,5 +1,6 @@
 using XForm.Android.FieldViews;
 using XForm.Fields;
+using XForm.Fields.Bases;
 using XForm.Forms;
 
 namespace XForm.Android.Forms
@@ -17,7 +18,7 @@ namespace XForm.Android.Forms
             
             locator.Register<LabelField, LabelFieldView>();
             locator.Register<ButtonField, ButtonFieldView>();
-            locator.Register<TextInputField, TextInputFieldView>();
+            locator.Register<TextField, TextInputFieldView>();
         }
     }
 }

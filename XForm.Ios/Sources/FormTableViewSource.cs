@@ -4,7 +4,6 @@ using System.Collections.Specialized;
 using Foundation;
 using UIKit;
 using XForm.Fields.Interfaces;
-using XForm.Ios.FieldViews;
 using XForm.Ios.FieldViews.Bases;
 using XForm.Ios.Forms;
 using XForm.Ios.FormViews;
@@ -21,8 +20,6 @@ namespace XForm.Ios.Sources
         {
             _formView = formView;
             _fieldViewCreator = new FieldViewCreator(formView);
-            
-            formView.RegisterNibForCellReuse(LabelFieldView.Nib, nameof(LabelFieldView));
         }
 
         public ObservableCollection<IField> Fields

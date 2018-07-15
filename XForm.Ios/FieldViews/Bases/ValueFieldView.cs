@@ -1,18 +1,21 @@
 using System;
-using XForm.Fields.Interfaces;
+using XForm.Fields.Bases;
+using XForm.Ios.ContentViews.Interfaces;
 
 namespace XForm.Ios.FieldViews.Bases
 {
-    public abstract class ValueFieldView<TField, TValue> : FieldView<TField> where TField : class, IField, IValueField<TValue>
+    public abstract class ValueFieldView<TField, TContent, TValue> : FieldView<TField, TContent> 
+        where TField : ValueField<TValue>
+        where TContent : IFieldContent
     {
-        protected ValueFieldView(IntPtr handle) : base(handle)
+        protected ValueFieldView(IntPtr handle, Func<TContent> createContent) : base(handle, createContent)
         {
         }
-        
+
         protected override void BindTo(TField field)
         {
             base.BindTo(field);
-            
+
             ValueChanged(field != null ? field.Value : default(TValue));
         }
 
@@ -32,7 +35,7 @@ namespace XForm.Ios.FieldViews.Bases
         {
         }
 
-        protected void SetValue(TValue value)
+        protected virtual void SetValue(TValue value)
         {
             if (Field == null)
                 return;

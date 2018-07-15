@@ -36,23 +36,35 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContentViews\Bases\FieldContent.cs" />
+    <Compile Include="ContentViews\ButtonFieldContent.cs" />
+    <Compile Include="ContentViews\ButtonFieldView.designer.cs">
+      <DependentUpon>ButtonFieldContent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ContentViews\Interfaces\IButtonFieldContent.cs" />
+    <Compile Include="ContentViews\Interfaces\IFieldContent.cs" />
+    <Compile Include="ContentViews\Interfaces\ILabelFieldContent.cs" />
+    <Compile Include="ContentViews\Interfaces\ITextFieldContent.cs" />
+    <Compile Include="ContentViews\LabelFieldContent.cs" />
+    <Compile Include="ContentViews\LabelFieldContent.designer.cs">
+      <DependentUpon>LabelFieldContent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ContentViews\TextFieldContent.cs" />
+    <Compile Include="ContentViews\TextFieldContent.designer.cs" />
     <Compile Include="FieldViews\Bases\FieldView.cs" />
+    <Compile Include="FieldViews\Bases\TextFieldView.cs" />
+    <Compile Include="FieldViews\Bases\InputFieldView.cs" />
     <Compile Include="FieldViews\Bases\ValueFieldView.cs" />
-    <Compile Include="FieldViews\TextInputFieldView.cs" />
-    <Compile Include="FieldViews\TextInputFieldView.designer.cs" />
+    <Compile Include="FieldViews\ButtonFieldView.cs" />
+    <Compile Include="FieldViews\DecimalInputFieldView.cs" />
+    <Compile Include="FieldViews\LabelFieldView.cs" />
+    <Compile Include="FieldViews\NumberInputFieldView.cs" />
+    <Compile Include="FieldViews\SingleLineTextFieldView.cs" />
     <Compile Include="Forms\FieldViewCreator.cs" />
     <Compile Include="Forms\IosForm.cs" />
     <Compile Include="FormViews\FormView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sources\FormTableViewSource.cs" />
-    <Compile Include="FieldViews\LabelFieldView.cs" />
-    <Compile Include="FieldViews\LabelFieldView.designer.cs">
-      <DependentUpon>LabelFieldView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FieldViews\ButtonFieldView.cs" />
-    <Compile Include="FieldViews\ButtonFieldView.designer.cs">
-      <DependentUpon>ButtonFieldView.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XForm\XForm.csproj">
@@ -64,9 +76,9 @@
     <Folder Include="FieldViews\" />
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="FieldViews\LabelFieldView.xib" />
-    <InterfaceDefinition Include="FieldViews\ButtonFieldView.xib" />
-    <InterfaceDefinition Include="FieldViews\TextInputFieldView.xib" />
+    <InterfaceDefinition Include="ContentViews\ButtonFieldContent.xib" />
+    <InterfaceDefinition Include="ContentViews\LabelFieldContent.xib" />
+    <InterfaceDefinition Include="ContentViews\TextFieldContent.xib" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

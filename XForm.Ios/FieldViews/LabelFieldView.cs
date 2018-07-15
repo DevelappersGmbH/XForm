@@ -1,25 +1,27 @@
-﻿using System;
-using Foundation;
+using System;
 using UIKit;
 using XForm.Fields;
+using XForm.Ios.ContentViews;
+using XForm.Ios.ContentViews.Interfaces;
 using XForm.Ios.FieldViews.Bases;
 
 namespace XForm.Ios.FieldViews
 {
-    public partial class LabelFieldView : ValueFieldView<LabelField, string>
+    public class LabelFieldView : ValueFieldView<LabelField, ILabelFieldContent, string>
     {
-        public static readonly UINib Nib;
-
-        static LabelFieldView()
-        {
-            Nib = UINib.FromName("LabelFieldView", NSBundle.MainBundle);
-        }
-
-        protected LabelFieldView(IntPtr handle) : base(handle)
+        public LabelFieldView(IntPtr handle) : this(handle, () => new LabelFieldContent())
         {
         }
+        
+        public LabelFieldView(IntPtr handle, Func<ILabelFieldContent> createContent) : base(handle, createContent)
+        {
+        }
+        
+        public UILabel TitleLabel => Content.TitleLabel;
 
-        public override void TitleChanged(string value)
+        public UILabel ValueLabel => Content.ValueLabel;
+        
+        protected override void TitleChanged(string value)
         {
             base.TitleChanged(value);
 
