@@ -2326,8 +2326,8 @@ namespace XForm.Android
 			// aapt resource value: 0x7f070037
 			public static int SYM = 2131165239;
 			
-			// aapt resource value: 0x7f07009f
-			public static int action0 = 2131165343;
+			// aapt resource value: 0x7f0700a0
+			public static int action0 = 2131165344;
 			
 			// aapt resource value: 0x7f07007c
 			public static int action_bar = 2131165308;
@@ -2350,17 +2350,17 @@ namespace XForm.Android
 			// aapt resource value: 0x7f07005a
 			public static int action_bar_title = 2131165274;
 			
-			// aapt resource value: 0x7f07009c
-			public static int action_container = 2131165340;
+			// aapt resource value: 0x7f07009d
+			public static int action_container = 2131165341;
 			
 			// aapt resource value: 0x7f07007d
 			public static int action_context_bar = 2131165309;
 			
-			// aapt resource value: 0x7f0700a3
-			public static int action_divider = 2131165347;
+			// aapt resource value: 0x7f0700a4
+			public static int action_divider = 2131165348;
 			
-			// aapt resource value: 0x7f07009d
-			public static int action_image = 2131165341;
+			// aapt resource value: 0x7f07009e
+			public static int action_image = 2131165342;
 			
 			// aapt resource value: 0x7f070003
 			public static int action_menu_divider = 2131165187;
@@ -2377,11 +2377,11 @@ namespace XForm.Android
 			// aapt resource value: 0x7f07005c
 			public static int action_mode_close_button = 2131165276;
 			
-			// aapt resource value: 0x7f07009e
-			public static int action_text = 2131165342;
+			// aapt resource value: 0x7f07009f
+			public static int action_text = 2131165343;
 			
-			// aapt resource value: 0x7f0700ac
-			public static int actions = 2131165356;
+			// aapt resource value: 0x7f0700ad
+			public static int actions = 2131165357;
 			
 			// aapt resource value: 0x7f07005d
 			public static int activity_chooser_view_content = 2131165277;
@@ -2419,8 +2419,8 @@ namespace XForm.Android
 			// aapt resource value: 0x7f070063
 			public static int buttonPanel = 2131165283;
 			
-			// aapt resource value: 0x7f0700a0
-			public static int cancel_action = 2131165344;
+			// aapt resource value: 0x7f0700a1
+			public static int cancel_action = 2131165345;
 			
 			// aapt resource value: 0x7f070045
 			public static int center = 2131165253;
@@ -2434,8 +2434,8 @@ namespace XForm.Android
 			// aapt resource value: 0x7f070073
 			public static int checkbox = 2131165299;
 			
-			// aapt resource value: 0x7f0700a8
-			public static int chronometer = 2131165352;
+			// aapt resource value: 0x7f0700a9
+			public static int chronometer = 2131165353;
 			
 			// aapt resource value: 0x7f07004e
 			public static int clip_horizontal = 2131165262;
@@ -2491,8 +2491,8 @@ namespace XForm.Android
 			// aapt resource value: 0x7f070030
 			public static int end = 2131165232;
 			
-			// aapt resource value: 0x7f0700ae
-			public static int end_padder = 2131165358;
+			// aapt resource value: 0x7f0700af
+			public static int end_padder = 2131165359;
 			
 			// aapt resource value: 0x7f07003f
 			public static int enterAlways = 2131165247;
@@ -2536,8 +2536,8 @@ namespace XForm.Android
 			// aapt resource value: 0x7f070062
 			public static int icon = 2131165282;
 			
-			// aapt resource value: 0x7f0700ad
-			public static int icon_group = 2131165357;
+			// aapt resource value: 0x7f0700ae
+			public static int icon_group = 2131165358;
 			
 			// aapt resource value: 0x7f07003a
 			public static int ifRoom = 2131165242;
@@ -2545,8 +2545,8 @@ namespace XForm.Android
 			// aapt resource value: 0x7f07005f
 			public static int image = 2131165279;
 			
-			// aapt resource value: 0x7f0700a9
-			public static int info = 2131165353;
+			// aapt resource value: 0x7f0700aa
+			public static int info = 2131165354;
 			
 			// aapt resource value: 0x7f070059
 			public static int italic = 2131165273;
@@ -2575,8 +2575,8 @@ namespace XForm.Android
 			// aapt resource value: 0x7f0700b2
 			public static int masked = 2131165362;
 			
-			// aapt resource value: 0x7f0700a2
-			public static int media_actions = 2131165346;
+			// aapt resource value: 0x7f0700a3
+			public static int media_actions = 2131165347;
 			
 			// aapt resource value: 0x7f0700b0
 			public static int message = 2131165360;
@@ -2602,14 +2602,14 @@ namespace XForm.Android
 			// aapt resource value: 0x7f07001e
 			public static int normal = 2131165214;
 			
-			// aapt resource value: 0x7f0700ab
-			public static int notification_background = 2131165355;
+			// aapt resource value: 0x7f0700ac
+			public static int notification_background = 2131165356;
+			
+			// aapt resource value: 0x7f0700a6
+			public static int notification_main_column = 2131165350;
 			
 			// aapt resource value: 0x7f0700a5
-			public static int notification_main_column = 2131165349;
-			
-			// aapt resource value: 0x7f0700a4
-			public static int notification_main_column_container = 2131165348;
+			public static int notification_main_column_container = 2131165349;
 			
 			// aapt resource value: 0x7f07004c
 			public static int parallax = 2131165260;
@@ -2635,11 +2635,11 @@ namespace XForm.Android
 			// aapt resource value: 0x7f07004a
 			public static int right = 2131165258;
 			
-			// aapt resource value: 0x7f0700aa
-			public static int right_icon = 2131165354;
+			// aapt resource value: 0x7f0700ab
+			public static int right_icon = 2131165355;
 			
-			// aapt resource value: 0x7f0700a6
-			public static int right_side = 2131165350;
+			// aapt resource value: 0x7f0700a7
+			public static int right_side = 2131165351;
 			
 			// aapt resource value: 0x7f07000c
 			public static int save_image_matrix = 2131165196;
@@ -2743,8 +2743,8 @@ namespace XForm.Android
 			// aapt resource value: 0x7f07004b
 			public static int start = 2131165259;
 			
-			// aapt resource value: 0x7f0700a1
-			public static int status_bar_latest_event_content = 2131165345;
+			// aapt resource value: 0x7f0700a2
+			public static int status_bar_latest_event_content = 2131165346;
 			
 			// aapt resource value: 0x7f070076
 			public static int submenuarrow = 2131165302;
@@ -2779,8 +2779,8 @@ namespace XForm.Android
 			// aapt resource value: 0x7f070015
 			public static int textinput_error = 2131165205;
 			
-			// aapt resource value: 0x7f0700a7
-			public static int time = 2131165351;
+			// aapt resource value: 0x7f0700a8
+			public static int time = 2131165352;
 			
 			// aapt resource value: 0x7f07001c
 			public static int title = 2131165212;
@@ -2827,11 +2827,11 @@ namespace XForm.Android
 			// aapt resource value: 0x7f070026
 			public static int useLogo = 2131165222;
 			
-			// aapt resource value: 0x7f0700af
-			public static int valueEditText = 2131165359;
-			
 			// aapt resource value: 0x7f07009b
-			public static int valueTextView = 2131165339;
+			public static int valueEditText = 2131165339;
+			
+			// aapt resource value: 0x7f07009c
+			public static int valueTextView = 2131165340;
 			
 			// aapt resource value: 0x7f070016
 			public static int view_offset_helper = 2131165206;
@@ -3025,67 +3025,67 @@ namespace XForm.Android
 			public static int design_text_input_password_icon = 2130903080;
 			
 			// aapt resource value: 0x7f030029
-			public static int LabelFieldView = 2130903081;
+			public static int EditTextFieldView = 2130903081;
 			
 			// aapt resource value: 0x7f03002a
-			public static int notification_action = 2130903082;
+			public static int LabelFieldView = 2130903082;
 			
 			// aapt resource value: 0x7f03002b
-			public static int notification_action_tombstone = 2130903083;
+			public static int notification_action = 2130903083;
 			
 			// aapt resource value: 0x7f03002c
-			public static int notification_media_action = 2130903084;
+			public static int notification_action_tombstone = 2130903084;
 			
 			// aapt resource value: 0x7f03002d
-			public static int notification_media_cancel_action = 2130903085;
+			public static int notification_media_action = 2130903085;
 			
 			// aapt resource value: 0x7f03002e
-			public static int notification_template_big_media = 2130903086;
+			public static int notification_media_cancel_action = 2130903086;
 			
 			// aapt resource value: 0x7f03002f
-			public static int notification_template_big_media_custom = 2130903087;
+			public static int notification_template_big_media = 2130903087;
 			
 			// aapt resource value: 0x7f030030
-			public static int notification_template_big_media_narrow = 2130903088;
+			public static int notification_template_big_media_custom = 2130903088;
 			
 			// aapt resource value: 0x7f030031
-			public static int notification_template_big_media_narrow_custom = 2130903089;
+			public static int notification_template_big_media_narrow = 2130903089;
 			
 			// aapt resource value: 0x7f030032
-			public static int notification_template_custom_big = 2130903090;
+			public static int notification_template_big_media_narrow_custom = 2130903090;
 			
 			// aapt resource value: 0x7f030033
-			public static int notification_template_icon_group = 2130903091;
+			public static int notification_template_custom_big = 2130903091;
 			
 			// aapt resource value: 0x7f030034
-			public static int notification_template_lines_media = 2130903092;
+			public static int notification_template_icon_group = 2130903092;
 			
 			// aapt resource value: 0x7f030035
-			public static int notification_template_media = 2130903093;
+			public static int notification_template_lines_media = 2130903093;
 			
 			// aapt resource value: 0x7f030036
-			public static int notification_template_media_custom = 2130903094;
+			public static int notification_template_media = 2130903094;
 			
 			// aapt resource value: 0x7f030037
-			public static int notification_template_part_chronometer = 2130903095;
+			public static int notification_template_media_custom = 2130903095;
 			
 			// aapt resource value: 0x7f030038
-			public static int notification_template_part_time = 2130903096;
+			public static int notification_template_part_chronometer = 2130903096;
 			
 			// aapt resource value: 0x7f030039
-			public static int select_dialog_item_material = 2130903097;
+			public static int notification_template_part_time = 2130903097;
 			
 			// aapt resource value: 0x7f03003a
-			public static int select_dialog_multichoice_material = 2130903098;
+			public static int select_dialog_item_material = 2130903098;
 			
 			// aapt resource value: 0x7f03003b
-			public static int select_dialog_singlechoice_material = 2130903099;
+			public static int select_dialog_multichoice_material = 2130903099;
 			
 			// aapt resource value: 0x7f03003c
-			public static int support_simple_spinner_dropdown_item = 2130903100;
+			public static int select_dialog_singlechoice_material = 2130903100;
 			
 			// aapt resource value: 0x7f03003d
-			public static int TextInputFieldView = 2130903101;
+			public static int support_simple_spinner_dropdown_item = 2130903101;
 			
 			// aapt resource value: 0x7f03003e
 			public static int tooltip = 2130903102;

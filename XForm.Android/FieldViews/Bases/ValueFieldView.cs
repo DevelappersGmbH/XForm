@@ -16,18 +16,6 @@ namespace XForm.Android.FieldViews.Bases
             ValueChanged(field != null ? field.Value : default(TValue));
         }
 
-        protected override void FieldPropertyChanged(string propertyName)
-        {
-            base.FieldPropertyChanged(propertyName);
-
-            switch (propertyName)
-            {
-                case nameof(Field.Value):
-                    ValueChanged(Field == null ? default(TValue) : Field.Value);
-                    break;
-            }
-        }
-
         protected virtual void ValueChanged(TValue value)
         {
         }
@@ -38,6 +26,18 @@ namespace XForm.Android.FieldViews.Bases
                 return;
 
             Field.Value = value;
+        }
+
+        protected override void FieldPropertyChanged(string propertyName)
+        {
+            base.FieldPropertyChanged(propertyName);
+
+            switch (propertyName)
+            {
+                case nameof(Field.Value):
+                    ValueChanged(Field == null ? default(TValue) : Field.Value);
+                    break;
+            }
         }
     }
 }

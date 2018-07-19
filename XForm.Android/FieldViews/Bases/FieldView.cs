@@ -36,7 +36,7 @@ namespace XForm.Android.FieldViews.Bases
 
         public TField Field { get; private set; }
 
-        public override void BindTo(IField field)
+        public sealed override void BindTo(IField field)
         {
             BindTo((TField) field);
         }

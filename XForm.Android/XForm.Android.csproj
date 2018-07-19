@@ -108,15 +108,19 @@
   <ItemGroup>
     <Compile Include="Adapters\FormAdapter.cs" />
     <Compile Include="FieldViews\Bases\FieldView.cs" />
+    <Compile Include="FieldViews\Bases\InputFieldView.cs" />
+    <Compile Include="FieldViews\Bases\TextFieldView.cs" />
     <Compile Include="FieldViews\Bases\ValueFieldView.cs" />
     <Compile Include="FieldViews\ButtonFieldView.cs" />
+    <Compile Include="FieldViews\DecimalInputFieldView.cs" />
     <Compile Include="FieldViews\LabelFieldView.cs" />
+    <Compile Include="FieldViews\NumberInputFieldView.cs" />
     <Compile Include="Forms\AndroidForm.cs" />
     <Compile Include="Forms\FieldViewCreator.cs" />
     <Compile Include="FormViews\FormView.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="FieldViews\TextInputFieldView.cs" />
+    <Compile Include="FieldViews\SingleLineTextFieldView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -125,7 +129,7 @@
     <AndroidResource Include="Resources\values\Strings.xml" />
     <AndroidResource Include="Resources\layout\LabelFieldView.axml" />
     <AndroidResource Include="Resources\layout\ButtonFieldView.axml" />
-    <AndroidResource Include="Resources\layout\TextInputFieldView.axml" />
+    <AndroidResource Include="Resources\layout\EditTextFieldView.axml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XForm\XForm.csproj">

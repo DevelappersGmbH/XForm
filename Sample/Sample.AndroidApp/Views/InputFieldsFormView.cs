@@ -7,8 +7,8 @@ using Sample.Core.ViewModels;
 namespace Sample.AndroidApp.Views
 {
     [MvxActivityPresentation]
-    [Activity(Label = "XForm", MainLauncher = true)]
-    public class MainView : MvxActivity<MainViewModel>
+    [Activity(Label = "Input fields")]
+    public class InputFieldsFormView : MvxActivity<InputFieldsFormViewModel>
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
