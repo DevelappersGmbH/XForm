@@ -1,16 +1,14 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using MvvmCross.ViewModels;
+using Sample.Core.ViewModels.Bases;
 using XForm.Fields;
 using XForm.Fields.Interfaces;
 using XForm.Forms;
 
 namespace Sample.Core.ViewModels
 {
-    public class InputFieldsFormViewModel : MvxViewModel
+    public class InputFieldsFormViewModel : FormViewModel
     {
-        public Form Form { get; private set; }
-        
         public override async Task Initialize()
         {
             await base.Initialize();
