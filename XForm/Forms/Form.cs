@@ -2,13 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using XForm.Binding;
 using XForm.Fields.Interfaces;
 
 namespace XForm.Forms
 {
-    public abstract class Form
+    public abstract class Form : BindableBase
     {
         protected static Func<Form> FormCreateFunc;
+        private bool _enabled = true;
 
         public static Form Create(IEnumerable<IField> fields = null)
         {
@@ -31,6 +33,12 @@ namespace XForm.Forms
         public ObservableCollection<IField> Fields { get; private set; }
 
         public FieldViewLocator FieldViewLocator { get; }
+
+        public bool Enabled
+        {
+            get => _enabled;
+            set => Set(ref _enabled, value);
+        }
 
         #region Manipulate fields
 

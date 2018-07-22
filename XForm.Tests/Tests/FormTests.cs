@@ -25,7 +25,7 @@ namespace XForm.Tests.Tests
             Assert.NotNull(form.Fields);
             Assert.Empty(form.Fields);
         }
-
+        
         [Fact]
         public void TestCreateFormWithLabels()
         {
@@ -42,22 +42,40 @@ namespace XForm.Tests.Tests
                               field => AssertLabelView(field, "Label", "Label Value"),
                               field => AssertLabelView(field, "Label 2", "Label value 2"));
         }
-        
+
         [Fact]
         public void TestFieldInsert()
         {
-            var form = Form.Create(new List<IField>
-            {
-                new LabelField("Label", "Label Value")
-            });
+            var form = CreateDefaultForm();
             
             form.InsertField(0, new LabelField("Label 1", "Label Value"));
             form.InsertField(2, new LabelField("Label 2", "Label Value"));
             
             Assert.Collection(form.Fields,
                               field => AssertLabelView(field, "Label 1", "Label Value"),
-                              field => AssertLabelView(field, "Label", "Label Value"),
+                              field => { },
                               field => AssertLabelView(field, "Label 2", "Label Value"));
+        }
+        
+        [Fact]
+        public void TestEnabled()
+        {
+            var form = (MockForm) CreateDefaultForm();
+            var field = (MockField) form.Fields[0];
+
+            Assert.Equal(true, form.Enabled);
+            Assert.Collection(form.Fields, f => Assert.Equal(true, f.Enabled));
+            
+            Assert.Equal(0, form.EnabledChangedCalledCount);
+            Assert.Equal(0, field.EnabledChangedCalledCount);
+
+            form.Enabled = false;
+            
+            Assert.Equal(false, form.Enabled);
+            Assert.Collection(form.Fields, f => Assert.Equal(false, f.Enabled));
+            
+            Assert.Equal(1, form.EnabledChangedCalledCount);
+            Assert.Equal(1, field.EnabledChangedCalledCount);
         }
 
         private static void AssertLabelView(IField field, string title, string value)
@@ -67,6 +85,14 @@ namespace XForm.Tests.Tests
             
             Assert.Equal(field.Title, title);
             Assert.Equal((field as LabelField)?.Value, value);
+        }
+
+        private static Form CreateDefaultForm()
+        {
+            return Form.Create(new []
+            {
+                new MockField("Field 1") 
+            });
         }
     }
 }

@@ -1,12 +1,11 @@
-using XForm.Forms;
+using XForm.Fields.Bases;
 
 namespace XForm.Tests.Mocks
 {
-    public class MockForm: Form
+    public class MockField : Field
     {
-        public static void Register()
+        public MockField(string title) : base(title)
         {
-            FormCreateFunc = () => new MockForm();
         }
         
         public int EnabledChangedCalledCount { get; private set; }
