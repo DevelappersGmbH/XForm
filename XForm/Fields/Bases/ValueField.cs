@@ -17,7 +17,19 @@ namespace XForm.Fields.Bases
         public TValue Value
         {
             get => _value;
-            set => Set(ref _value, value, ValueChanged);
+            set
+            {
+                var oldValue = _value;
+                
+                if (!Set(ref _value, value, ValueChanged))
+                    return;
+                
+                HandleValueChanged(oldValue, value);
+            }
+        }
+
+        protected virtual void HandleValueChanged(TValue oldValue, TValue newValue)
+        {
         }
     }
 }

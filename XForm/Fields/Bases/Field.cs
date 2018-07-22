@@ -30,7 +30,7 @@ namespace XForm.Fields.Bases
 
         public bool Enabled
         {
-            get => Form.Enabled && _enabled;
+            get => (Form?.Enabled ?? false) && _enabled;
             set => Set(ref _enabled, value);
         }
 

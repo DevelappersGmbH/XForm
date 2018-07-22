@@ -10,8 +10,8 @@ namespace XForm.Tests.Tests
         {
             var label = new LabelField("Title", "Text");
             
-            Assert.Equal(label.Title, "Title");
-            Assert.Equal(label.Value, "Text");
+            Assert.Equal("Title", label.Title);
+            Assert.Equal("Text", label.Value);
         }
     }
 }
