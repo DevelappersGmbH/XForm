@@ -32,6 +32,8 @@ namespace XForm.Forms
 
         public FieldViewLocator FieldViewLocator { get; }
 
+        #region Manipulate fields
+
         private void SetFields(IEnumerable<IField> fields)
         {
             var fieldList = fields?.ToList() ?? new List<IField>();
@@ -49,6 +51,8 @@ namespace XForm.Forms
             field.Form = this;
             Fields.Insert(index, field);
         }
+
+        #endregion
 
         protected virtual void RegisterFieldViews(FieldViewLocator locator)
         {

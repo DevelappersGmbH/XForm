@@ -42,6 +42,23 @@ namespace XForm.Tests.Tests
                               field => AssertLabelView(field, "Label", "Label Value"),
                               field => AssertLabelView(field, "Label 2", "Label value 2"));
         }
+        
+        [Fact]
+        public void TestFieldInsert()
+        {
+            var form = Form.Create(new List<IField>
+            {
+                new LabelField("Label", "Label Value")
+            });
+            
+            form.InsertField(0, new LabelField("Label 1", "Label Value"));
+            form.InsertField(2, new LabelField("Label 2", "Label Value"));
+            
+            Assert.Collection(form.Fields,
+                              field => AssertLabelView(field, "Label 1", "Label Value"),
+                              field => AssertLabelView(field, "Label", "Label Value"),
+                              field => AssertLabelView(field, "Label 2", "Label Value"));
+        }
 
         private static void AssertLabelView(IField field, string title, string value)
         {
