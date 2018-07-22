@@ -5,13 +5,12 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14113"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainView">
             <connections>
-                <outlet property="FormView" destination="cWv-mG-1Jj" id="xm7-Fk-rxe"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -19,19 +18,7 @@
         <view contentMode="scaleToFill" id="2">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cWv-mG-1Jj" customClass="FormView">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </view>
-            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <constraints>
-                <constraint firstItem="cWv-mG-1Jj" firstAttribute="top" secondItem="2" secondAttribute="top" id="5oh-xI-ndy"/>
-                <constraint firstAttribute="bottom" secondItem="cWv-mG-1Jj" secondAttribute="bottom" id="INU-Iw-vms"/>
-                <constraint firstItem="cWv-mG-1Jj" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="aqU-XF-grv"/>
-                <constraint firstAttribute="trailing" secondItem="cWv-mG-1Jj" secondAttribute="trailing" id="iI1-nP-QYb"/>
-            </constraints>
         </view>
     </objects>
 </document>

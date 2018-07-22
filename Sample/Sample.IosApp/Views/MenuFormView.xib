@@ -9,9 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InputFieldsFormView">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MenuFormView">
             <connections>
-                <outlet property="FormView" destination="M5B-Gy-K38" id="mDv-2V-eAJ"/>
+                <outlet property="FormView" destination="Cvr-AI-sU2" id="2kr-Pk-UgX"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -20,17 +20,17 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="M5B-Gy-K38" customClass="FormView">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Cvr-AI-sU2" customClass="FormView">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="M5B-Gy-K38" firstAttribute="top" secondItem="2" secondAttribute="top" id="6uh-LK-TS8"/>
-                <constraint firstAttribute="trailing" secondItem="M5B-Gy-K38" secondAttribute="trailing" id="9Es-FY-iei"/>
-                <constraint firstAttribute="bottom" secondItem="M5B-Gy-K38" secondAttribute="bottom" id="GRD-TJ-WwH"/>
-                <constraint firstItem="M5B-Gy-K38" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="za6-yx-DQ5"/>
+                <constraint firstItem="Cvr-AI-sU2" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="Fjm-vx-3SD"/>
+                <constraint firstItem="Cvr-AI-sU2" firstAttribute="top" secondItem="2" secondAttribute="top" id="UuB-Ej-bd9"/>
+                <constraint firstAttribute="bottom" secondItem="Cvr-AI-sU2" secondAttribute="bottom" id="fyj-W5-uAE"/>
+                <constraint firstAttribute="trailing" secondItem="Cvr-AI-sU2" secondAttribute="trailing" id="tTb-d9-8W5"/>
             </constraints>
         </view>
     </objects>

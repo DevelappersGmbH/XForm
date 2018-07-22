@@ -9,8 +9,15 @@ namespace Sample.Core.ViewModels
 
         private void HandleShowContentViewModelsCommand()
         {
-            NavigationService.Navigate<MenuFormViewModel>();
+            
+        }
+
+        public override void ViewAppeared()
+        {
+            base.ViewAppeared();
+            
             NavigationService.Navigate<InputFieldsFormViewModel>();
+            NavigationService.Navigate<MenuFormViewModel>();
         }
     }
 }

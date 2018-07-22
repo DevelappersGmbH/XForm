@@ -28,9 +28,6 @@ namespace Sample.AndroidApp.Views
             SetContentView(Resource.Layout.Main);
             
             DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
-            
-            if (bundle == null)
-                ViewModel.ShowContentViewModelsCommand.Execute();
         }
         
         public override void OnBackPressed()

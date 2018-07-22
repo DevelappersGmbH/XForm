@@ -9,12 +9,18 @@ using System.CodeDom.Compiler;
 
 namespace Sample.IosApp.Views
 {
-	[Register ("MainView")]
-	partial class MainView
+	[Register ("SampleLoginFormView")]
+	partial class SampleLoginFormView
 	{
+		[Outlet]
+		XForm.Ios.FormViews.FormView FormView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (FormView != null) {
+				FormView.Dispose ();
+				FormView = null;
+			}
 		}
 	}
 }

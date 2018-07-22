@@ -90,6 +90,14 @@
       <HintPath>..\..\packages\MvvmCross.6.1.2\lib\xamarinios10\MvvmCross.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MvvmCross.Plugin.Sidebar, Version=6.1.2.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\MvvmCross.Plugin.Sidebar.6.1.2\lib\xamarinios10\MvvmCross.Plugin.Sidebar.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SidebarNavigation, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\SidebarNavigation.2.0.0\lib\xamarinios10\SidebarNavigation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -107,6 +115,8 @@
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Views\InputFieldsFormView.xib" />
     <InterfaceDefinition Include="Views\MainView.xib" />
+    <InterfaceDefinition Include="Views\SampleLoginFormView.xib" />
+    <InterfaceDefinition Include="Views\MenuFormView.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -124,6 +134,14 @@
     <Compile Include="Views\MainView.cs" />
     <Compile Include="Views\MainView.designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SampleLoginFormView.cs" />
+    <Compile Include="Views\SampleLoginFormView.designer.cs">
+      <DependentUpon>SampleLoginFormView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MenuFormView.cs" />
+    <Compile Include="Views\MenuFormView.designer.cs">
+      <DependentUpon>MenuFormView.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
