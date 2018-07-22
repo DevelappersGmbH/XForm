@@ -47,6 +47,13 @@ namespace XForm.Ios.FieldViews.Bases
             ValueTextField.Text = value;
         }
 
+        protected override void EnabledChanged(bool value)
+        {
+            base.EnabledChanged(value);
+
+            ValueTextField.Enabled = value;
+        }
+
         private void ValueTextFieldEditingChanged(object sender, EventArgs e)
         {
             SetValue(ValueTextField.Text);

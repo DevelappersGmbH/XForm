@@ -93,10 +93,12 @@ namespace XForm.Ios.FieldViews.Bases
             
             Field = field;
 
-            if (Field != null)
-                Field.PropertyChanged += FieldPropertyChanged;
-
+            if (Field == null) 
+                return;
+            
+            Field.PropertyChanged += FieldPropertyChanged;
             TitleChanged(Field?.Title);
+            EnabledChanged(Field.Enabled);
         }
 
         private void FieldPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -109,12 +111,19 @@ namespace XForm.Ios.FieldViews.Bases
             switch (propertyName)
             {
                 case nameof(Field.Title):
-                    TitleChanged(Field?.Title);
+                    TitleChanged(Field.Title);
+                    break;
+                case nameof(Field.Enabled):
+                    EnabledChanged(Field.Enabled);
                     break;
             }
         }
 
         protected virtual void TitleChanged(string value)
+        {
+        }
+
+        protected virtual void EnabledChanged(bool value)
         {
         }
     }

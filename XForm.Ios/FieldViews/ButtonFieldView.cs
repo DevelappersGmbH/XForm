@@ -34,6 +34,13 @@ namespace XForm.Ios.FieldViews
             Button.SetTitle(value, UIControlState.Normal);
         }
 
+        protected override void EnabledChanged(bool value)
+        {
+            base.EnabledChanged(value);
+
+            Button.Enabled = value;
+        }
+
         private void ButtonTouchUpInside(object sender, EventArgs e)
         {
             var command = Field.Value;
