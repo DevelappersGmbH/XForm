@@ -20,16 +20,16 @@ namespace Sample.AndroidApp.Views
     public class MainView : MvxAppCompatActivity<MainViewModel>
     {
         public DrawerLayout DrawerLayout { get; private set; }
-        
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            
+
             SetContentView(Resource.Layout.Main);
-            
+
             DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
         }
-        
+
         public override void OnBackPressed()
         {
             if (DrawerLayout != null && DrawerLayout.IsDrawerOpen(GravityCompat.Start))
@@ -43,8 +43,8 @@ namespace Sample.AndroidApp.Views
             if (CurrentFocus == null)
                 return;
 
-            var inputMethodManager = (InputMethodManager)GetSystemService(InputMethodService);
-            
+            var inputMethodManager = (InputMethodManager) GetSystemService(InputMethodService);
+
             inputMethodManager.HideSoftInputFromWindow(CurrentFocus.WindowToken, 0);
 
             CurrentFocus.ClearFocus();

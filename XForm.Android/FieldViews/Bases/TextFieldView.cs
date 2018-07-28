@@ -48,5 +48,12 @@ namespace XForm.Android.FieldViews.Bases
         {
             SetValue(ValueEditText.Text);
         }
+        
+        protected override void EnabledChanged(bool value)
+        {
+            base.EnabledChanged(value);
+
+            ValueEditText.Enabled = value;
+        }
     }
 }

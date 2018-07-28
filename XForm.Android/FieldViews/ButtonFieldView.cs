@@ -41,5 +41,12 @@ namespace XForm.Android.FieldViews
             
             command.Execute(null);
         }
+
+        protected override void EnabledChanged(bool value)
+        {
+            base.EnabledChanged(value);
+
+            _button.Enabled = value;
+        }
     }
 }

@@ -51,10 +51,12 @@ namespace XForm.Android.FieldViews.Bases
             
             Field = field;
 
-            if (Field != null)
-                Field.PropertyChanged += FieldPropertyChanged;
+            if (Field == null)
+                return;
 
-            TitleChanged(Field?.Title);
+            Field.PropertyChanged += FieldPropertyChanged;
+            TitleChanged(Field.Title);
+            EnabledChanged(Field.Enabled);
         }
 
         private void FieldPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -69,6 +71,9 @@ namespace XForm.Android.FieldViews.Bases
                 case nameof(Field.Title):
                     TitleChanged(Field?.Title);
                     break;
+                case nameof(Field.Enabled):
+                    EnabledChanged(Field.Enabled);
+                    break;
             }
         }
 
@@ -76,6 +81,8 @@ namespace XForm.Android.FieldViews.Bases
         {
         }
         
-        
+        protected virtual void EnabledChanged(bool value)
+        {
+        }
     }
 }

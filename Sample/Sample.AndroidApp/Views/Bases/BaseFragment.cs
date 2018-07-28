@@ -16,7 +16,7 @@ namespace Sample.AndroidApp.Views.Bases
 
         public abstract int Layout { get; }
 
-        protected MainView ParentActivity => (MainView) Activity;
+        private MainView ParentActivity => (MainView) Activity;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -37,14 +37,21 @@ namespace Sample.AndroidApp.Views.Bases
                                                          _toolbar,                   
                                                          Resource.String.drawer_open,
                                                          Resource.String.drawer_close);
-            
-            _drawerToggle.DrawerOpened += (sender, e) => ParentActivity?.HideSoftKeyboard();
+
+            _drawerToggle.DrawerOpened += OnDrawerOpen;
             
             ParentActivity.DrawerLayout.AddDrawerListener(_drawerToggle);
             
             return view;
         }
-        
+
+        public override void OnDestroyView()
+        {
+            base.OnDestroyView();
+
+            _drawerToggle.DrawerOpened -= OnDrawerOpen;
+        }
+
         public override void OnConfigurationChanged(Configuration newConfig)
         {
             base.OnConfigurationChanged(newConfig);
@@ -59,6 +66,11 @@ namespace Sample.AndroidApp.Views.Bases
             
             if (_toolbar != null)
                 _drawerToggle.SyncState();
+        }
+
+        private void OnDrawerOpen(object sender, ActionBarDrawerEventArgs e)
+        {
+            ParentActivity?.HideSoftKeyboard();
         }
     }
 }

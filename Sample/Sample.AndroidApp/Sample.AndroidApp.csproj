@@ -141,6 +141,7 @@
     <Compile Include="Setup.cs" />
     <Compile Include="SplashScreen.cs" />
     <Compile Include="Views\Bases\BaseFragment.cs" />
+    <Compile Include="Views\Bases\FormView.cs" />
     <Compile Include="Views\InputFieldsFormView.cs" />
     <Compile Include="Views\MainView.cs" />
     <Compile Include="Views\MenuFormView.cs" />
@@ -162,6 +163,7 @@
     <AndroidResource Include="Resources\layout\Form.axml" />
     <AndroidResource Include="Resources\layout\toolbar.axml" />
     <AndroidResource Include="Resources\layout\Menu.axml" />
+    <AndroidResource Include="Resources\layout\options_menu.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

@@ -97,7 +97,7 @@ namespace XForm.Ios.FieldViews.Bases
                 return;
             
             Field.PropertyChanged += FieldPropertyChanged;
-            TitleChanged(Field?.Title);
+            TitleChanged(Field.Title);
             EnabledChanged(Field.Enabled);
         }
 

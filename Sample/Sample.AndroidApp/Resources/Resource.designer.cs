@@ -8487,8 +8487,8 @@ namespace Sample.AndroidApp
 			// aapt resource value: 0x7f0a003a
 			public const int always = 2131361850;
 			
-			// aapt resource value: 0x7f0a00b7
-			public const int appbar = 2131361975;
+			// aapt resource value: 0x7f0a00b8
+			public const int appbar = 2131361976;
 			
 			// aapt resource value: 0x7f0a0058
 			public const int async = 2131361880;
@@ -8676,14 +8676,14 @@ namespace Sample.AndroidApp
 			// aapt resource value: 0x7f0a00a1
 			public const int main_frame = 2131361953;
 			
-			// aapt resource value: 0x7f0a00bb
-			public const int masked = 2131361979;
+			// aapt resource value: 0x7f0a00bc
+			public const int masked = 2131361980;
 			
 			// aapt resource value: 0x7f0a00aa
 			public const int media_actions = 2131361962;
 			
-			// aapt resource value: 0x7f0a00b9
-			public const int message = 2131361977;
+			// aapt resource value: 0x7f0a00ba
+			public const int message = 2131361978;
 			
 			// aapt resource value: 0x7f0a0033
 			public const int middle = 2131361843;
@@ -8901,8 +8901,11 @@ namespace Sample.AndroidApp
 			// aapt resource value: 0x7f0a0071
 			public const int title_template = 2131361905;
 			
-			// aapt resource value: 0x7f0a00b8
-			public const int toolbar = 2131361976;
+			// aapt resource value: 0x7f0a00b7
+			public const int toggle_enabled = 2131361975;
+			
+			// aapt resource value: 0x7f0a00b9
+			public const int toolbar = 2131361977;
 			
 			// aapt resource value: 0x7f0a0040
 			public const int top = 2131361856;
@@ -8946,8 +8949,8 @@ namespace Sample.AndroidApp
 			// aapt resource value: 0x7f0a0016
 			public const int view_offset_helper = 2131361814;
 			
-			// aapt resource value: 0x7f0a00ba
-			public const int visible = 2131361978;
+			// aapt resource value: 0x7f0a00bb
+			public const int visible = 2131361979;
 			
 			// aapt resource value: 0x7f0a003e
 			public const int withText = 2131361854;
@@ -9195,25 +9198,28 @@ namespace Sample.AndroidApp
 			public const int notification_template_part_time = 2130968636;
 			
 			// aapt resource value: 0x7f04003d
-			public const int select_dialog_item_material = 2130968637;
+			public const int options_menu = 2130968637;
 			
 			// aapt resource value: 0x7f04003e
-			public const int select_dialog_multichoice_material = 2130968638;
+			public const int select_dialog_item_material = 2130968638;
 			
 			// aapt resource value: 0x7f04003f
-			public const int select_dialog_singlechoice_material = 2130968639;
+			public const int select_dialog_multichoice_material = 2130968639;
 			
 			// aapt resource value: 0x7f040040
-			public const int SplashScreen = 2130968640;
+			public const int select_dialog_singlechoice_material = 2130968640;
 			
 			// aapt resource value: 0x7f040041
-			public const int support_simple_spinner_dropdown_item = 2130968641;
+			public const int SplashScreen = 2130968641;
 			
 			// aapt resource value: 0x7f040042
-			public const int toolbar = 2130968642;
+			public const int support_simple_spinner_dropdown_item = 2130968642;
 			
 			// aapt resource value: 0x7f040043
-			public const int tooltip = 2130968643;
+			public const int toolbar = 2130968643;
+			
+			// aapt resource value: 0x7f040044
+			public const int tooltip = 2130968644;
 			
 			static Layout()
 			{
