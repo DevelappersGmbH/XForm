@@ -1,12 +1,12 @@
 using MvvmCross.Binding.BindingContext;
-using MvvmCross.Platforms.Ios.Views;
 using MvvmCross.Plugin.Sidebar;
 using Sample.Core.ViewModels;
+using Sample.IosApp.Views.Bases;
 
 namespace Sample.IosApp.Views
 {
     [MvxSidebarPresentation(MvxPanelEnum.Center, MvxPanelHintType.ResetRoot, true, MvxSplitViewBehaviour.Detail)]
-    public partial class InputFieldsFormView : MvxViewController<InputFieldsFormViewModel>
+    public partial class InputFieldsFormView : FormView<InputFieldsFormViewModel>
     {
         public InputFieldsFormView() : base("InputFieldsFormView", null)
         {
