@@ -154,6 +154,10 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />
+    <AndroidResource Include="Resources\menu\options_menu.axml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
     <AndroidResource Include="Resources\values\Strings.xml" />
     <AndroidResource Include="Resources\mipmap-hdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-mdpi\Icon.png" />
@@ -163,9 +167,19 @@
     <AndroidResource Include="Resources\layout\Form.axml" />
     <AndroidResource Include="Resources\layout\toolbar.axml" />
     <AndroidResource Include="Resources\layout\Menu.axml" />
-    <AndroidResource Include="Resources\layout\options_menu.axml" />
+    <AndroidResource Include="Resources\drawable-hdpi\icon_lock.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\icon_unlock.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\icon_lock.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\icon_unlock.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\icon_lock.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\icon_unlock.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\icon_lock.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\icon_unlock.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\icon_lock.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\icon_unlock.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Resources\drawable" />
     <Folder Include="Resources\drawable\" />
     <Folder Include="Views\" />
   </ItemGroup>
