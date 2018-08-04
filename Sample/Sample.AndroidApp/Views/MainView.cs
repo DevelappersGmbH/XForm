@@ -28,6 +28,7 @@ namespace Sample.AndroidApp.Views
             SetContentView(Resource.Layout.Main);
 
             DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
+            ViewModel.NavigateToMenuViewModelCommand.Execute();
         }
 
         public override void OnBackPressed()

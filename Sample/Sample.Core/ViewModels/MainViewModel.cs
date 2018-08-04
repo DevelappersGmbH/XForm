@@ -5,11 +5,11 @@ namespace Sample.Core.ViewModels
 {
     public class MainViewModel: MvxViewModel
     {
-        public IMvxCommand ShowContentViewModelsCommand => new MvxCommand(HandleShowContentViewModelsCommand);
+        public IMvxCommand NavigateToMenuViewModelCommand => new MvxCommand(HandleNavigateToMenuViewModelCommand);
 
-        private void HandleShowContentViewModelsCommand()
+        private void HandleNavigateToMenuViewModelCommand()
         {
-            
+            NavigationService.Navigate<MenuFormViewModel>();
         }
 
         public override void ViewAppeared()
@@ -17,7 +17,6 @@ namespace Sample.Core.ViewModels
             base.ViewAppeared();
             
             NavigationService.Navigate<InputFieldsFormViewModel>();
-            NavigationService.Navigate<MenuFormViewModel>();
         }
     }
 }
