@@ -1,11 +1,15 @@
 using System;
 using System.Windows.Input;
+using XForm.Binding;
+using XForm.EventSubscription;
 using XForm.Fields.Bases;
 
 namespace XForm.Fields
 {
     public class ButtonField : ValueField<ICommand>
     {
+        private IDisposable _canExecuteChangedSubscription;
+        
         public ButtonField(string title, ICommand value) : base(title, value)
         {
         }
@@ -13,12 +17,9 @@ namespace XForm.Fields
         protected override void HandleValueChanged(ICommand oldValue, ICommand newValue)
         {
             base.HandleValueChanged(oldValue, newValue);
-
-            if (oldValue != null) 
-                oldValue.CanExecuteChanged -= HandleCanExecuteChanged;
-
-            if (newValue != null) 
-                newValue.CanExecuteChanged += HandleCanExecuteChanged;
+            
+            _canExecuteChangedSubscription?.Dispose();
+            _canExecuteChangedSubscription = newValue?.WeakSubscribe(HandleCanExecuteChanged);
             
             HandleCanExecuteChanged(newValue, null);
         }

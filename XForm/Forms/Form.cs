@@ -56,8 +56,19 @@ namespace XForm.Forms
 
         public void InsertField(int index, IField field)
         {
+            if (field.Form != null)
+                throw new ArgumentException("Field can be only part of one form");
+            
             field.Form = this;
             Fields.Insert(index, field);
+        }
+
+        public void RemovedField(IField field)
+        {
+            if (field.Form != this || !Fields.Remove(field))
+                throw new ArgumentException("Field is not part of this form");
+            
+            field.Form = null;
         }
 
         #endregion

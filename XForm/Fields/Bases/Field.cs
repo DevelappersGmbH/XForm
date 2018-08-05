@@ -1,5 +1,7 @@
+using System;
 using System.ComponentModel;
 using XForm.Binding;
+using XForm.EventSubscription;
 using XForm.Fields.Interfaces;
 using XForm.Forms;
 
@@ -10,6 +12,8 @@ namespace XForm.Fields.Bases
         private bool _enabled = true;
         private string _title;
         private Form _form;
+
+        private IDisposable _formPropertyChangedSubscription;
 
         protected Field(string title)
         {
@@ -23,8 +27,9 @@ namespace XForm.Fields.Bases
             {
                 if (!Set(ref _form, value))
                     return;
-
-                _form.PropertyChanged += FormPropertyChanged;
+                
+                _formPropertyChangedSubscription?.Dispose();
+                _formPropertyChangedSubscription = _form?.WeakSubscribe(FormPropertyChanged);
             }
         }
 
