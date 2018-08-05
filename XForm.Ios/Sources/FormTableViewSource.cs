@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using Foundation;
 using UIKit;
 using XForm.EventSubscription;
 using XForm.Fields.Interfaces;
+using XForm.FieldViews;
 using XForm.Ios.FieldViews.Bases;
 using XForm.Ios.Forms;
 using XForm.Ios.FormViews;
@@ -16,6 +18,7 @@ namespace XForm.Ios.Sources
         private readonly FieldViewCreator _fieldViewCreator;
 
         private IDisposable _fieldsCollectionChangedSubscription;
+        private readonly Dictionary<IFieldView, IDisposable> _viewContentHeightChangedSubscriptions = new Dictionary<IFieldView, IDisposable>();
         
         private ObservableCollection<IField> _fields;
 
@@ -76,12 +79,19 @@ namespace XForm.Ios.Sources
         {
             var viewType = _formView.FieldViewLocator.ViewTypeForField(field);
             var view = _fieldViewCreator.CreateOrGetFieldView(viewType, indexPath);
-
-            view.ContentHeightChanged -= ViewContentHeightChanged;
             
             view.BindTo(field);
 
-            view.ContentHeightChanged += ViewContentHeightChanged;
+            // Manage event subscription to content height changed
+            IDisposable subscription = null;
+
+            if (_viewContentHeightChangedSubscriptions.ContainsKey(view))
+                subscription = _viewContentHeightChangedSubscriptions[view];
+            
+            subscription?.Dispose();
+            subscription = view.GetType().GetEvent(nameof(view.ContentHeightChanged)).WeakSubscribe(view, ViewContentHeightChanged);
+
+            _viewContentHeightChangedSubscriptions[view] = subscription;
 
             return view;
         }
