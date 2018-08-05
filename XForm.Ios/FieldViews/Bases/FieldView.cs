@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using UIKit;
+using XForm.EventSubscription;
 using XForm.Fields.Bases;
 using XForm.Fields.Interfaces;
 using XForm.FieldViews;
@@ -66,14 +67,10 @@ namespace XForm.Ios.FieldViews.Bases
         where TField : Field
         where TFieldContent : IFieldContent
     {
+        private IDisposable _fieldPropertyChangedSubscription;
+        
         protected FieldView(IntPtr handle, Func<TFieldContent> createContent) : base(handle, createContent)
         {
-        }
-
-        ~FieldView()
-        {
-            if (Field != null)
-                Field.PropertyChanged -= FieldPropertyChanged;
         }
 
         public TField Field { get; private set; }
@@ -87,18 +84,17 @@ namespace XForm.Ios.FieldViews.Bases
         {
             if (Equals(Field, field))
                 return;
-
-            if (Field != null) 
-                Field.PropertyChanged -= FieldPropertyChanged;
             
             Field = field;
 
-            if (Field == null) 
-                return;
+            _fieldPropertyChangedSubscription?.Dispose();
+            _fieldPropertyChangedSubscription = Field?.WeakSubscribe(FieldPropertyChanged);
             
-            Field.PropertyChanged += FieldPropertyChanged;
-            TitleChanged(Field.Title);
-            EnabledChanged(Field.Enabled);
+            if (Field != null)
+            {
+                TitleChanged(Field.Title);
+                EnabledChanged(Field.Enabled);
+            }
         }
 
         private void FieldPropertyChanged(object sender, PropertyChangedEventArgs e)

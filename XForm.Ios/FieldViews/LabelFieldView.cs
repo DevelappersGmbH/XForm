@@ -16,6 +16,11 @@ namespace XForm.Ios.FieldViews
         public LabelFieldView(IntPtr handle, Func<ILabelFieldContent> createContent) : base(handle, createContent)
         {
         }
+
+        ~LabelFieldView()
+        {
+            
+        }
         
         public UILabel TitleLabel => Content.TitleLabel;
 

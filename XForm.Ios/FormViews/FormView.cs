@@ -25,6 +25,17 @@ namespace XForm.Ios.FormViews
             Setup();
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+
+            if (disposing)
+            {
+                _source?.Dispose();
+                _source = null;
+            }
+        }
+
         public Form Form
         {
             get => _form;

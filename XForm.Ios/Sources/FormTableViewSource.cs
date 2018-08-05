@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using Foundation;
 using UIKit;
+using XForm.EventSubscription;
 using XForm.Fields.Interfaces;
 using XForm.Ios.FieldViews.Bases;
 using XForm.Ios.Forms;
@@ -13,6 +14,8 @@ namespace XForm.Ios.Sources
     internal class FormTableViewSource: UITableViewSource {
         private readonly FormView _formView;
         private readonly FieldViewCreator _fieldViewCreator;
+
+        private IDisposable _fieldsCollectionChangedSubscription;
         
         private ObservableCollection<IField> _fields;
 
@@ -27,14 +30,14 @@ namespace XForm.Ios.Sources
             get => _fields;
             set
             {
-                if (_fields == value)
+                if (Equals(_fields, value))
                     return;
-                
-                if (_fields != null)
-                    _fields.CollectionChanged -= FieldsCollectionChanged;
-                
+
                 _fields = value;
-                _fields.CollectionChanged += FieldsCollectionChanged;
+
+                _fieldsCollectionChangedSubscription?.Dispose();
+                _fieldsCollectionChangedSubscription = _fields?.WeakSubscribe(FieldsCollectionChanged);
+                
                 FieldsCollectionChanged(this, null);
             }
         }
@@ -74,16 +77,16 @@ namespace XForm.Ios.Sources
             var viewType = _formView.FieldViewLocator.ViewTypeForField(field);
             var view = _fieldViewCreator.CreateOrGetFieldView(viewType, indexPath);
 
-            view.ContentHeightChanged -= HandleContentHeightChanged;
+            view.ContentHeightChanged -= ViewContentHeightChanged;
             
             view.BindTo(field);
 
-            view.ContentHeightChanged += HandleContentHeightChanged;
+            view.ContentHeightChanged += ViewContentHeightChanged;
 
             return view;
         }
 
-        private void HandleContentHeightChanged(object sender, EventArgs e)
+        private void ViewContentHeightChanged(object sender, EventArgs e)
         {
             _formView.BeginUpdates();
             _formView.EndUpdates();

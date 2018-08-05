@@ -1,4 +1,5 @@
 using System;
+using MvvmCross.WeakSubscription;
 using UIKit;
 using XForm.Fields.Bases;
 using XForm.Ios.ContentViews;
@@ -9,10 +10,7 @@ namespace XForm.Ios.FieldViews.Bases
     public abstract class TextFieldView<TField> : ValueFieldView<TField, ITextFieldContent, string> 
         where TField : TextField
     {
-        private static ITextFieldContent CreateDefaultContentView()
-        {
-            return new TextFieldContent();
-        }
+        private IDisposable _valueTextFieldEditingChangedSubscription;
         
         protected TextFieldView(IntPtr handle) : this(handle, CreateDefaultContentView) 
         {
@@ -20,18 +18,17 @@ namespace XForm.Ios.FieldViews.Bases
 
         protected TextFieldView(IntPtr handle, Func<ITextFieldContent> contentViewCreator) : base(handle, contentViewCreator)
         {
-            ValueTextField.EditingChanged += ValueTextFieldEditingChanged;
-        }
-
-        ~TextFieldView()
-        {
-            if (ValueTextField != null)
-                ValueTextField.EditingChanged -= ValueTextFieldEditingChanged;
+            _valueTextFieldEditingChangedSubscription = ValueTextField.WeakSubscribe(nameof(ValueTextField.EditingChanged), ValueTextFieldEditingChanged);
         }
         
         public UILabel TitleLabel => Content.TitleLabel;
         
         public UITextField ValueTextField => Content.ValueTextField;
+        
+        private static ITextFieldContent CreateDefaultContentView()
+        {
+            return new TextFieldContent();
+        }
         
         protected override void TitleChanged(string value)
         {

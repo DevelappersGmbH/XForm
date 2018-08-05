@@ -1,5 +1,6 @@
 using System;
 using System.Windows.Input;
+using MvvmCross.WeakSubscription;
 using UIKit;
 using XForm.Fields;
 using XForm.Ios.ContentViews;
@@ -10,19 +11,15 @@ namespace XForm.Ios.FieldViews
 {
     public class ButtonFieldView: ValueFieldView<ButtonField, IButtonFieldContent, ICommand>
     {
+        private IDisposable _buttonTouchUpInsideSubscription;
+        
         public ButtonFieldView(IntPtr handle) : this(handle, () => new ButtonFieldContent())
         {
         }
         
         public ButtonFieldView(IntPtr handle, Func<IButtonFieldContent> createContent) : base(handle, createContent)
         {
-            Button.TouchUpInside += ButtonTouchUpInside;
-        }
-        
-        ~ButtonFieldView()
-        {
-            if (Button != null)
-                Button.TouchUpInside -= ButtonTouchUpInside;
+            _buttonTouchUpInsideSubscription = Button.WeakSubscribe(nameof(Button.TouchUpInside), ButtonTouchUpInside);
         }
 
         public UIButton Button => Content.Button;

@@ -1,4 +1,5 @@
 using System;
+using MvvmCross.WeakSubscription;
 using UIKit;
 using XForm.Fields.Bases;
 using XForm.Ios.ContentViews;
@@ -9,19 +10,15 @@ namespace XForm.Ios.FieldViews.Bases
     public abstract class InputFieldView<TField, TValue> : ValueFieldView<TField, ITextFieldContent, TValue> 
         where TField : InputField<TValue>
     {
+        private IDisposable _valueTextFieldEditingChangedSubscription;
+        
         protected InputFieldView(IntPtr handle) : this(handle, () => new TextFieldContent()) 
         {
         }
 
         protected InputFieldView(IntPtr handle, Func<ITextFieldContent> contentViewCreator) : base(handle, contentViewCreator)
         {
-            ValueTextField.EditingChanged += ValueTextFieldEditingChanged;
-        }
-
-        ~InputFieldView()
-        {
-            if (ValueTextField != null)
-                ValueTextField.EditingChanged -= ValueTextFieldEditingChanged;
+            _valueTextFieldEditingChangedSubscription = ValueTextField.WeakSubscribe(nameof(ValueTextField.EditingChanged), ValueTextFieldEditingChanged);
         }
 
         public UILabel TitleLabel => Content.TitleLabel;
