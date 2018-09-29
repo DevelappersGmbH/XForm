@@ -1,6 +1,6 @@
 using System;
-using MvvmCross.WeakSubscription;
 using UIKit;
+using XForm.EventSubscription;
 using XForm.Fields.Bases;
 using XForm.Ios.ContentViews;
 using XForm.Ios.ContentViews.Interfaces;
@@ -18,7 +18,7 @@ namespace XForm.Ios.FieldViews.Bases
 
         protected TextFieldView(IntPtr handle, Func<ITextFieldContent> contentViewCreator) : base(handle, contentViewCreator)
         {
-            _valueTextFieldEditingChangedSubscription = ValueTextField.WeakSubscribe(nameof(ValueTextField.EditingChanged), ValueTextFieldEditingChanged);
+            _valueTextFieldEditingChangedSubscription = ValueTextField.GetType().GetEvent(nameof(ValueTextField.EditingChanged)).WeakSubscribe(ValueTextField, ValueTextFieldEditingChanged);
         }
         
         public UILabel TitleLabel => Content.TitleLabel;

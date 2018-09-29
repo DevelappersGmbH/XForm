@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Input;
-using MvvmCross.WeakSubscription;
 using UIKit;
+using XForm.EventSubscription;
 using XForm.Fields;
 using XForm.Ios.ContentViews;
 using XForm.Ios.ContentViews.Interfaces;
@@ -19,7 +19,7 @@ namespace XForm.Ios.FieldViews
         
         public ButtonFieldView(IntPtr handle, Func<IButtonFieldContent> createContent) : base(handle, createContent)
         {
-            _buttonTouchUpInsideSubscription = Button.WeakSubscribe(nameof(Button.TouchUpInside), ButtonTouchUpInside);
+            _buttonTouchUpInsideSubscription = Button.GetType().GetEvent(nameof(Button.TouchUpInside)).WeakSubscribe(Button, ButtonTouchUpInside);
         }
 
         public UIButton Button => Content.Button;
