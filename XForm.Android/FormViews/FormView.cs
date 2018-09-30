@@ -43,7 +43,7 @@ namespace XForm.Android.FormViews
             set
             {
                 _form = value;
-                _adapter.Fields = value?.Fields;
+                _adapter.Fields = value?.VisibleFields;
             }
         }
 

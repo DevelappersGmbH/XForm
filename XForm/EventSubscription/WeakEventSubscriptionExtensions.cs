@@ -9,15 +9,20 @@ namespace XForm.EventSubscription
     public static class WeakEventSubscriptionExtensions
     {
         public static PropertyChangedEventSubscription WeakSubscribe(this INotifyPropertyChanged source,
-                                                                     EventHandler<PropertyChangedEventArgs>
-                                                                         eventHandler)
+                                                                     EventHandler<PropertyChangedEventArgs> eventHandler)
         {
             return new PropertyChangedEventSubscription(source, eventHandler);
         }
+        
+        public static PropertyChangedEventSubscription WeakSubscribe(this INotifyPropertyChanged source,
+                                                                     string propertyName,
+                                                                     EventHandler<PropertyChangedEventArgs> eventHandler)
+        {
+            return new NamedPropertyChangedEventSubscription(source, propertyName, eventHandler);
+        }
 
         public static CollectionChangedEventSubscription WeakSubscribe(this INotifyCollectionChanged source,
-                                                                       EventHandler<NotifyCollectionChangedEventArgs>
-                                                                           eventHandler)
+                                                                       EventHandler<NotifyCollectionChangedEventArgs> eventHandler)
         {
             return new CollectionChangedEventSubscription(source, eventHandler);
         }

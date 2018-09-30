@@ -10,6 +10,7 @@ namespace XForm.Fields.Bases
     public abstract class Field: BindableBase, IField
     {
         private bool _enabled = true;
+        private bool _hidden;
         private string _title;
         private Form _form;
 
@@ -37,6 +38,12 @@ namespace XForm.Fields.Bases
         {
             get => (Form?.Enabled ?? false) && _enabled;
             set => Set(ref _enabled, value);
+        }
+
+        public bool Hidden
+        {
+            get => _hidden;
+            set => Set(ref _hidden, value);
         }
 
         public string Title

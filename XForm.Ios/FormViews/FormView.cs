@@ -31,7 +31,7 @@ namespace XForm.Ios.FormViews
             set
             {
                 _form = value;
-                _source.Fields = value?.Fields;
+                _source.Fields = value?.VisibleFields;
             }
         }
 

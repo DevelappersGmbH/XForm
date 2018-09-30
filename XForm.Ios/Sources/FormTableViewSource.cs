@@ -82,16 +82,8 @@ namespace XForm.Ios.Sources
             
             view.BindTo(field);
 
-            // Manage event subscription to content height changed
-            IDisposable subscription = null;
-
-            if (_viewContentHeightChangedSubscriptions.ContainsKey(view))
-                subscription = _viewContentHeightChangedSubscriptions[view];
-            
-            subscription?.Dispose();
-            subscription = view.GetType().GetEvent(nameof(view.ContentHeightChanged)).WeakSubscribe(view, ViewContentHeightChanged);
-
-            _viewContentHeightChangedSubscriptions[view] = subscription;
+            // Subscribe to view's content height changed
+            _viewContentHeightChangedSubscriptions[view] = view.GetType().GetEvent(nameof(view.ContentHeightChanged)).WeakSubscribe(view, ViewContentHeightChanged);
 
             return view;
         }

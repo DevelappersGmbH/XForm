@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MvvmCross.Commands;
 using Sample.Core.ViewModels.Bases;
 using XForm.Fields;
 using XForm.Fields.Interfaces;
@@ -9,29 +10,38 @@ namespace Sample.Core.ViewModels
 {
     public class InputFieldsFormViewModel : FormViewModel
     {
+        private readonly LabelField _decimalLabelField = new LabelField("Decimal", string.Empty);
+        private readonly LabelField _numberLabelField = new LabelField("Number", string.Empty);
+        private readonly LabelField _textLabelField = new LabelField("Text", string.Empty);
+
         public override async Task Initialize()
         {
             await base.Initialize();
-            
-            var numberLabelField = new LabelField("Number", string.Empty);
+
+            var hideLabelFieldsField = new ButtonField("Hide/show label fields", new MvxCommand(() =>
+            {
+                _decimalLabelField.Hidden = !_decimalLabelField.Hidden;
+                _numberLabelField.Hidden = !_numberLabelField.Hidden;
+                _textLabelField.Hidden = !_textLabelField.Hidden;
+            }));
+
             var numberInputField = new NumberInputField("Number");
-            numberInputField.ValueChanged += (sender, args) => numberLabelField.Value = numberInputField.Value.ToString();
-            
-            var decimalLabelField = new LabelField("Decimal", string.Empty);
+            numberInputField.ValueChanged += (sender, args) => _numberLabelField.Value = numberInputField.Value.ToString();
+
             var decimalInputField = new DecimalInputField("Decimal");
-            decimalInputField.ValueChanged += (sender, args) => decimalLabelField.Value = decimalInputField.Value.ToString();
-            
-            var textLabelField = new LabelField("Text", string.Empty);
+            decimalInputField.ValueChanged += (sender, args) => _decimalLabelField.Value = decimalInputField.Value.ToString();
+
             var textField = new SingleLineTextField("Text");
-            textField.ValueChanged += (sender, args) => textLabelField.Value = textField.Value.ToString();
-            
+            textField.ValueChanged += (sender, args) => _textLabelField.Value = textField.Value.ToString();
+
             Form = Form.Create(new List<IField>
             {
-                numberLabelField,
+                hideLabelFieldsField,
+                _numberLabelField,
                 numberInputField,
-                decimalLabelField,
+                _decimalLabelField,
                 decimalInputField,
-                textLabelField,
+                _textLabelField,
                 textField
             });
         }

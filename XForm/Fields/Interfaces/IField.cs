@@ -9,6 +9,8 @@ namespace XForm.Fields.Interfaces
         
         bool Enabled { get; set; }
         
+        bool Hidden { get; set; }
+        
         string Title { get; set; }
     }
 }
