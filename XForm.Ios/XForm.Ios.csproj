@@ -45,6 +45,7 @@
     <Compile Include="ContentViews\Interfaces\IFieldContent.cs" />
     <Compile Include="ContentViews\Interfaces\ILabelFieldContent.cs" />
     <Compile Include="ContentViews\Interfaces\ITextFieldContent.cs" />
+    <Compile Include="ContentViews\Interfaces\ITitleButtonFieldContent.cs" />
     <Compile Include="ContentViews\LabelFieldContent.cs" />
     <Compile Include="ContentViews\LabelFieldContent.designer.cs">
       <DependentUpon>LabelFieldContent.cs</DependentUpon>
@@ -60,11 +61,16 @@
     <Compile Include="FieldViews\LabelFieldView.cs" />
     <Compile Include="FieldViews\NumberInputFieldView.cs" />
     <Compile Include="FieldViews\SingleLineTextFieldView.cs" />
+    <Compile Include="FieldViews\OptionPickerFieldView.cs" />
     <Compile Include="Forms\FieldViewCreator.cs" />
     <Compile Include="Forms\IosForm.cs" />
     <Compile Include="FormViews\FormView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sources\FormTableViewSource.cs" />
+    <Compile Include="ContentViews\TitleButtonFieldContent.cs" />
+    <Compile Include="ContentViews\TitleButtonFieldContent.designer.cs">
+      <DependentUpon>TitleButtonFieldContent.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XForm\XForm.csproj">
@@ -79,6 +85,7 @@
     <InterfaceDefinition Include="ContentViews\ButtonFieldContent.xib" />
     <InterfaceDefinition Include="ContentViews\LabelFieldContent.xib" />
     <InterfaceDefinition Include="ContentViews\TextFieldContent.xib" />
+    <InterfaceDefinition Include="ContentViews\TitleButtonFieldContent.xib" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

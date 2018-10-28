@@ -22,6 +22,8 @@ namespace XForm.Ios.Forms
             
             locator.Register<DecimalInputField, DecimalInputFieldView>();
             locator.Register<NumberInputField, NumberInputFieldView>();
+            
+            locator.Register<IOptionPickerField, OptionPickerFieldView>();
         }
     }
 }
