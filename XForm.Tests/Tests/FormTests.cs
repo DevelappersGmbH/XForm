@@ -80,7 +80,7 @@ namespace XForm.Tests.Tests
             var form = (MockForm) CreateDefaultForm();
             var field = (MockField) form.VisibleFields[0];
 
-            Assert.Equal(true, form.Enabled);
+            Assert.True(form.Enabled);
             Assert.Collection(form.VisibleFields, f => Assert.True(f.Enabled));
             
             Assert.Equal(0, form.EnabledChangedCalledCount);
@@ -88,7 +88,7 @@ namespace XForm.Tests.Tests
 
             form.Enabled = false;
             
-            Assert.Equal(false, form.Enabled);
+            Assert.False(form.Enabled);
             Assert.Collection(form.VisibleFields, f => Assert.False(f.Enabled));
             
             Assert.Equal(1, form.EnabledChangedCalledCount);

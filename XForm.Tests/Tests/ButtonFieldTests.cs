@@ -23,11 +23,11 @@ namespace XForm.Tests.Tests
                 field
             });
             
-            Assert.Equal(false, field.Enabled);
+            Assert.False(field.Enabled);
 
             command.Enabled = true;
             
-            Assert.Equal(true, field.Enabled);
+            Assert.True(field.Enabled);
         }
     }
 }
