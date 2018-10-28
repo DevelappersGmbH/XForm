@@ -1,11 +1,12 @@
 using System;
 using XForm.Fields.Bases;
+using XForm.Fields.Interfaces;
 using XForm.Ios.ContentViews.Interfaces;
 
 namespace XForm.Ios.FieldViews.Bases
 {
     public abstract class ValueFieldView<TField, TContent, TValue> : FieldView<TField, TContent> 
-        where TField : ValueField<TValue>
+        where TField : IValueField<TValue>
         where TContent : IFieldContent
     {
         protected ValueFieldView(IntPtr handle, Func<TContent> createContent) : base(handle, createContent)

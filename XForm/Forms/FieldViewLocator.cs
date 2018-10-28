@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
 using XForm.Fields.Interfaces;
 using XForm.FieldViews;
 
@@ -29,15 +31,29 @@ namespace XForm.Forms
 
         public Type ViewTypeForField(IField field)
         {
-            var fieldKey = field.GetType().FullName;
+            Type type;
             
-            if (fieldKey == null)
-                throw new ArgumentNullException(nameof(fieldKey));
+            // Try resolve by field's full name
+            if (TryResolveViewTypeForFieldKey(field.GetType().FullName, out type))
+                return type;
             
-            if (!ViewTypes.ContainsKey(fieldKey))
-                throw new ArgumentException($"Field view for field {fieldKey} not registered");
+            // Try resolve by field's interfaces
+            if (field.GetType().GetInterfaces().Any(interfaceType => TryResolveViewTypeForFieldKey(interfaceType.FullName, out type)))
+                return type;
             
-            return ViewTypes[fieldKey];
+            throw new ArgumentException($"Field view for field {field.GetType().FullName} not registered");
+        }
+
+        private bool TryResolveViewTypeForFieldKey(string fieldKey, out Type viewType) 
+        {
+            if (fieldKey == null || !ViewTypes.ContainsKey(fieldKey))
+            {
+                viewType = null;
+                return false;
+            }
+            
+            viewType = ViewTypes[fieldKey];
+            return true;
         }
     }
 }

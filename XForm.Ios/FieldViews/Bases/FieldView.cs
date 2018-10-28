@@ -64,7 +64,7 @@ namespace XForm.Ios.FieldViews.Bases
     }
     
     public abstract class FieldView<TField, TFieldContent> : FieldView<TFieldContent>
-        where TField : Field
+        where TField : IField
         where TFieldContent : IFieldContent
     {
         private IDisposable _fieldPropertyChangedSubscription;

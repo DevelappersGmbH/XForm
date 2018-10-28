@@ -27,7 +27,7 @@ namespace XForm.Ios.Forms
             if (_registeredTypes.Contains(KeyForType(fieldViewType)))
                 return;
             
-            var nib = NibFromType(fieldViewType);
+            var nib = NibFromType(fieldViewType); // TODO: Check if can be removed
 
             // Has static property nib?
             if (nib != null)
