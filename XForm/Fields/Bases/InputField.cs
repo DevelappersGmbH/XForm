@@ -13,6 +13,7 @@ namespace XForm.Fields.Bases
         protected InputField(InputConverter<TValue> inputConverter, string title, TValue value = default(TValue)) : base(title, value)
         {
             _inputConverter = inputConverter;
+            _valueText = _inputConverter.ConvertValue(value);
         }
 
         public event EventHandler ValueTextChanged;
