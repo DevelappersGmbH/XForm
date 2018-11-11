@@ -2,7 +2,6 @@ using System;
 using System.ComponentModel;
 using UIKit;
 using XForm.EventSubscription;
-using XForm.Fields.Bases;
 using XForm.Fields.Interfaces;
 using XForm.FieldViews;
 using XForm.Ios.ContentViews.Interfaces;
@@ -64,7 +63,7 @@ namespace XForm.Ios.FieldViews.Bases
     }
     
     public abstract class FieldView<TField, TFieldContent> : FieldView<TFieldContent>
-        where TField : IField
+        where TField : class, IField
         where TFieldContent : IFieldContent
     {
         private IDisposable _fieldPropertyChangedSubscription;

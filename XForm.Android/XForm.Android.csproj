@@ -49,6 +49,7 @@
     <Compile Include="FieldViews\DecimalInputFieldView.cs" />
     <Compile Include="FieldViews\LabelFieldView.cs" />
     <Compile Include="FieldViews\NumberInputFieldView.cs" />
+    <Compile Include="FieldViews\OptionPickerFieldView.cs" />
     <Compile Include="Forms\AndroidForm.cs" />
     <Compile Include="Forms\FieldViewCreator.cs" />
     <Compile Include="FormViews\FormView.cs" />
@@ -61,6 +62,7 @@
     <AndroidResource Include="Resources\layout\LabelFieldView.axml" />
     <AndroidResource Include="Resources\layout\ButtonFieldView.axml" />
     <AndroidResource Include="Resources\layout\EditTextFieldView.axml" />
+    <AndroidResource Include="Resources\layout\SpinnerFieldView.axml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XForm\XForm.csproj">

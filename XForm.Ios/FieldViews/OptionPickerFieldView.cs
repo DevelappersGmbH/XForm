@@ -19,7 +19,9 @@ namespace XForm.Ios.FieldViews
         
         public OptionPickerFieldView(IntPtr handle, Func<ITitleButtonFieldContent> createContent) : base(handle, createContent)
         {
-            _buttonTouchUpInsideSubscription = Button.GetType().GetEvent(nameof(Button.TouchUpInside)).WeakSubscribe(Button, ButtonTouchUpInside);
+            _buttonTouchUpInsideSubscription = Button.GetType()
+                                                     .GetEvent(nameof(Button.TouchUpInside))
+                                                     .WeakSubscribe(Button, ButtonTouchUpInside);
         }
 
         public UILabel TitleLabel => Content.TitleLabel;
@@ -70,9 +72,8 @@ namespace XForm.Ios.FieldViews
         {
             get
             {
-                var toolbar = new UIToolbar();
+                var toolbar = new UIToolbar(new CGRect(0, 0, 200, 44));
 
-                toolbar.Frame = new CGRect(0, 0, 200, 44);
                 toolbar.Items = new[]
                 {
                     new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace),

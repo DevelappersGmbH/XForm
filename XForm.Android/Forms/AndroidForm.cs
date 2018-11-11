@@ -22,6 +22,8 @@ namespace XForm.Android.Forms
             
             locator.Register<DecimalInputField, DecimalInputFieldView>();
             locator.Register<NumberInputField, NumberInputFieldView>();
+            
+            locator.Register<IOptionPickerField, OptionPickerFieldView>();
         }
     }
 }

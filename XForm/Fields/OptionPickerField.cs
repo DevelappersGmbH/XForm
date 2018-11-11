@@ -14,6 +14,8 @@ namespace XForm.Fields
         string SelectedOptionText { get; }
 
         string OptionTextForValue(int? value);
+        
+        IList<string> OptionTexts { get; }
     }
 
     public interface IOptionPickerField<TOption> : IOptionPickerField
@@ -42,12 +44,19 @@ namespace XForm.Fields
 
         public IList<TOption> Options { get; }
 
+        public IList<string> OptionTexts => Options?.Select(OptionText).ToList();
+
         public Func<TOption, string> OptionTextGetter { get; }
         
         public string OptionTextForValue(int? value)
         {
             var option = OptionForValue(value);
-            
+
+            return OptionText(option);
+        }
+
+        private string OptionText(TOption option)
+        {
             return OptionTextGetter?.Invoke(option) ?? option?.ToString();
         }
 

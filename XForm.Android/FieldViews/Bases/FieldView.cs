@@ -22,7 +22,8 @@ namespace XForm.Android.FieldViews.Bases
         public abstract void BindTo(IField field);
     }
 
-    public abstract class FieldView<TField> : FieldView where TField : class, IField
+    public abstract class FieldView<TField> : FieldView 
+        where TField : class, IField
     {
         protected FieldView(ViewGroup parent, int layoutToInflate) : base(parent, layoutToInflate)
         {

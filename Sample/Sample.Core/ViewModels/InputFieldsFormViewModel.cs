@@ -48,8 +48,8 @@ namespace Sample.Core.ViewModels
                 decimalInputField,
                 _textLabelField,
                 textField,
-                // _optionLabelField,
-                // optionField
+                _optionLabelField,
+                optionField
             });
         }
     }

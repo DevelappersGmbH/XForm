@@ -3,7 +3,8 @@ using XForm.Fields.Interfaces;
 
 namespace XForm.Android.FieldViews.Bases
 {
-    public abstract class ValueFieldView<TField, TValue> : FieldView<TField> where TField : class, IField, IValueField<TValue>
+    public abstract class ValueFieldView<TField, TValue> : FieldView<TField> 
+        where TField : class, IValueField<TValue>
     {
         protected ValueFieldView(ViewGroup parent, int layoutToInflate) : base(parent, layoutToInflate)
         {
