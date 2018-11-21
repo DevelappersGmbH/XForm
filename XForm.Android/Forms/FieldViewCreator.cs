@@ -2,12 +2,15 @@ using System;
 using System.Collections.Generic;
 using Android.Views;
 using XForm.Android.FieldViews.Bases;
+using XForm.FieldViews;
+using XForm.Helpers;
 
 namespace XForm.Android.Forms
 {
-    public class FieldViewCreator : XForm.Forms.FieldViewCreator
+    public class FieldViewCreator
     {
         private readonly List<Type> _registeredTypes = new List<Type>();
+        private readonly TypeRegister<Func<ViewGroup, FieldView>> _register = new TypeRegister<Func<ViewGroup, FieldView>>();
 
         public int ItemViewType(Type fieldViewType)
         {
@@ -21,6 +24,19 @@ namespace XForm.Android.Forms
         public FieldView CreateFieldView(ViewGroup parent, int viewType)
         {
             var fieldViewType = _registeredTypes[viewType];
+            return CreateFieldView(parent, fieldViewType);
+        }
+        
+        public void RegisterCustomCreator<TFieldView>(Func<ViewGroup, FieldView> creator) where TFieldView: IFieldView
+        {
+            _register.Register<TFieldView>(creator);
+        }
+        
+        private FieldView CreateFieldView(ViewGroup parent, Type fieldViewType)
+        {
+            if (_register.TryValue(fieldViewType, out var viewCreator))
+                return viewCreator.Invoke(parent);
+            
             return (FieldView) Activator.CreateInstance(fieldViewType, parent);
         }
     }

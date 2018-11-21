@@ -1,5 +1,4 @@
-﻿using System;
-using Foundation;
+﻿using Foundation;
 using UIKit;
 using XForm.Ios.ContentViews.Bases;
 using XForm.Ios.ContentViews.Interfaces;

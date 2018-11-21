@@ -6,7 +6,7 @@ using XForm.Ios.FieldViews.Bases;
 
 namespace XForm.Ios.Forms
 {
-    internal class FieldViewCreator : XForm.Forms.FieldViewCreator
+    internal class FieldViewCreator
     {
         private readonly UITableView _tableView;
         private readonly List<string> _registeredTypes = new List<string>(); 

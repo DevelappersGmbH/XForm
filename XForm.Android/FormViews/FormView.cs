@@ -5,6 +5,9 @@ using Android.Support.V7.Widget;
 using Android.Util;
 using Android.Views;
 using XForm.Android.Adapters;
+using XForm.Android.FieldViews.Bases;
+using XForm.Android.Forms;
+using XForm.FieldViews;
 using XForm.Forms;
 
 namespace XForm.Android.FormViews
@@ -53,6 +56,8 @@ namespace XForm.Android.FormViews
             set => _fieldViewLocator = value;
         }
 
+        public FieldViewCreator FieldViewCreator { get; } = new FieldViewCreator();
+
         private void Initialize(Context context)
         {
             DescendantFocusability = DescendantFocusability.BeforeDescendants;
@@ -62,6 +67,11 @@ namespace XForm.Android.FormViews
             
             _adapter = new FormAdapter(this);
             SetAdapter(_adapter);
+        }
+
+        public void CreateView<TFieldView>(Func<ViewGroup, FieldView> viewCreator) where TFieldView : IFieldView
+        {
+            FieldViewCreator.RegisterCustomCreator<TFieldView>(viewCreator);
         }
     }
 }

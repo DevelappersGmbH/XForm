@@ -3,14 +3,13 @@ using System.Collections;
 using Android.Views;
 using Android.Widget;
 using XForm.Android.FieldViews.Bases;
-using XForm.EventSubscription;
 using XForm.Fields;
 
 namespace XForm.Android.FieldViews
 {
     public class OptionPickerFieldView : ValueFieldView<IOptionPickerField, int?>
     {
-        public OptionPickerFieldView(ViewGroup parent) : this(parent, Resource.Layout.SpinnerFieldView)
+        public OptionPickerFieldView(ViewGroup parent) : this(parent, Resource.Layout.XForm_SpinnerFieldView)
         {
         }
 

@@ -59,10 +59,10 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
-    <AndroidResource Include="Resources\layout\LabelFieldView.axml" />
-    <AndroidResource Include="Resources\layout\ButtonFieldView.axml" />
-    <AndroidResource Include="Resources\layout\EditTextFieldView.axml" />
-    <AndroidResource Include="Resources\layout\SpinnerFieldView.axml" />
+    <AndroidResource Include="Resources\layout\XForm_LabelFieldView.axml" />
+    <AndroidResource Include="Resources\layout\XForm_ButtonFieldView.axml" />
+    <AndroidResource Include="Resources\layout\XForm_EditTextFieldView.axml" />
+    <AndroidResource Include="Resources\layout\XForm_SpinnerFieldView.axml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XForm\XForm.csproj">

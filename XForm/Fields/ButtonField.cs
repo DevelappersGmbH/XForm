@@ -1,6 +1,5 @@
 using System;
 using System.Windows.Input;
-using XForm.Binding;
 using XForm.EventSubscription;
 using XForm.Fields.Bases;
 

@@ -10,7 +10,7 @@ namespace XForm.Android.FieldViews
     {
         private readonly Button _button;
 
-        public ButtonFieldView(ViewGroup parent) : base(parent, Resource.Layout.ButtonFieldView)
+        public ButtonFieldView(ViewGroup parent) : base(parent, Resource.Layout.XForm_ButtonFieldView)
         {
             _button = ItemView.FindViewById<Button>(Resource.Id.button);
             _button.Click += HandleButtonClick;

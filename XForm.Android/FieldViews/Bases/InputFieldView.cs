@@ -16,7 +16,7 @@ namespace XForm.Android.FieldViews.Bases
             ValueEditText.TextChanged += ValueEditTextTextChanged;
         }
 
-        protected InputFieldView(ViewGroup parent) : this(parent, Resource.Layout.EditTextFieldView)
+        protected InputFieldView(ViewGroup parent) : this(parent, Resource.Layout.XForm_EditTextFieldView)
         {
         }
         

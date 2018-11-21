@@ -10,7 +10,7 @@ namespace XForm.Android.FieldViews
         private readonly TextView _titleTextView;
         private readonly TextView _valueTextView;
 
-        public LabelFieldView(ViewGroup parent) : base(parent, Resource.Layout.LabelFieldView)
+        public LabelFieldView(ViewGroup parent) : base(parent, Resource.Layout.XForm_LabelFieldView)
         {
             _titleTextView = ItemView.FindViewById<TextView>(Resource.Id.titleTextView);
             _valueTextView = ItemView.FindViewById<TextView>(Resource.Id.valueTextView);

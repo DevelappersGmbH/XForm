@@ -8,7 +8,7 @@ namespace XForm.Android.FieldViews.Bases
     public abstract class TextFieldView<TField> : ValueFieldView<TField, string>
         where TField : TextField
     {
-        protected TextFieldView(ViewGroup parent) : this(parent, Resource.Layout.EditTextFieldView)
+        protected TextFieldView(ViewGroup parent) : this(parent, Resource.Layout.XForm_EditTextFieldView)
         {
         }
         
