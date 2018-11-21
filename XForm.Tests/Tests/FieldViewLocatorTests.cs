@@ -1,5 +1,7 @@
 using System;
 using XForm.Fields;
+using XForm.Fields.Interfaces;
+using XForm.Forms;
 using XForm.Tests.Mocks;
 using Xunit;
 
@@ -10,27 +12,29 @@ namespace XForm.Tests.Tests
         [Fact]
         public void TestRegisterFieldView()
         {
-            var locator = new MockFieldViewLocator();
+            var locator = new FieldViewLocator();
+            var field = new LabelField("", "");
+
+            Assert.Throws<ArgumentException>(() => locator.ViewTypeForField(field));
             
             locator.Register<LabelField, MockLabelFieldView>();
-            
-            Assert.NotEmpty(locator.PublicViewTypes);
-            Assert.Contains(typeof(LabelField).FullName, locator.PublicViewTypes.Keys);
+
+            Assert.Equal(typeof(MockLabelFieldView), locator.ViewTypeForField(field));
         }
 
         [Fact]
-        public void TestViewForField()
+        public void TestRegisterInterfaces()
         {
-            var locator = new MockFieldViewLocator();
+            var locator = new FieldViewLocator();
             var field = new LabelField("", "");
 
-            Assert.Throws<ArgumentException>(() => locator.PublicViewTypeForField(field));
+            Assert.Throws<ArgumentException>(() => locator.ViewTypeForField(field));
             
-            locator.Register<LabelField, MockLabelFieldView>();
-
-            var viewType = locator.PublicViewTypeForField(field);
+            locator.Register<IField, MockLabelFieldView>();
+            Assert.Equal(typeof(MockLabelFieldView), locator.ViewTypeForField(field));
             
-            Assert.Equal(viewType.FullName, typeof(MockLabelFieldView).FullName);
+            // Throws for multiple candidates?
+            Assert.Throws<ArgumentException>(() => locator.Register<LabelField, MockLabelFieldView>());
         }
     }
 }

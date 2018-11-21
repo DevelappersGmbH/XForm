@@ -15,6 +15,10 @@ namespace XForm.Helpers
 
         public void Register<TType>(T value)
         {
+            Type registeredType;
+            if ((registeredType = RegisteredType(typeof(TType), out _)) != null)
+                throw new ArgumentException($"Type already registered as {registeredType.FullName}");
+
             Register(typeof(TType).FullName, value);
         }
 
@@ -35,10 +39,10 @@ namespace XForm.Helpers
         {
             if (TryValue(keyType, out var value))
                 return value;
-            
+
             throw new ArgumentException($"Value for type {keyType.FullName} not registered");
-        } 
-        
+        }
+
         public bool TryValue<TType>(out T value)
         {
             return TryValue(typeof(TType), out value);
@@ -46,35 +50,43 @@ namespace XForm.Helpers
 
         public bool TryValue(Type keyType, out T value)
         {
+            return RegisteredType(keyType, out value) != null;
+        }
+
+        private Type RegisteredType(Type keyType, out T value)
+        {
             T resolvedValue;
 
             // Try resolve by field's full name
-            if (TryResolveViewTypeForFieldKey(keyType.FullName, out resolvedValue))
+            if (TryResolveTypeForKey(keyType.FullName, out resolvedValue))
             {
                 value = resolvedValue;
-                return true;
+                return keyType;
             }
 
             // Try resolve by field's interfaces
-            if (keyType.GetInterfaces().Any(interfaceType => TryResolveViewTypeForFieldKey(interfaceType.FullName, out resolvedValue)))
+            var interfaces = keyType.GetInterfaces();
+            
+            Type interfaceType;
+            if ((interfaceType = interfaces.FirstOrDefault(type => TryResolveTypeForKey(type.FullName, out resolvedValue))) != null)
             {
                 value = resolvedValue;
-                return true;
+                return interfaceType;
             }
 
             value = default(T);
-            return false;
+            return null;
         }
 
-        private bool TryResolveViewTypeForFieldKey(string fieldKey, out T viewType)
+        private bool TryResolveTypeForKey(string key, out T type)
         {
-            if (fieldKey == null || !_register.ContainsKey(fieldKey))
+            if (key == null || !_register.ContainsKey(key))
             {
-                viewType = default(T);
+                type = default(T);
                 return false;
             }
 
-            viewType = _register[fieldKey];
+            type = _register[key];
             return true;
         }
     }
