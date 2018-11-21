@@ -13,20 +13,24 @@ namespace XForm.Ios.FieldViews
     {
         private IDisposable _buttonTouchUpInsideSubscription;
         
-        public OptionPickerFieldView(IntPtr handle) : this(handle, () => new TitleButtonFieldContent())
+        public OptionPickerFieldView(IntPtr handle) : base(handle)
         {
         }
+
+        internal override Func<ITitleButtonFieldContent> DefaultContentCreator { get; } = () => new TitleButtonFieldContent();
         
-        public OptionPickerFieldView(IntPtr handle, Func<ITitleButtonFieldContent> createContent) : base(handle, createContent)
+        public UILabel TitleLabel => Content.TitleLabel;
+
+        public UIButton Button => Content.Button;
+
+        internal override void Setup()
         {
+            base.Setup();
+            
             _buttonTouchUpInsideSubscription = Button.GetType()
                                                      .GetEvent(nameof(Button.TouchUpInside))
                                                      .WeakSubscribe(Button, ButtonTouchUpInside);
         }
-
-        public UILabel TitleLabel => Content.TitleLabel;
-
-        public UIButton Button => Content.Button;
 
         protected override void EnabledChanged(bool value)
         {

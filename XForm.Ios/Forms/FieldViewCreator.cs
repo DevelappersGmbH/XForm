@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using Foundation;
 using UIKit;
+using XForm.Helpers;
+using XForm.Ios.ContentViews.Bases;
+using XForm.Ios.ContentViews.Interfaces;
 using XForm.Ios.FieldViews.Bases;
 
 namespace XForm.Ios.Forms
@@ -9,38 +12,48 @@ namespace XForm.Ios.Forms
     internal class FieldViewCreator
     {
         private readonly UITableView _tableView;
-        private readonly List<string> _registeredTypes = new List<string>(); 
+        private readonly List<string> _registeredTypes = new List<string>();
+        private readonly TypeRegister<Func<FieldContent>> _fieldContentCreatorRegister = new TypeRegister<Func<FieldContent>>();
 
         public FieldViewCreator(UITableView tableView)
         {
             _tableView = tableView;
         }
+        
+        public void RegisterFieldContentCreator<TFieldContent>(Func<FieldContent> creator) where TFieldContent: IFieldContent
+        {
+            _fieldContentCreatorRegister.Register<TFieldContent>(creator);
+        }
 
         public FieldView CreateOrGetFieldView(Type fieldViewType, NSIndexPath indexPath)
         {
             RegisterTypeIfNeeded(fieldViewType);
-            return DequeueType(fieldViewType, indexPath);
+            var fieldView = DequeueType(fieldViewType, indexPath);
+
+            if (fieldView.NeedsSetup())
+            {
+                CreateFieldContent(fieldView);
+            }
+
+            return fieldView;
+        }
+
+        private void CreateFieldContent(FieldView fieldView)
+        {
+            var fieldContentType = fieldView.ContentType;
+            
+            if (_fieldContentCreatorRegister.TryValue(fieldContentType, out var customFieldContentCreator))
+                fieldView.CreateFieldContent(customFieldContentCreator);
+            else
+                fieldView.CreateFieldContent();
         }
 
         private void RegisterTypeIfNeeded(Type fieldViewType)
         {
             if (_registeredTypes.Contains(KeyForType(fieldViewType)))
                 return;
-            
-            var nib = NibFromType(fieldViewType); // TODO: Check if can be removed
 
-            // Has static property nib?
-            if (nib != null)
-            {
-                // Register nib
-                _tableView.RegisterNibForCellReuse(nib, KeyForType(fieldViewType));
-            }
-            else
-            {
-                // Register class
-                _tableView.RegisterClassForCellReuse(fieldViewType, KeyForType(fieldViewType));
-            }
-            
+            _tableView.RegisterClassForCellReuse(fieldViewType, KeyForType(fieldViewType));
             _registeredTypes.Add(KeyForType(fieldViewType));
         }
 
@@ -52,16 +65,6 @@ namespace XForm.Ios.Forms
         private static string KeyForType(Type fieldViewType)
         {
             return fieldViewType.FullName;
-        }
-
-        private static UINib NibFromType(Type fieldViewType)
-        {
-            var nibProperty = fieldViewType.GetField("Nib");
-
-            if (nibProperty == null)
-                return null;
-
-            return (UINib) nibProperty.GetValue(null);
         }
     }
 }

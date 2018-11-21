@@ -9,25 +9,30 @@ using XForm.Ios.FieldViews.Bases;
 
 namespace XForm.Ios.FieldViews
 {
-    public class ButtonFieldView: ValueFieldView<ButtonField, IButtonFieldContent, ICommand>
+    public class ButtonFieldView : ValueFieldView<ButtonField, IButtonFieldContent, ICommand>
     {
         private IDisposable _buttonTouchUpInsideSubscription;
-        
-        public ButtonFieldView(IntPtr handle) : this(handle, () => new ButtonFieldContent())
+
+        public ButtonFieldView(IntPtr handle) : base(handle)
         {
-        }
-        
-        public ButtonFieldView(IntPtr handle, Func<IButtonFieldContent> createContent) : base(handle, createContent)
-        {
-            _buttonTouchUpInsideSubscription = Button.GetType().GetEvent(nameof(Button.TouchUpInside)).WeakSubscribe(Button, ButtonTouchUpInside);
         }
 
+        internal override Func<IButtonFieldContent> DefaultContentCreator { get; } = () => new ButtonFieldContent();
         public UIButton Button => Content.Button;
+
+        internal override void Setup()
+        {
+            base.Setup();
+            
+            _buttonTouchUpInsideSubscription = Button.GetType()
+                                                     .GetEvent(nameof(Button.TouchUpInside))
+                                                     .WeakSubscribe(Button, ButtonTouchUpInside);
+        }
 
         protected override void TitleChanged(string value)
         {
             base.TitleChanged(value);
-            
+
             Button.SetTitle(value, UIControlState.Normal);
         }
 
@@ -44,10 +49,10 @@ namespace XForm.Ios.FieldViews
 
             if (command == null)
                 return;
-            
+
             if (!command.CanExecute(null))
                 return;
-            
+
             command.Execute(null);
         }
     }

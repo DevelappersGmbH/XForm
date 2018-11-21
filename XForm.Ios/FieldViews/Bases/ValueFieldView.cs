@@ -6,9 +6,9 @@ namespace XForm.Ios.FieldViews.Bases
 {
     public abstract class ValueFieldView<TField, TContent, TValue> : FieldView<TField, TContent> 
         where TField : class, IValueField<TValue>
-        where TContent : IFieldContent
+        where TContent : class, IFieldContent
     {
-        protected ValueFieldView(IntPtr handle, Func<TContent> createContent) : base(handle, createContent)
+        protected ValueFieldView(IntPtr handle) : base(handle)
         {
         }
 

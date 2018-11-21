@@ -13,10 +13,10 @@ using XForm.Forms;
 namespace XForm.Droid.FormViews
 {
     [Register("xform.droid.formviews.FormView")]
-    public class FormView: RecyclerView
+    public class FormView : RecyclerView
     {
         private Form _form;
-        
+
         private LinearLayoutManager _layoutManager;
         private FormAdapter _adapter;
         private FieldViewLocator _fieldViewLocator;
@@ -39,7 +39,7 @@ namespace XForm.Droid.FormViews
         {
             Initialize(context);
         }
-        
+
         public Form Form
         {
             get => _form;
@@ -61,17 +61,17 @@ namespace XForm.Droid.FormViews
         private void Initialize(Context context)
         {
             DescendantFocusability = DescendantFocusability.BeforeDescendants;
-            
+
             _layoutManager = new LinearLayoutManager(context);
             SetLayoutManager(_layoutManager);
-            
+
             _adapter = new FormAdapter(this);
             SetAdapter(_adapter);
         }
 
         public void CreateView<TFieldView>(Func<ViewGroup, FieldView> viewCreator) where TFieldView : IFieldView
         {
-            FieldViewCreator.RegisterCustomCreator<TFieldView>(viewCreator);
+            FieldViewCreator.RegisterFieldViewCreator<TFieldView>(viewCreator);
         }
     }
 }

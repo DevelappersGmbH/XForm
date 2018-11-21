@@ -3,6 +3,10 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 using XForm.Forms;
+using XForm.Ios.ContentViews;
+using XForm.Ios.ContentViews.Bases;
+using XForm.Ios.ContentViews.Interfaces;
+using XForm.Ios.Forms;
 using XForm.Ios.Sources;
 
 namespace XForm.Ios.FormViews
@@ -14,6 +18,7 @@ namespace XForm.Ios.FormViews
         
         private Form _form;
         private FieldViewLocator _fieldViewLocator;
+        private FieldViewCreator _fieldViewCreator;
 
         public FormView(CGRect frame) : base(frame)
         {
@@ -45,9 +50,15 @@ namespace XForm.Ios.FormViews
         {
             RowHeight = AutomaticDimension;
             EstimatedRowHeight = 70;
-            
-            _source = new FormTableViewSource(this);
+
+            _fieldViewCreator = new FieldViewCreator(this);
+            _source = new FormTableViewSource(this, _fieldViewCreator);
             Source = _source;
+        }
+
+        public void CreateContent<TFieldContent>(Func<FieldContent> fieldContentCreator) where TFieldContent : IFieldContent
+        {
+            _fieldViewCreator.RegisterFieldContentCreator<TFieldContent>(fieldContentCreator);
         }
     }
 }

@@ -1,9 +1,11 @@
 using System;
 using System.ComponentModel;
+using System.Linq;
 using UIKit;
 using XForm.EventSubscription;
 using XForm.Fields.Interfaces;
 using XForm.FieldViews;
+using XForm.Ios.ContentViews.Bases;
 using XForm.Ios.ContentViews.Interfaces;
 
 namespace XForm.Ios.FieldViews.Bases
@@ -13,48 +15,76 @@ namespace XForm.Ios.FieldViews.Bases
         protected FieldView(IntPtr handle) : base(handle)
         {
         }
+
+        public event EventHandler ContentHeightChanged;
+        
+        internal abstract Type ContentType { get; }
+        
+        internal bool NeedsSetup()
+        {
+            return !ContentView.Subviews.Any();
+        }
+
+        internal abstract void CreateFieldContent(Func<FieldContent> customFieldContentCreator = null);
+
+        internal virtual void Setup()
+        {
+        }
         
         public abstract void BindTo(IField field);
-        
-        public event EventHandler ContentHeightChanged;
 
-        public void NotifyContentHeightChanged()
+        protected void NotifyContentHeightChanged()
         {
             ContentHeightChanged?.Invoke(this, new EventArgs());
         }
     }
     
     public abstract class FieldView<TFieldContent> : FieldView 
-        where TFieldContent : IFieldContent
+        where TFieldContent : class, IFieldContent
     {
-        protected FieldView(IntPtr handle, Func<TFieldContent> createContent) : base(handle)
+        protected FieldView(IntPtr handle) : base(handle)
         {
-            Content = createContent();
-            
-            Setup();
         }
 
-        private void Setup()
+        internal abstract Func<TFieldContent> DefaultContentCreator { get; }
+
+        internal override Type ContentType => typeof(TFieldContent);
+        
+        internal TFieldContent Content { get; set; }
+
+        internal override void CreateFieldContent(Func<FieldContent> customFieldContentCreator = null)
         {
+            if (customFieldContentCreator != null)
+                Content = customFieldContentCreator() as TFieldContent;
+            else
+                Content = DefaultContentCreator();
+            
+            
+            if (Content == null)
+                throw new ArgumentException("Could not create content");
+        }
+
+        internal override void Setup()
+        {
+            base.Setup();
+
             var view = Content.ContentView;
             
             view.PreservesSuperviewLayoutMargins = true;
             view.TranslatesAutoresizingMaskIntoConstraints = false;
             
-            AddSubview(view);
+            ContentView.AddSubview(view);
             
             NSLayoutConstraint.ActivateConstraints(new[]
             {
-                LeftAnchor.ConstraintEqualTo(view.LeftAnchor),
-                RightAnchor.ConstraintEqualTo(view.RightAnchor),
-                TopAnchor.ConstraintEqualTo(view.TopAnchor),
-                BottomAnchor.ConstraintEqualTo(view.BottomAnchor)
+                ContentView.LeftAnchor.ConstraintEqualTo(view.LeftAnchor),
+                ContentView.RightAnchor.ConstraintEqualTo(view.RightAnchor),
+                ContentView.TopAnchor.ConstraintEqualTo(view.TopAnchor),
+                ContentView.BottomAnchor.ConstraintEqualTo(view.BottomAnchor)
             });
             
             SelectionStyle = UITableViewCellSelectionStyle.None;  
         }
-
-        protected TFieldContent Content { get; }
 
         public sealed override void AwakeFromNib()
         {
@@ -64,11 +94,11 @@ namespace XForm.Ios.FieldViews.Bases
     
     public abstract class FieldView<TField, TFieldContent> : FieldView<TFieldContent>
         where TField : class, IField
-        where TFieldContent : IFieldContent
+        where TFieldContent : class, IFieldContent
     {
         private IDisposable _fieldPropertyChangedSubscription;
         
-        protected FieldView(IntPtr handle, Func<TFieldContent> createContent) : base(handle, createContent)
+        protected FieldView(IntPtr handle) : base(handle)
         {
         }
 

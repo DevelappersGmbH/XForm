@@ -9,6 +9,12 @@ namespace XForm.Ios.FieldViews
     {
         public DecimalInputFieldView(IntPtr handle) : base(handle)
         {
+        }
+
+        internal override void Setup()
+        {
+            base.Setup();
+            
             ValueTextField.KeyboardType = UIKeyboardType.DecimalPad;
         }
     }

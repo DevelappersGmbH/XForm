@@ -13,19 +13,22 @@ using XForm.Ios.FormViews;
 
 namespace XForm.Ios.Sources
 {
-    internal class FormTableViewSource: UITableViewSource {
+    internal class FormTableViewSource : UITableViewSource
+    {
         private readonly FormView _formView;
         private readonly FieldViewCreator _fieldViewCreator;
 
         private IDisposable _fieldsCollectionChangedSubscription;
-        private readonly Dictionary<IFieldView, IDisposable> _viewContentHeightChangedSubscriptions = new Dictionary<IFieldView, IDisposable>();
-        
+
+        private readonly Dictionary<IFieldView, IDisposable> _viewContentHeightChangedSubscriptions =
+            new Dictionary<IFieldView, IDisposable>();
+
         private ObservableCollection<IField> _fields;
 
-        public FormTableViewSource(FormView formView)
+        public FormTableViewSource(FormView formView, FieldViewCreator fieldViewCreator)
         {
             _formView = formView;
-            _fieldViewCreator = new FieldViewCreator(formView);
+            _fieldViewCreator = fieldViewCreator;
         }
 
         public ObservableCollection<IField> Fields
@@ -40,7 +43,7 @@ namespace XForm.Ios.Sources
 
                 _fieldsCollectionChangedSubscription?.Dispose();
                 _fieldsCollectionChangedSubscription = _fields?.WeakSubscribe(FieldsCollectionChanged);
-                
+
                 FieldsCollectionChanged(this, null);
             }
         }
@@ -51,7 +54,7 @@ namespace XForm.Ios.Sources
         {
             return Fields?.Count ?? 0;
         }
-        
+
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
             return CreateOrGetFieldView(indexPath, FieldAt(indexPath));
@@ -74,16 +77,22 @@ namespace XForm.Ios.Sources
         {
             return Fields[indexPath.Row];
         }
-        
+
         private FieldView CreateOrGetFieldView(NSIndexPath indexPath, IField field)
         {
             var viewType = _formView.FieldViewLocator.ViewTypeForField(field);
             var view = _fieldViewCreator.CreateOrGetFieldView(viewType, indexPath);
+
+            if (view.NeedsSetup())
+                view.Setup();
             
             view.BindTo(field);
 
+            // TODO: Only on setup?
             // Subscribe to view's content height changed
-            _viewContentHeightChangedSubscriptions[view] = view.GetType().GetEvent(nameof(view.ContentHeightChanged)).WeakSubscribe(view, ViewContentHeightChanged);
+            _viewContentHeightChangedSubscriptions[view] = view.GetType()
+                                                               .GetEvent(nameof(view.ContentHeightChanged))
+                                                               .WeakSubscribe(view, ViewContentHeightChanged);
 
             return view;
         }

@@ -9,19 +9,11 @@ namespace XForm.Ios.FieldViews
 {
     public class LabelFieldView : ValueFieldView<LabelField, ILabelFieldContent, string>
     {
-        public LabelFieldView(IntPtr handle) : this(handle, () => new LabelFieldContent())
-        {
-        }
-        
-        public LabelFieldView(IntPtr handle, Func<ILabelFieldContent> createContent) : base(handle, createContent)
+        public LabelFieldView(IntPtr handle) : base(handle)
         {
         }
 
-        ~LabelFieldView()
-        {
-            
-        }
-        
+        internal override Func<ILabelFieldContent> DefaultContentCreator { get; } = () => new LabelFieldContent();
         public UILabel TitleLabel => Content.TitleLabel;
 
         public UILabel ValueLabel => Content.ValueLabel;

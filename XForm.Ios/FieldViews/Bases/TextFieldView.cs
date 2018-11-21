@@ -12,24 +12,25 @@ namespace XForm.Ios.FieldViews.Bases
     {
         private IDisposable _valueTextFieldEditingChangedSubscription;
         
-        protected TextFieldView(IntPtr handle) : this(handle, CreateDefaultContentView) 
+        protected TextFieldView(IntPtr handle) : base(handle) 
         {
         }
 
-        protected TextFieldView(IntPtr handle, Func<ITextFieldContent> contentViewCreator) : base(handle, contentViewCreator)
-        {
-            _valueTextFieldEditingChangedSubscription = ValueTextField.GetType().GetEvent(nameof(ValueTextField.EditingChanged)).WeakSubscribe(ValueTextField, ValueTextFieldEditingChanged);
-        }
+        internal override Func<ITextFieldContent> DefaultContentCreator { get; } = () => new TextFieldContent();
         
         public UILabel TitleLabel => Content.TitleLabel;
         
         public UITextField ValueTextField => Content.ValueTextField;
-        
-        private static ITextFieldContent CreateDefaultContentView()
+
+        internal override void Setup()
         {
-            return new TextFieldContent();
+            base.Setup();
+            
+            _valueTextFieldEditingChangedSubscription = ValueTextField.GetType()
+                                                                      .GetEvent(nameof(ValueTextField.EditingChanged))
+                                                                      .WeakSubscribe(ValueTextField, ValueTextFieldEditingChanged);
         }
-        
+
         protected override void TitleChanged(string value)
         {
             base.TitleChanged(value);

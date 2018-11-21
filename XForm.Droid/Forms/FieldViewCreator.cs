@@ -10,7 +10,7 @@ namespace XForm.Droid.Forms
     public class FieldViewCreator
     {
         private readonly List<Type> _registeredTypes = new List<Type>();
-        private readonly TypeRegister<Func<ViewGroup, FieldView>> _register = new TypeRegister<Func<ViewGroup, FieldView>>();
+        private readonly TypeRegister<Func<ViewGroup, FieldView>> _fieldViewCreatorRegister = new TypeRegister<Func<ViewGroup, FieldView>>();
 
         public int ItemViewType(Type fieldViewType)
         {
@@ -27,15 +27,15 @@ namespace XForm.Droid.Forms
             return CreateFieldView(parent, fieldViewType);
         }
         
-        public void RegisterCustomCreator<TFieldView>(Func<ViewGroup, FieldView> creator) where TFieldView: IFieldView
+        public void RegisterFieldViewCreator<TFieldView>(Func<ViewGroup, FieldView> creator) where TFieldView: IFieldView
         {
-            _register.Register<TFieldView>(creator);
+            _fieldViewCreatorRegister.Register<TFieldView>(creator);
         }
         
         private FieldView CreateFieldView(ViewGroup parent, Type fieldViewType)
         {
-            if (_register.TryValue(fieldViewType, out var viewCreator))
-                return viewCreator.Invoke(parent);
+            if (_fieldViewCreatorRegister.TryValue(fieldViewType, out var fieldViewCreator))
+                return fieldViewCreator.Invoke(parent);
             
             return (FieldView) Activator.CreateInstance(fieldViewType, parent);
         }
