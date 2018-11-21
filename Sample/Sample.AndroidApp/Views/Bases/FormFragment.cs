@@ -2,14 +2,17 @@
 using Android.Views;
 using MvvmCross.Binding.BindingContext;
 using Sample.Core.ViewModels.Bases;
+using XForm.Android.FormViews;
 
 namespace Sample.AndroidApp.Views.Bases
 {
-    public abstract class FormView<TViewModel> : BaseFragment<TViewModel> where TViewModel : FormViewModel
+    public abstract class FormFragment<TViewModel> : BaseFragment<TViewModel> where TViewModel : FormViewModel
     {
         private bool _formEnabled;
+        
+        protected FormView FormView { get; private set; }
 
-        public bool FormEnabled
+        protected bool FormEnabled
         {
             get => _formEnabled;
             set
@@ -26,9 +29,11 @@ namespace Sample.AndroidApp.Views.Bases
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
 
+            FormView = view.FindViewById<FormView>(Resource.Id.form_view);
+
             HasOptionsMenu = true;
 
-            var set = this.CreateBindingSet<FormView<TViewModel>, TViewModel>();
+            var set = this.CreateBindingSet<FormFragment<TViewModel>, TViewModel>();
             set.Bind(this).For(v => v.FormEnabled).To(vm => vm.Form.Enabled);
             set.Apply();
 

@@ -49,7 +49,8 @@
     <Compile Include="Setup.cs" />
     <Compile Include="SplashScreen.cs" />
     <Compile Include="Views\Bases\BaseFragment.cs" />
-    <Compile Include="Views\Bases\FormView.cs" />
+    <Compile Include="Views\Bases\FormFragment.cs" />
+    <Compile Include="Views\CustomDesignFormView.cs" />
     <Compile Include="Views\InputFieldsFormView.cs" />
     <Compile Include="Views\MainView.cs" />
     <Compile Include="Views\MenuFormView.cs" />
@@ -84,6 +85,7 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\icon_unlock.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\icon_lock.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\icon_unlock.png" />
+    <AndroidResource Include="Resources\layout\EditTextFieldView.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable" />

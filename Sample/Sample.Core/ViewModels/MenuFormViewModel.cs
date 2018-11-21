@@ -15,7 +15,8 @@ namespace Sample.Core.ViewModels
             Form = Form.Create(new []
             {
                 new ButtonField("Input fields", new MvxAsyncCommand(HandleNavigateToInputFieldsCommand)),
-                new ButtonField("Sample login", new MvxAsyncCommand(HandleNavigateToSampleLoginCommand)) 
+                new ButtonField("Sample login", new MvxAsyncCommand(HandleNavigateToSampleLoginCommand)),
+                new ButtonField("Custom design", new MvxAsyncCommand(HandleNavigateToCustomDesignCommand)) 
             });
         }
 
@@ -27,6 +28,11 @@ namespace Sample.Core.ViewModels
         private async Task HandleNavigateToInputFieldsCommand()
         {
             await NavigationService.Navigate<InputFieldsFormViewModel>();
+        }
+
+        private async Task HandleNavigateToCustomDesignCommand()
+        {
+            await NavigationService.Navigate<CustomDesignFormViewModel>();
         }
     }
 }
