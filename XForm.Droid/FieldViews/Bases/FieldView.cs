@@ -4,7 +4,7 @@ using Android.Views;
 using XForm.Fields.Interfaces;
 using XForm.FieldViews;
 
-namespace XForm.Android.FieldViews.Bases
+namespace XForm.Droid.FieldViews.Bases
 {
     public abstract class FieldView : RecyclerView.ViewHolder, IFieldView
     {

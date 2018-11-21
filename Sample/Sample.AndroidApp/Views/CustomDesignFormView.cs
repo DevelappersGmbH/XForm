@@ -4,7 +4,7 @@ using Android.Views;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using Sample.AndroidApp.Views.Bases;
 using Sample.Core.ViewModels;
-using XForm.Android.FieldViews;
+using XForm.Droid.FieldViews;
 
 namespace Sample.AndroidApp.Views
 {

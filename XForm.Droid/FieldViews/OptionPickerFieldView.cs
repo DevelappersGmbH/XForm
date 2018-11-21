@@ -2,10 +2,10 @@ using System;
 using System.Collections;
 using Android.Views;
 using Android.Widget;
-using XForm.Android.FieldViews.Bases;
+using XForm.Droid.FieldViews.Bases;
 using XForm.Fields;
 
-namespace XForm.Android.FieldViews
+namespace XForm.Droid.FieldViews
 {
     public class OptionPickerFieldView : ValueFieldView<IOptionPickerField, int?>
     {
@@ -28,7 +28,7 @@ namespace XForm.Android.FieldViews
             base.BindTo(field);
 
             var adapter = new ArrayAdapter(ItemView.Context,
-                                           global::Android.Resource.Layout.SimpleSpinnerItem,
+                                           Android.Resource.Layout.SimpleSpinnerItem,
                                            (IList) field.OptionTexts);
 
             ValueSpinner.Adapter = adapter;

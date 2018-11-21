@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{31B5EE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XForm.Ios", "XForm.Ios\XForm.Ios.csproj", "{CC3AFA55-EA47-4855-BB3C-C64D92ADF1E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XForm.Android", "XForm.Android\XForm.Android.csproj", "{78077CBE-6231-4874-AD00-CB4E1066A03A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XForm.Droid", "XForm.Droid\XForm.Droid.csproj", "{78077CBE-6231-4874-AD00-CB4E1066A03A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Core", "Sample\Sample.Core\Sample.Core.csproj", "{EAF3E235-9681-4A1E-AAEF-0A140D6119D8}"
 EndProject

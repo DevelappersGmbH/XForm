@@ -2,11 +2,11 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using Android.Support.V7.Widget;
 using Android.Views;
-using XForm.Android.FieldViews.Bases;
-using XForm.Android.FormViews;
+using XForm.Droid.FieldViews.Bases;
+using XForm.Droid.FormViews;
 using XForm.Fields.Interfaces;
 
-namespace XForm.Android.Adapters
+namespace XForm.Droid.Adapters
 {
     public class FormAdapter : RecyclerView.Adapter
     {

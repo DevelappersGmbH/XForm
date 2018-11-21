@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20sp">
-    <XForm.Android.FormViews.FormView
+    <XForm.Droid.FormViews.FormView
         android:id="@+id/form_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

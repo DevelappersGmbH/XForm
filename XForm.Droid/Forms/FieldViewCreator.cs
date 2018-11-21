@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using Android.Views;
-using XForm.Android.FieldViews.Bases;
+using XForm.Droid.FieldViews.Bases;
 using XForm.FieldViews;
 using XForm.Helpers;
 
-namespace XForm.Android.Forms
+namespace XForm.Droid.Forms
 {
     public class FieldViewCreator
     {

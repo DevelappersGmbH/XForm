@@ -6,8 +6,8 @@
     <ProjectGuid>{78077CBE-6231-4874-AD00-CB4E1066A03A}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>XForm.Android</RootNamespace>
-    <AssemblyName>XForm.Android</AssemblyName>
+    <RootNamespace>XForm.Droid</RootNamespace>
+    <AssemblyName>XForm.Droid</AssemblyName>
     <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>

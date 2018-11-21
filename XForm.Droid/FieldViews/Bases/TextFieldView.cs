@@ -3,7 +3,7 @@ using Android.Views;
 using Android.Widget;
 using XForm.Fields.Bases;
 
-namespace XForm.Android.FieldViews.Bases
+namespace XForm.Droid.FieldViews.Bases
 {
     public abstract class TextFieldView<TField> : ValueFieldView<TField, string>
         where TField : TextField

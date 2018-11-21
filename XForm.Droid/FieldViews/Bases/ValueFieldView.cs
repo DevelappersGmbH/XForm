@@ -1,7 +1,7 @@
 using Android.Views;
 using XForm.Fields.Interfaces;
 
-namespace XForm.Android.FieldViews.Bases
+namespace XForm.Droid.FieldViews.Bases
 {
     public abstract class ValueFieldView<TField, TValue> : FieldView<TField> 
         where TField : class, IValueField<TValue>

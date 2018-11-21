@@ -2,7 +2,7 @@
 using Android.Views;
 using MvvmCross.Binding.BindingContext;
 using Sample.Core.ViewModels.Bases;
-using XForm.Android.FormViews;
+using XForm.Droid.FormViews;
 
 namespace Sample.AndroidApp.Views.Bases
 {

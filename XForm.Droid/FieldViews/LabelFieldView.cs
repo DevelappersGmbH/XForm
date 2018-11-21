@@ -1,9 +1,9 @@
 using Android.Views;
 using Android.Widget;
-using XForm.Android.FieldViews.Bases;
+using XForm.Droid.FieldViews.Bases;
 using XForm.Fields;
 
-namespace XForm.Android.FieldViews
+namespace XForm.Droid.FieldViews
 {
     public class LabelFieldView: ValueFieldView<LabelField, string>
     {

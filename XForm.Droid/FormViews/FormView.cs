@@ -4,15 +4,15 @@ using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Util;
 using Android.Views;
-using XForm.Android.Adapters;
-using XForm.Android.FieldViews.Bases;
-using XForm.Android.Forms;
+using XForm.Droid.Adapters;
+using XForm.Droid.FieldViews.Bases;
+using XForm.Droid.Forms;
 using XForm.FieldViews;
 using XForm.Forms;
 
-namespace XForm.Android.FormViews
+namespace XForm.Droid.FormViews
 {
-    [Register("xform.android.formviews.FormView")]
+    [Register("xform.droid.formviews.FormView")]
     public class FormView: RecyclerView
     {
         private Form _form;

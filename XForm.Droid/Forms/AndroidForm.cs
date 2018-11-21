@@ -1,8 +1,8 @@
-using XForm.Android.FieldViews;
+using XForm.Droid.FieldViews;
 using XForm.Fields;
 using XForm.Forms;
 
-namespace XForm.Android.Forms
+namespace XForm.Droid.Forms
 {
     public class AndroidForm: Form
     {

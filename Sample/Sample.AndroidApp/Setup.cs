@@ -8,7 +8,7 @@ using MvvmCross.Droid.Support.V4;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Droid.Support.V7.RecyclerView;
 using Sample.Core;
-using XForm.Android.Forms;
+using XForm.Droid.Forms;
 
 namespace Sample.AndroidApp
 {
