@@ -85,7 +85,10 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\icon_unlock.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\icon_lock.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\icon_unlock.png" />
-    <AndroidResource Include="Resources\layout\EditTextFieldView.axml" />
+    <AndroidResource Include="Resources\layout\EditTextFieldView.axml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
