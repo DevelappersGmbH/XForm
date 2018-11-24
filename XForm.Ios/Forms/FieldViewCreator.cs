@@ -19,8 +19,8 @@ namespace XForm.Ios.Forms
         {
             _tableView = tableView;
         }
-        
-        public void RegisterFieldContentCreator<TFieldContent>(Func<FieldContent> creator) where TFieldContent: IFieldContent
+
+        public void RegisterFieldContentCreator<TFieldContent>(Func<FieldContent> creator) where TFieldContent : IFieldContent
         {
             _fieldContentCreatorRegister.Register<TFieldContent>(creator);
         }
@@ -33,6 +33,7 @@ namespace XForm.Ios.Forms
             if (fieldView.NeedsSetup())
             {
                 CreateFieldContent(fieldView);
+                fieldView.Setup();
             }
 
             return fieldView;
@@ -41,7 +42,7 @@ namespace XForm.Ios.Forms
         private void CreateFieldContent(FieldView fieldView)
         {
             var fieldContentType = fieldView.ContentType;
-            
+
             if (_fieldContentCreatorRegister.TryValue(fieldContentType, out var customFieldContentCreator))
                 fieldView.CreateFieldContent(customFieldContentCreator);
             else

@@ -19,6 +19,8 @@ namespace XForm.Droid.Forms
             locator.Register<ButtonField, ButtonFieldView>();
             
             locator.Register<SingleLineTextField, SingleLineTextFieldView>();
+            locator.Register<EmailAddressTextField, EmailAddressTextFieldView>();
+            locator.Register<PasswordTextField, PasswordTextFieldView>();
             
             locator.Register<DecimalInputField, DecimalInputFieldView>();
             locator.Register<NumberInputField, NumberInputFieldView>();

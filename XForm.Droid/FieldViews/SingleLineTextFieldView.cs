@@ -8,16 +8,16 @@ namespace XForm.Droid.FieldViews
     {
         public SingleLineTextFieldView(ViewGroup parent) : base(parent)
         {
-            Initialize();
         }
 
         public SingleLineTextFieldView(ViewGroup parent, int layoutToInflate) : base(parent, layoutToInflate)
         {
-            Initialize();
         }
 
-        private void Initialize()
+        internal override void Setup()
         {
+            base.Setup();
+            
             ValueEditText.SetMaxLines(1);
             ValueEditText.SetSingleLine(true);
         }

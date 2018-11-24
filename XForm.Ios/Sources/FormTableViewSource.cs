@@ -82,9 +82,6 @@ namespace XForm.Ios.Sources
         {
             var viewType = _formView.FieldViewLocator.ViewTypeForField(field);
             var view = _fieldViewCreator.CreateOrGetFieldView(viewType, indexPath);
-
-            if (view.NeedsSetup())
-                view.Setup();
             
             view.BindTo(field);
 

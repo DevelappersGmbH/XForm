@@ -18,6 +18,8 @@ namespace XForm.Droid.FieldViews.Bases
         protected FieldView(ViewGroup parent, int layoutToInflate) : base(CreateViewItem(parent, layoutToInflate))
         {
         }
+
+        internal virtual void Setup() {}
         
         public abstract void BindTo(IField field);
     }

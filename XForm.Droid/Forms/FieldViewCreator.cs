@@ -24,7 +24,11 @@ namespace XForm.Droid.Forms
         public FieldView CreateFieldView(ViewGroup parent, int viewType)
         {
             var fieldViewType = _registeredTypes[viewType];
-            return CreateFieldView(parent, fieldViewType);
+            var fieldView = CreateFieldView(parent, fieldViewType);
+
+            fieldView.Setup();
+            
+            return fieldView;
         }
         
         public void RegisterFieldViewCreator<TFieldView>(Func<ViewGroup, FieldView> creator) where TFieldView: IFieldView

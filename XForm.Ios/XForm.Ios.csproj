@@ -58,8 +58,10 @@
     <Compile Include="FieldViews\Bases\ValueFieldView.cs" />
     <Compile Include="FieldViews\ButtonFieldView.cs" />
     <Compile Include="FieldViews\DecimalInputFieldView.cs" />
+    <Compile Include="FieldViews\EmailAddressTextFieldView.cs" />
     <Compile Include="FieldViews\LabelFieldView.cs" />
     <Compile Include="FieldViews\NumberInputFieldView.cs" />
+    <Compile Include="FieldViews\PasswordTextFieldView.cs" />
     <Compile Include="FieldViews\SingleLineTextFieldView.cs" />
     <Compile Include="FieldViews\OptionPickerFieldView.cs" />
     <Compile Include="Forms\FieldViewCreator.cs" />
