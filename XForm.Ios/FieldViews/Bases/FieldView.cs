@@ -74,13 +74,17 @@ namespace XForm.Ios.FieldViews.Bases
             view.TranslatesAutoresizingMaskIntoConstraints = false;
             
             ContentView.AddSubview(view);
+
+            var bottomConstraint = ContentView.BottomAnchor.ConstraintEqualTo(view.BottomAnchor);
+
+            bottomConstraint.Priority = 999;
             
             NSLayoutConstraint.ActivateConstraints(new[]
             {
                 ContentView.LeftAnchor.ConstraintEqualTo(view.LeftAnchor),
                 ContentView.RightAnchor.ConstraintEqualTo(view.RightAnchor),
                 ContentView.TopAnchor.ConstraintEqualTo(view.TopAnchor),
-                ContentView.BottomAnchor.ConstraintEqualTo(view.BottomAnchor)
+                bottomConstraint
             });
             
             SelectionStyle = UITableViewCellSelectionStyle.None;  
