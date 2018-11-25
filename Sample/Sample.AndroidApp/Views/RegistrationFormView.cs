@@ -6,8 +6,8 @@ using Sample.Core.ViewModels;
 namespace Sample.AndroidApp.Views
 {
     [MvxFragmentPresentation(typeof(MainViewModel), Resource.Id.content_frame, true)]
-    [Register("xform.sample.androidapp.views.SampleLoginFormView")]
-    public class SampleLoginFormView : FormFragment<SampleLoginFormViewModel>
+    [Register("xform.sample.androidapp.views.RegistrationFormView")]
+    public class RegistrationFormView : FormFragment<RegistrationFormViewModel>
     {
         public override int Layout => Resource.Layout.Form;
     }

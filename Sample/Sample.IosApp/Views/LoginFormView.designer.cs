@@ -9,8 +9,8 @@ using System.CodeDom.Compiler;
 
 namespace Sample.IosApp.Views
 {
-	[Register ("SampleLoginFormView")]
-	partial class SampleLoginFormView
+	[Register ("LoginFormView")]
+	partial class LoginFormView
 	{
 		[Outlet]
 		XForm.Ios.FormViews.FormView FormView { get; set; }

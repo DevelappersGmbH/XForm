@@ -112,8 +112,9 @@
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Views\InputFieldsFormView.xib" />
     <InterfaceDefinition Include="Views\MainView.xib" />
-    <InterfaceDefinition Include="Views\SampleLoginFormView.xib" />
+    <InterfaceDefinition Include="Views\LoginFormView.xib" />
     <InterfaceDefinition Include="Views\MenuFormView.xib" />
+    <InterfaceDefinition Include="Views\RegistrationFormView.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -132,13 +133,17 @@
     <Compile Include="Views\MainView.designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\SampleLoginFormView.cs" />
-    <Compile Include="Views\SampleLoginFormView.designer.cs">
-      <DependentUpon>SampleLoginFormView.cs</DependentUpon>
+    <Compile Include="Views\LoginFormView.cs" />
+    <Compile Include="Views\LoginFormView.designer.cs">
+      <DependentUpon>LoginFormView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\MenuFormView.cs" />
     <Compile Include="Views\MenuFormView.designer.cs">
       <DependentUpon>MenuFormView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RegistrationFormView.cs" />
+    <Compile Include="Views\RegistrationFormView.designer.cs">
+      <DependentUpon>RegistrationFormView.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

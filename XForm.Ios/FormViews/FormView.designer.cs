@@ -8,20 +8,13 @@ using Foundation;
 using System;
 using System.CodeDom.Compiler;
 
-namespace Sample.IosApp.Views
+namespace XForm.Ios.FormViews
 {
-    [Register ("MenuFormView")]
-    partial class MenuFormView
+    [Register ("FormView")]
+    partial class FormView
     {
-        [Outlet]
-        XForm.Ios.FormViews.FormView FormView { get; set; }
-
         void ReleaseDesignerOutlets ()
         {
-            if (FormView != null) {
-                FormView.Dispose ();
-                FormView = null;
-            }
         }
     }
 }

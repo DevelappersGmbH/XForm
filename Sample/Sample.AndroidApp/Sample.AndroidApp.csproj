@@ -54,7 +54,8 @@
     <Compile Include="Views\InputFieldsFormView.cs" />
     <Compile Include="Views\MainView.cs" />
     <Compile Include="Views\MenuFormView.cs" />
-    <Compile Include="Views\SampleLoginFormView.cs" />
+    <Compile Include="Views\LoginFormView.cs" />
+    <Compile Include="Views\RegistrationFormView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
