@@ -11,10 +11,47 @@ namespace Sample.Core.ViewModels
 {
     public class LoginFormViewModel : FormViewModel
     {
-        private IMvxCommand _loginCommand;
+        private class FormModel: XForm.Forms.FormModel
+        {
+            private string _emailAddress;
+            private string _password;
 
-        private readonly EmailAddressTextField _emailAddressField = new EmailAddressTextField("E-Mail Address");
-        private readonly PasswordTextField _passwordField = new PasswordTextField("Password");
+            public FormModel(IMvxCommand loginCommand)
+            {
+                LoginCommand = loginCommand;
+            }
+
+            [EmailAddressTextField("E-Mail Address")]
+            public string EmailAddress
+            {
+                get => _emailAddress;
+                set => Set(ref _emailAddress, value);
+            }
+
+            [PasswordTextField("Password")]
+            public string Password
+            {
+                get => _password;
+                set => Set(ref _password, value);
+            }
+
+            [ButtonField("Login")]
+            public IMvxCommand LoginCommand { get; }
+            
+            public override void FieldValueChanged()
+            {
+                LoginCommand.RaiseCanExecuteChanged();
+            }
+
+            public bool IsValid()
+            {
+                return EmailAddress.IsValidEmailAddress() &&
+                       Password.IsSavePassword();
+            }
+        }
+
+        private FormModel _formModel;
+        private IMvxCommand _loginCommand;
 
         private IMvxCommand LoginCommand => _loginCommand ?? (_loginCommand = new MvxAsyncCommand(HandleLoginCommand,
                                                                                                   CanHandleLoginCommand));
@@ -23,29 +60,22 @@ namespace Sample.Core.ViewModels
         {
             await base.Initialize();
 
-            _emailAddressField.ValueChanged += (sender, args) => LoginCommand.RaiseCanExecuteChanged();
-            _passwordField.ValueChanged += (sender, args) => LoginCommand.RaiseCanExecuteChanged();
-
-            Form = Form.Create(new IField[]
-            {
-                _emailAddressField,
-                _passwordField,
-                new ButtonField("Login", LoginCommand)
-            });
+            _formModel = new FormModel(LoginCommand);
+            
+            Form = Form.Create(_formModel);
         }
 
         private bool CanHandleLoginCommand()
         {
-            return _emailAddressField.Value.IsValidEmailAddress() &&
-                   _passwordField.Value.IsSavePassword();
+            return _formModel.IsValid();
         }
 
         private async Task HandleLoginCommand()
         {
             await Task.Delay(TimeSpan.FromSeconds(2));
 
-            _emailAddressField.Value = string.Empty;
-            _passwordField.Value = string.Empty;
+            _formModel.EmailAddress = string.Empty;
+            _formModel.Password = string.Empty;
         }
     }
 }

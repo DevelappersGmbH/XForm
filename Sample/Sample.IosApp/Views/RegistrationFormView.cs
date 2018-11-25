@@ -1,10 +1,13 @@
 ﻿using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Ios.Views;
+using MvvmCross.Plugin.Sidebar;
 using Sample.Core.ViewModels;
+using Sample.IosApp.Views.Bases;
 
 namespace Sample.IosApp.Views
 {
-    public partial class RegistrationFormView : MvxViewController<RegistrationFormViewModel>
+    [MvxSidebarPresentation(MvxPanelEnum.Center, MvxPanelHintType.ResetRoot, true, MvxSplitViewBehaviour.Detail)]
+    public partial class RegistrationFormView : FormView<RegistrationFormViewModel>
     {
         public RegistrationFormView() : base("RegistrationFormView", null)
         {
