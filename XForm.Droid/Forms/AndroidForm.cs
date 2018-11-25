@@ -1,5 +1,6 @@
 using XForm.Droid.FieldViews;
 using XForm.Fields;
+using XForm.Fields.Interfaces;
 using XForm.Forms;
 
 namespace XForm.Droid.Forms

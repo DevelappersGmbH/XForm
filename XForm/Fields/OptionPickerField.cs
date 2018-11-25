@@ -3,25 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using XForm.Fields.Bases;
 using XForm.Fields.Interfaces;
+using XForm.Forms;
 
 namespace XForm.Fields
 {
-    public interface IOptionPickerField : IValueField<int?>
+    // TODO: Provide attributes for more types or an alternative handling
+    public class StringOptionPickerFieldAttribute : FieldAttribute
     {
-        int OptionsCount { get; }
-        
-        string SelectedOptionText { get; }
-
-        string OptionTextForValue(int? value);
-        
-        IList<string> OptionTexts { get; }
-    }
-
-    public interface IOptionPickerField<TOption> : IOptionPickerField
-    {
-        TOption SelectedOption { get; }
-
-        IList<TOption> Options { get; }
+        public StringOptionPickerFieldAttribute(string name, string[] options)
+            : base(() => new OptionPickerField<string>(name, options),
+                   typeof(OptionPickerField<string>).GetProperty(nameof(OptionPickerField<string>.SelectedOption)))
+        {
+        }
     }
 
     public class OptionPickerField<TOption> : ValueField<int?>, IOptionPickerField<TOption>
@@ -35,7 +28,11 @@ namespace XForm.Fields
             OptionTextGetter = optionTextGetter;
         }
 
-        public TOption SelectedOption => OptionForValue(Value);
+        public TOption SelectedOption
+        {
+            get => OptionForValue(Value);
+            set => Value = ValueForOption(value, Options);
+        }
 
         public string SelectedOptionText => OptionTextForValue(Value);
 
@@ -75,6 +72,13 @@ namespace XForm.Fields
                 return null;
 
             return index;
+        }
+
+        protected override void HandleValueChanged(int? oldValue, int? newValue)
+        {
+            base.HandleValueChanged(oldValue, newValue);
+            
+            RaisePropertyChanged(nameof(SelectedOption));
         }
     }
 }

@@ -3,7 +3,6 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 using XForm.Forms;
-using XForm.Ios.ContentViews;
 using XForm.Ios.ContentViews.Bases;
 using XForm.Ios.ContentViews.Interfaces;
 using XForm.Ios.Forms;

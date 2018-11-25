@@ -18,6 +18,13 @@ namespace XForm.Forms
         private List<IField> _fields;
         private Dictionary<IField, IDisposable> _fieldHiddenChangedSubscriptions = new Dictionary<IField, IDisposable>();
 
+        public static Form Create(FormModel model)
+        {
+            var form = Create(model.CreateAndBindFields());
+
+            return form;
+        }
+
         public static Form Create(IEnumerable<IField> fields = null)
         {
             if (FormCreateFunc == null)

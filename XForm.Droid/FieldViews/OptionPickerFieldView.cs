@@ -4,6 +4,7 @@ using Android.Views;
 using Android.Widget;
 using XForm.Droid.FieldViews.Bases;
 using XForm.Fields;
+using XForm.Fields.Interfaces;
 
 namespace XForm.Droid.FieldViews
 {

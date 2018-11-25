@@ -14,7 +14,7 @@ namespace XForm.Fields.Bases
 
         public event EventHandler ValueChanged;
 
-        public TValue Value
+        public virtual TValue Value
         {
             get => _value;
             set

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using XForm.Fields;
 using XForm.Fields.Interfaces;
 using XForm.Forms;
+using XForm.Tests.Helpers;
 using XForm.Tests.Mocks;
 using Xunit;
 
@@ -39,8 +40,8 @@ namespace XForm.Tests.Tests
             Assert.NotEmpty(form.VisibleFields);
             
             Assert.Collection(form.VisibleFields, 
-                              field => AssertLabelView(field, "Label", "Label Value"),
-                              field => AssertLabelView(field, "Label 2", "Label value 2"));
+                              field => Helper.AssertLabelView(field, "Label", "Label Value"),
+                              field => Helper.AssertLabelView(field, "Label 2", "Label value 2"));
         }
 
         [Fact]
@@ -52,9 +53,9 @@ namespace XForm.Tests.Tests
             form.InsertField(2, new LabelField("Label 2", "Label Value"));
             
             Assert.Collection(form.VisibleFields,
-                              field => AssertLabelView(field, "Label 1", "Label Value"),
+                              field => Helper.AssertLabelView(field, "Label 1", "Label Value"),
                               field => { },
-                              field => AssertLabelView(field, "Label 2", "Label Value"));
+                              field => Helper.AssertLabelView(field, "Label 2", "Label Value"));
         }
 
         [Fact]
@@ -126,15 +127,6 @@ namespace XForm.Tests.Tests
             field1.Hidden = false;
             
             Assert.Collection(form.VisibleFields, f => Assert.Equal("Field 1", f.Title), f => Assert.Equal("Field 2", f.Title));
-        }
-
-        private static void AssertLabelView(IField field, string title, string value)
-        {
-            Assert.IsType<LabelField>(field);
-            Assert.NotNull(field.Form);
-            
-            Assert.Equal(field.Title, title);
-            Assert.Equal((field as LabelField)?.Value, value);
         }
 
         private static Form CreateDefaultForm()
