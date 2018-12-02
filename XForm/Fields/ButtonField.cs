@@ -6,7 +6,7 @@ using XForm.Forms;
 
 namespace XForm.Fields
 {
-    public class ButtonFieldAttribute : FieldAttribute
+    public class ButtonFieldAttribute : DefaultFieldAttribute
     {
         public ButtonFieldAttribute(string name)
             : base(() => new ButtonField(name, null),

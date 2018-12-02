@@ -1,19 +1,79 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using XForm.Fields.Bases;
 using XForm.Fields.Interfaces;
 using XForm.Forms;
 
 namespace XForm.Fields
 {
-    // TODO: Provide attributes for more types or an alternative handling
-    public class StringOptionPickerFieldAttribute : FieldAttribute
+    public class OptionPickerFieldAttribute : FieldAttribute
     {
-        public StringOptionPickerFieldAttribute(string name, string[] options)
-            : base(() => new OptionPickerField<string>(name, options),
-                   typeof(OptionPickerField<string>).GetProperty(nameof(OptionPickerField<string>.SelectedOption)))
+        private readonly string _name;
+        private PropertyInfo _bindedFieldProperty;
+
+        public override PropertyInfo BindedFieldProperty => _bindedFieldProperty;
+
+        public OptionPickerFieldAttribute(string name)
         {
+            _name = name;
+        }
+
+        public override Field CreateField(FormModel formModel, PropertyInfo propertyInfo)
+        {
+            var propertyName = propertyInfo.Name;
+            var propertyType = propertyInfo.PropertyType;
+            
+            // Get options
+            var options = formModel.GetOptionsForField(propertyName) ?? 
+                          throw new ArgumentException($"Excepted options for {propertyName}. " +
+                                                      $"Please override {nameof(formModel.GetOptionsForField)}");
+
+            // Cast options to excepted type (property type)
+            var castedOptions = CastOptions(options, propertyType, out var mismatchingType);
+
+            if (mismatchingType != null)
+                throw new ArgumentException($"Excepted list of options with type {propertyType} and got {mismatchingType}. " +
+                                            $"Please check returned options in {nameof(formModel.GetOptionsForField)} for propertyName {propertyName}");
+            
+            // Get selected option
+            var selectedOption = propertyInfo.GetValue(formModel);
+            
+            // Create field
+            var type = typeof(OptionPickerField<>).MakeGenericType(propertyType);
+            var field = Activator.CreateInstance(type, _name, castedOptions, selectedOption, null) as Field;
+
+            _bindedFieldProperty = type.GetProperty(nameof(OptionPickerField<string>.SelectedOption));
+            
+            return field;
+        }
+
+        private object CastOptions(IList<object> options, Type itemType, out Type mismatchingType)
+        {
+            mismatchingType = null;
+
+            var optionsCount = options.Count;
+            var array = Array.CreateInstance(itemType, optionsCount);
+            
+            for (var index = 0; index < optionsCount; index ++)
+            {
+                var option = options[index];
+                
+                try
+                {
+                    var castedOption = Convert.ChangeType(option, itemType);
+                    array.SetValue(castedOption, index);
+                }
+                catch
+                {
+                    mismatchingType = option.GetType();
+                    return null;
+                }
+            }
+            
+            return array;
         }
     }
 
@@ -24,7 +84,7 @@ namespace XForm.Fields
                                  TOption selectedOption = default(TOption),
                                  Func<TOption, string> optionTextGetter = null) : base(title, ValueForOption(selectedOption, options))
         {
-            Options = options;
+            Options = options ?? new List<TOption>();
             OptionTextGetter = optionTextGetter;
         }
 
@@ -42,8 +102,8 @@ namespace XForm.Fields
 
         public IList<string> OptionTexts => Options?.Select(OptionText).ToList();
 
-        public Func<TOption, string> OptionTextGetter { get; }
-        
+        public Func<TOption, string> OptionTextGetter { get; set; }
+
         public string OptionTextForValue(int? value)
         {
             var option = OptionForValue(value);
@@ -77,7 +137,7 @@ namespace XForm.Fields
         protected override void HandleValueChanged(int? oldValue, int? newValue)
         {
             base.HandleValueChanged(oldValue, newValue);
-            
+
             RaisePropertyChanged(nameof(SelectedOption));
         }
     }

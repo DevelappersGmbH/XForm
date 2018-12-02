@@ -4,7 +4,7 @@ using XForm.InputConverters;
 
 namespace XForm.Fields
 {
-    public class NumberInputFieldAttribute : FieldAttribute
+    public class NumberInputFieldAttribute : DefaultFieldAttribute
     {
         public NumberInputFieldAttribute(string name)
             : base(() => new NumberInputField(name, default(int)),

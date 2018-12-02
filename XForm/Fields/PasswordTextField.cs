@@ -2,7 +2,7 @@ using XForm.Forms;
 
 namespace XForm.Fields
 {
-    public class PasswordTextFieldAttribute : FieldAttribute
+    public class PasswordTextFieldAttribute : DefaultFieldAttribute
     {
         public PasswordTextFieldAttribute(string name)
             : base(() => new PasswordTextField(name),

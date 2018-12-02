@@ -3,7 +3,7 @@ using XForm.Forms;
 
 namespace XForm.Fields
 {
-    public class LabelFieldAttribute : FieldAttribute
+    public class LabelFieldAttribute : DefaultFieldAttribute
     {
         public LabelFieldAttribute(string name)
             : base(() => new LabelField(name, default(string)),

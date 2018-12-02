@@ -1,3 +1,6 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Input;
 using XForm.Fields;
@@ -91,7 +94,7 @@ namespace XForm.Tests.Tests
                 set => Set(ref _number, value);
             }
 
-            [StringOptionPickerField("Picker", new[] {"Option 1", "Option 2"})]
+            [OptionPickerField("Picker")]
             public string Option
             {
                 get => _option;
@@ -111,13 +114,21 @@ namespace XForm.Tests.Tests
                 get => _text;
                 set => Set(ref _text, value);
             }
+
+            public override IList<object> GetOptionsForField(string propertyName)
+            {
+                if (Equals(nameof(Option), propertyName))
+                    return new object[] {"Option 1", "Option 2"};
+
+                return null;
+            }
         }
 
         [Fact]
         public void TestFieldTypes()
         {
             var command = new MockCommand();
-            
+
             var formModel = new AllFieldsFormModel(command);
             var form = Form.Create(formModel);
 
@@ -156,7 +167,7 @@ namespace XForm.Tests.Tests
             ((ValueField<int?>) form.VisibleFields[5]).Value = 0;
             ((ValueField<string>) form.VisibleFields[6]).Value = "123456";
             ((ValueField<string>) form.VisibleFields[7]).Value = "text 3";
-            
+
             Assert.Equal(3.5, formModel.Decimal);
             Assert.Equal("test@email", formModel.Email);
             Assert.Equal("text 3", formModel.Label);
@@ -164,6 +175,48 @@ namespace XForm.Tests.Tests
             Assert.Equal("Option 1", formModel.Option);
             Assert.Equal("123456", formModel.Password);
             Assert.Equal("text 3", formModel.Text);
+        }
+
+        private class MissingOptionsFormModel : FormModel
+        {
+            [OptionPickerField("Picker")]
+            public string Option { get; set; }
+        }
+        
+        private class WrongTypeOptionsFormModel : FormModel
+        {
+            [OptionPickerField("Picker")]
+            public int Option { get; set; }
+            
+            public override IList<object> GetOptionsForField(string propertyName)
+            {
+                if (Equals(nameof(Option), propertyName))
+                    return new object[] {1, "Option 2"};
+
+                return null;
+            }
+        }
+
+        private class WellDefinedOptionsFormModel : FormModel
+        {
+            [OptionPickerField("Picker")]
+            public string Option { get; set; }
+            
+            public override IList<object> GetOptionsForField(string propertyName)
+            {
+                if (Equals(nameof(Option), propertyName))
+                    return new object[] {"Option 1", "Option 2"};
+
+                return null;
+            }
+        }
+
+        [Fact]
+        public void TestOptionsFields()
+        {
+            Assert.NotNull(Form.Create(new WellDefinedOptionsFormModel()));
+            Assert.Throws<ArgumentException>(() => Form.Create(new MissingOptionsFormModel()));
+            Assert.Throws<ArgumentException>(() => Form.Create(new WrongTypeOptionsFormModel()));
         }
     }
 }

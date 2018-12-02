@@ -3,7 +3,7 @@ using XForm.Forms;
 
 namespace XForm.Fields
 {
-    public class SingleLineTextFieldAttribute : FieldAttribute
+    public class SingleLineTextFieldAttribute : DefaultFieldAttribute
     {
         public SingleLineTextFieldAttribute(string name)
             : base(() => new SingleLineTextField(name),

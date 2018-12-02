@@ -4,7 +4,7 @@ using XForm.InputConverters;
 
 namespace XForm.Fields
 {
-    public class DecimalInputFieldAttribute : FieldAttribute
+    public class DecimalInputFieldAttribute : DefaultFieldAttribute
     {
         public DecimalInputFieldAttribute(string name)
             : base(() => new DecimalInputField(name),

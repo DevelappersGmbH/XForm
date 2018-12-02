@@ -2,7 +2,7 @@ using XForm.Forms;
 
 namespace XForm.Fields
 {
-    public class EmailAddressTextFieldAttribute : FieldAttribute
+    public class EmailAddressTextFieldAttribute : DefaultFieldAttribute
     {
         public EmailAddressTextFieldAttribute(string name)
             : base(() => new EmailAddressTextField(name),

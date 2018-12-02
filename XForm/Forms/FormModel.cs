@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
 using XForm.Binding;
-using XForm.Fields;
 using XForm.Fields.Bases;
 using XForm.Fields.Interfaces;
 
@@ -12,19 +11,28 @@ namespace XForm.Forms
     [AttributeUsage(AttributeTargets.Property)]
     public abstract class FieldAttribute : Attribute
     {
+        public abstract PropertyInfo BindedFieldProperty { get; }
+
+        public abstract Field CreateField(FormModel formModel, PropertyInfo propertyInfo);
+    }
+    
+    public abstract class DefaultFieldAttribute : FieldAttribute
+    {
         public Func<Field> FieldCreator { get; }
+        
+        public override PropertyInfo BindedFieldProperty { get; }
 
-        public PropertyInfo BindedFieldProperty { get; }
-
-        public FieldAttribute(Func<Field> fieldCreator, PropertyInfo bindedFieldProperty)
+        protected DefaultFieldAttribute(Func<Field> fieldCreator, PropertyInfo bindedFieldProperty)
         {
             FieldCreator = fieldCreator;
             BindedFieldProperty = bindedFieldProperty;
         }
+
+        public override Field CreateField(FormModel formModel, PropertyInfo propertyInfo)
+        {
+            return FieldCreator();
+        }
     }
-
-
-    
 
     public class Binding
     {
@@ -101,6 +109,11 @@ namespace XForm.Forms
         {
         }
 
+        public virtual IList<object> GetOptionsForField(string propertyName)
+        {
+            return null;
+        }
+
         internal List<Field> CreateAndBindFields()
         {
             var properties = GetType().GetProperties();
@@ -115,14 +128,14 @@ namespace XForm.Forms
                     continue;
 
                 var fieldAttribute = (FieldAttribute) attribute;
-                var field = fieldAttribute.FieldCreator();
+                var field = fieldAttribute.CreateField(this, property);
 
                 var binding = new Binding(field, fieldAttribute.BindedFieldProperty,
                                           this, property);
 
                 binding.SetOwnerFromTarget();
                 binding.Bind();
-                
+
                 _bindings.Add(binding);
 
                 if (field is IValueField valueField)
