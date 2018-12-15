@@ -1,8 +1,20 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="MSBuild.Sdk.Extras/1.6.65" ToolsVersion="15.0">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <TargetFrameworks>netstandard2.0;Xamarin.iOS10;MonoAndroid81</TargetFrameworks>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="**/Platform/**/*.cs" />
+    <None Include="**/Platform/**/*.cs" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
+    <Compile Include="**/Platform/Droid/**/*.cs" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.iOS')) ">
+    <Compile Include="**/Platform/Ios/**/*.cs" />
+  </ItemGroup>
 
 </Project>

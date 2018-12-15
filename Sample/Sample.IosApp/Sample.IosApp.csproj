@@ -147,10 +147,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\XForm.Ios\XForm.Ios.csproj">
-      <Project>{cc3afa55-ea47-4855-bb3c-c64d92adf1e6}</Project>
-      <Name>XForm.Ios</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Sample.Core\Sample.Core.csproj">
       <Project>{eaf3e235-9681-4a1e-aaef-0a140d6119d8}</Project>
       <Name>Sample.Core</Name>

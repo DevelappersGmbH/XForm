@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XForm.Tests", "XForm.Tests\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{31B5EE7F-DB7F-4195-B374-66EEA126AC69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XForm.Ios", "XForm.Ios\XForm.Ios.csproj", "{CC3AFA55-EA47-4855-BB3C-C64D92ADF1E6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XForm.Droid", "XForm.Droid\XForm.Droid.csproj", "{78077CBE-6231-4874-AD00-CB4E1066A03A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Core", "Sample\Sample.Core\Sample.Core.csproj", "{EAF3E235-9681-4A1E-AAEF-0A140D6119D8}"
@@ -51,18 +49,6 @@ Global
 		{4165CF50-E17A-4299-BE39-BDB8D50374E1}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{4165CF50-E17A-4299-BE39-BDB8D50374E1}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{4165CF50-E17A-4299-BE39-BDB8D50374E1}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{CC3AFA55-EA47-4855-BB3C-C64D92ADF1E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC3AFA55-EA47-4855-BB3C-C64D92ADF1E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC3AFA55-EA47-4855-BB3C-C64D92ADF1E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CC3AFA55-EA47-4855-BB3C-C64D92ADF1E6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CC3AFA55-EA47-4855-BB3C-C64D92ADF1E6}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{CC3AFA55-EA47-4855-BB3C-C64D92ADF1E6}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{CC3AFA55-EA47-4855-BB3C-C64D92ADF1E6}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{CC3AFA55-EA47-4855-BB3C-C64D92ADF1E6}.Release|iPhone.Build.0 = Release|Any CPU
-		{CC3AFA55-EA47-4855-BB3C-C64D92ADF1E6}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{CC3AFA55-EA47-4855-BB3C-C64D92ADF1E6}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{CC3AFA55-EA47-4855-BB3C-C64D92ADF1E6}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{CC3AFA55-EA47-4855-BB3C-C64D92ADF1E6}.Debug|iPhone.Build.0 = Debug|Any CPU
 		{78077CBE-6231-4874-AD00-CB4E1066A03A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{78077CBE-6231-4874-AD00-CB4E1066A03A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78077CBE-6231-4874-AD00-CB4E1066A03A}.Release|Any CPU.ActiveCfg = Release|Any CPU
