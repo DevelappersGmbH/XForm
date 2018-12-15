@@ -10,6 +10,8 @@
   </ItemGroup>
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
+    <PackageReference Include="Xamarin.Android.Support.v7.RecyclerView" Version="27.0.2" />
+
     <Compile Include="**/Platform/Droid/**/*.cs" />
   </ItemGroup>
 
