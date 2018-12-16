@@ -37,8 +37,8 @@ namespace Sample.Core.ViewModels
 
             [ButtonField("Login")]
             public IMvxCommand LoginCommand { get; }
-            
-            public override void FieldValueChanged()
+
+            protected override void FieldValueChanged()
             {
                 LoginCommand.RaiseCanExecuteChanged();
             }

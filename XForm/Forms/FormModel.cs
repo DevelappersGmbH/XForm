@@ -1,114 +1,29 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Reflection;
 using XForm.Binding;
+using XForm.FieldAttributes;
+using XForm.Fields;
 using XForm.Fields.Bases;
 using XForm.Fields.Interfaces;
 
 namespace XForm.Forms
 {
-    [AttributeUsage(AttributeTargets.Property)]
-    public abstract class FieldAttribute : Attribute
-    {
-        public abstract PropertyInfo BindedFieldProperty { get; }
-
-        public abstract Field CreateField(FormModel formModel, PropertyInfo propertyInfo);
-    }
-    
-    public abstract class DefaultFieldAttribute : FieldAttribute
-    {
-        public Func<Field> FieldCreator { get; }
-        
-        public override PropertyInfo BindedFieldProperty { get; }
-
-        protected DefaultFieldAttribute(Func<Field> fieldCreator, PropertyInfo bindedFieldProperty)
-        {
-            FieldCreator = fieldCreator;
-            BindedFieldProperty = bindedFieldProperty;
-        }
-
-        public override Field CreateField(FormModel formModel, PropertyInfo propertyInfo)
-        {
-            return FieldCreator();
-        }
-    }
-
-    public class Binding
-    {
-        public INotifyPropertyChanged Owner { get; }
-        public PropertyInfo OwnerProperty { get; }
-
-        public INotifyPropertyChanged Target { get; }
-        public PropertyInfo TargetProperty { get; }
-
-        public Binding(INotifyPropertyChanged owner, PropertyInfo ownerProperty, INotifyPropertyChanged target, PropertyInfo targetProperty)
-        {
-            Owner = owner;
-            OwnerProperty = ownerProperty;
-
-            Target = target;
-            TargetProperty = targetProperty;
-        }
-
-        public void Bind()
-        {
-            Owner.PropertyChanged += OwnerPropertyChanged;
-            Target.PropertyChanged += TargetPropertyChanged;
-        }
-
-        public void Clear()
-        {
-            Owner.PropertyChanged -= OwnerPropertyChanged;
-            Target.PropertyChanged -= TargetPropertyChanged;
-        }
-
-        public void SetOwnerFromTarget()
-        {
-            Set(Target, TargetProperty, Owner, OwnerProperty);
-        }
-
-        private void SetTargetFromOwner()
-        {
-            Set(Owner, OwnerProperty, Target, TargetProperty);
-        }
-
-        private void OwnerPropertyChanged(object sender, PropertyChangedEventArgs args)
-        {
-            if (!Equals(args.PropertyName, OwnerProperty.Name))
-                return;
-
-            SetTargetFromOwner();
-        }
-
-        private void TargetPropertyChanged(object sender, PropertyChangedEventArgs args)
-        {
-            if (!Equals(args.PropertyName, TargetProperty.Name))
-                return;
-
-            SetOwnerFromTarget();
-        }
-
-        private void Set(object source, PropertyInfo sourceProperty, object destination, PropertyInfo destinationProperty)
-        {
-            var sourceValue = sourceProperty.GetValue(source);
-            var destinationValue = destinationProperty.GetValue(destination);
-
-            if (Equals(sourceValue, destinationValue))
-                return;
-
-            destinationProperty.SetValue(destination, sourceValue);
-        }
-    }
-
     public abstract class FormModel : BindableBase
     {
-        private List<Binding> _bindings = new List<Binding>();
+        private readonly List<Binding.Binding> _bindings = new List<Binding.Binding>();
 
-        public virtual void FieldValueChanged()
+        /// <summary>
+        /// Is called when the value of a field has changed.
+        /// </summary>
+        protected virtual void FieldValueChanged()
         {
         }
 
+        /// <summary>
+        /// Provide the options for all properties with <see cref="OptionPickerFieldAttribute"/> of the model.
+        /// </summary>
+        /// <param name="propertyName">Name of requested property</param>
+        /// <returns>List of options. Options should have the same type as the requested property.</returns>
         public virtual IList<object> GetOptionsForField(string propertyName)
         {
             return null;
@@ -130,8 +45,8 @@ namespace XForm.Forms
                 var fieldAttribute = (FieldAttribute) attribute;
                 var field = fieldAttribute.CreateField(this, property);
 
-                var binding = new Binding(field, fieldAttribute.BindedFieldProperty,
-                                          this, property);
+                var binding = new Binding.Binding(field, fieldAttribute.BindedFieldProperty,
+                                                  this, property);
 
                 binding.SetOwnerFromTarget();
                 binding.Bind();

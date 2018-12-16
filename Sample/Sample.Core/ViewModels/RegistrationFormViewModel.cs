@@ -33,7 +33,7 @@ namespace Sample.Core.ViewModels
             [ButtonField("Register")]
             public IMvxCommand RegisterCommand { get; }
 
-            public override void FieldValueChanged()
+            protected override void FieldValueChanged()
             {
                 RegisterCommand.RaiseCanExecuteChanged();
             }

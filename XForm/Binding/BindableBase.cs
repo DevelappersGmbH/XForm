@@ -18,7 +18,7 @@ namespace XForm.Binding
 
             field = newValue;
 
-            OnPropertyChanged(propertyName);
+            RaisePropertyChanged(propertyName);
             customChangedEventHandler?.Invoke(this, new EventArgs());
             
             return true;
@@ -27,11 +27,11 @@ namespace XForm.Binding
         protected void RaisePropertyChanged(string propertyName)
         {
             OnPropertyChanged(propertyName);
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         } 
         
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

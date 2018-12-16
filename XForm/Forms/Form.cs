@@ -18,6 +18,12 @@ namespace XForm.Forms
         private List<IField> _fields;
         private Dictionary<IField, IDisposable> _fieldHiddenChangedSubscriptions = new Dictionary<IField, IDisposable>();
 
+        /// <summary>
+        /// Creates a form with fields from the field model.
+        /// </summary>
+        /// <param name="model">Field model</param>
+        /// <returns>Created form</returns>
+        /// <exception cref="ArgumentException">Is raised if no platform form class is registered.</exception>
         public static Form Create(FormModel model)
         {
             var form = Create(model.CreateAndBindFields());
@@ -25,10 +31,16 @@ namespace XForm.Forms
             return form;
         }
 
+        /// <summary>
+        /// Creates a form with a list of fields.
+        /// </summary>
+        /// <param name="fields">List of fields</param>
+        /// <returns>Created form</returns>
+        /// <exception cref="ArgumentException"></exception>
         public static Form Create(IEnumerable<IField> fields = null)
         {
             if (FormCreateFunc == null)
-                throw new ArgumentException("No platform form class registered.");
+                throw new ArgumentException("No platform form class is registered.");
 
             var form = FormCreateFunc();
 
@@ -47,17 +59,24 @@ namespace XForm.Forms
             VisibleFields = new ObservableCollection<IField>();
         }
 
+        /// <summary>
+        /// Collection of all visible fields.
+        /// </summary>
         public ObservableCollection<IField> VisibleFields { get; private set; }
 
+        /// <summary>
+        /// Field view locator
+        /// </summary>
         public FieldViewLocator FieldViewLocator { get; }
 
+        /// <summary>
+        /// Get and set form's enabled state. Overrides enabled state of all fields.
+        /// </summary>
         public bool Enabled
         {
             get => _enabled;
             set => Set(ref _enabled, value);
         }
-
-        #region Manipulate fields
 
         private void SetFields(IEnumerable<IField> fields)
         {
@@ -74,6 +93,12 @@ namespace XForm.Forms
             _fieldHiddenChangedSubscriptions = _fields.ToDictionary(f => f, f => (IDisposable) f.WeakSubscribe(nameof(f.Hidden), FieldHiddenChanged));
         }
 
+        /// <summary>
+        /// Inserts an element into the <see cref="Form"/> at the specified index.
+        /// </summary>
+        /// <param name="index">The zero-based index at which field should be inserted.</param>
+        /// <param name="field">The object to insert.</param>
+        /// <exception cref="ArgumentException">field is part of another form</exception>
         public void InsertField(int index, IField field)
         {
             if (field.Form != null)
@@ -86,6 +111,11 @@ namespace XForm.Forms
             UpdateVisibleFields(field);
         }
 
+        /// <summary>
+        /// Removes field from <see cref="Form"/>.
+        /// </summary>
+        /// <param name="field">Field to remove from the form</param>
+        /// <exception cref="ArgumentException">Field is not part of this form</exception>
         public void RemoveField(IField field)
         {
             if (field.Form != this || !_fields.Remove(field))
@@ -96,8 +126,6 @@ namespace XForm.Forms
             field.Form = null;
             UpdateVisibleFields(field);
         }
-
-        #endregion
 
         protected virtual void RegisterFieldViews(FieldViewLocator locator)
         {

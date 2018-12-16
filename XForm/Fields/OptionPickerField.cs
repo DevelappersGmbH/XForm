@@ -1,8 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using XForm.FieldAttributes;
 using XForm.Fields.Bases;
 using XForm.Fields.Interfaces;
 using XForm.Forms;
