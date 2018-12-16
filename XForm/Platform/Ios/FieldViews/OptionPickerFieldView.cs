@@ -2,7 +2,6 @@ using System;
 using CoreGraphics;
 using UIKit;
 using XForm.EventSubscription;
-using XForm.Fields;
 using XForm.Fields.Interfaces;
 using XForm.Ios.ContentViews;
 using XForm.Ios.ContentViews.Interfaces;

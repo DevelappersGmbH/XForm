@@ -4,7 +4,6 @@ using MvvmCross.Commands;
 using Sample.Core.Extensions;
 using Sample.Core.ViewModels.Bases;
 using XForm.Fields;
-using XForm.Fields.Interfaces;
 using XForm.Forms;
 
 namespace Sample.Core.ViewModels

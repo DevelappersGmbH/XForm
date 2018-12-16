@@ -1,5 +1,4 @@
 ﻿using MvvmCross.Binding.BindingContext;
-using MvvmCross.Platforms.Ios.Views;
 using MvvmCross.Plugin.Sidebar;
 using Sample.Core.ViewModels;
 using Sample.IosApp.Views.Bases;

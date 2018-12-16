@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Windows.Input;
 using XForm.Fields;
 using XForm.Fields.Bases;

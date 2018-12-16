@@ -1,7 +1,6 @@
 using System;
 using System.Threading.Tasks;
 using MvvmCross.Commands;
-using MvvmCross.Core;
 using Sample.Core.Extensions;
 using Sample.Core.ViewModels.Bases;
 using XForm.Fields;
