@@ -7,14 +7,28 @@
   <ItemGroup>
     <Compile Remove="**/Platform/**/*.cs" />
     <None Include="**/Platform/**/*.cs" />
+
+    <Compile Remove="Resources/*.cs" />
+    <None Include="Resources/*.cs" />
   </ItemGroup>
+
+  <!-- Android -->
+  <PropertyGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
+    <AndroidResgenFile>Resources/Resource.designer.cs</AndroidResgenFile>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+  </PropertyGroup>
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
     <PackageReference Include="Xamarin.Android.Support.v7.RecyclerView" Version="27.0.2" />
 
     <Compile Include="**/Platform/Droid/**/*.cs" />
+
+    <None Remove="Resources/*.cs" />
+    <Compile Include="Resources/*.cs" />
+    <AndroidResource Include="Resources/**/*.axml" />
   </ItemGroup>
 
+  <!-- IOS -->
   <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.iOS')) ">
     <Compile Include="**/Platform/Ios/**/*.cs" />
   </ItemGroup>

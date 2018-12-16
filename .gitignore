@@ -190,5 +190,6 @@ FakesAssemblies/
 
 .idea/
 .vs/
-/Sample/Sample.AndroidApp/Resources/Resource.designer.cs
-/XForm.Android/Resources/Resource.designer.cs
+
+# Android resource file
+Resource.designer.cs

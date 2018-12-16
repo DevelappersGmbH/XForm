@@ -4,6 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:padding="10sp">
+
     <Button
         android:id="@+id/button"
         android:layout_width="fill_parent"
@@ -11,5 +12,6 @@
         android:minHeight="50sp"
         android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceMedium"
+        
         android:text="Title" />
 </LinearLayout>
