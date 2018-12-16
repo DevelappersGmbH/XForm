@@ -1,8 +1,38 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="MSBuild.Sdk.Extras/1.6.65" ToolsVersion="15.0">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <TargetFrameworks>netstandard2.0;Xamarin.iOS10;MonoAndroid81</TargetFrameworks>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="**/Platform/**/*.cs" />
+    <None Include="**/Platform/**/*.cs" />
+
+    <Compile Remove="Resources/*.cs" />
+    <None Include="Resources/*.cs" />
+  </ItemGroup>
+
+  <!-- Android -->
+  <PropertyGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
+    <AndroidResgenFile>Resources/Resource.designer.cs</AndroidResgenFile>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
+    <PackageReference Include="Xamarin.Android.Support.v7.RecyclerView" Version="27.0.2" />
+
+    <Compile Include="**/Platform/Droid/**/*.cs" />
+
+    <None Remove="Resources/*.cs" />
+    <Compile Include="Resources/*.cs" />
+    <AndroidResource Include="Resources/**/*.axml" />
+  </ItemGroup>
+
+  <!-- IOS -->
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.iOS')) ">
+    <Compile Include="**/Platform/Ios/**/*.cs" />
+
+    <InterfaceDefinition Include="**/Platform/Ios/**/*.xib" />
+  </ItemGroup>
 
 </Project>

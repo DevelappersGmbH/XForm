@@ -95,10 +95,6 @@
     <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\XForm.Droid\XForm.Droid.csproj">
-      <Project>{78077cbe-6231-4874-ad00-cb4e1066a03a}</Project>
-      <Name>XForm.Droid</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Sample.Core\Sample.Core.csproj">
       <Project>{eaf3e235-9681-4a1e-aaef-0a140d6119d8}</Project>
       <Name>Sample.Core</Name>
