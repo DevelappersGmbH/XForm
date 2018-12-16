@@ -31,6 +31,8 @@
   <!-- IOS -->
   <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.iOS')) ">
     <Compile Include="**/Platform/Ios/**/*.cs" />
+
+    <InterfaceDefinition Include="**/Platform/Ios/**/*.xib" />
   </ItemGroup>
 
 </Project>
