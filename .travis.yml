@@ -5,8 +5,8 @@ dotnet: 2.1.300
 mono: none
 
 install:
-- dotnet restore
+- dotnet restore XForm.Tests/XForm.Tests.csproj
 
 script:
-- dotnet build
+- dotnet build XForm.Tests/XForm.Tests.csproj
 - dotnet test XForm.Tests/XForm.Tests.csproj
