@@ -1,0 +1,12 @@
+language: csharp
+solution: XForm.sln
+
+dotnet: 2.1.300
+mono: none
+
+install:
+- dotnet restore XForm.Tests/XForm.Tests.csproj
+
+script:
+- dotnet build XForm.Tests/XForm.Tests.csproj
+- dotnet test XForm.Tests/XForm.Tests.csproj
