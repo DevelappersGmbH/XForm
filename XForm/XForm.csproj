@@ -12,6 +12,29 @@
     <None Include="Resources/*.cs" />
   </ItemGroup>
 
+  <!-- NuGet -->
+  <PropertyGroup>
+    <AssemblyName>XForm</AssemblyName>
+    <RootNamespace>XForm</RootNamespace>
+    <PackageId>XForm</PackageId>
+    <Description>Form builder for Xamarin.Android and Xamarin.iOS. Define your form in the shared project and use and customize it on both platforms.
+
+Strongly influenced by https://github.com/xmartlabs/Eureka.</Description>
+    <Copyright>Copyright (c) .NET Foundation and Contributors</Copyright>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/starke0o/XForm</PackageProjectUrl>
+    <Authors>Johannes Starke</Authors>
+    <Company>Develappers GmbH</Company>
+    <Owners>starke0.o;develappersgmbh;</Owners>
+    <PackageTags>xform;xamarin;android;ios;monodroid;monotouch;xamarin.android;xamarin.ios;Eureka;</PackageTags>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <RepositoryUrl>https://github.com/starke0o/XForm.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Product>$(AssemblyName) ($(TargetFramework))</Product>
+    <NeutralLanguage>en</NeutralLanguage>
+    <Version>1.0.0-alpha</Version>
+  </PropertyGroup>
+
   <!-- Android -->
   <PropertyGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
     <AndroidResgenFile>Resources/Resource.designer.cs</AndroidResgenFile>
@@ -31,7 +54,6 @@
   <!-- IOS -->
   <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.iOS')) ">
     <Compile Include="**/Platform/Ios/**/*.cs" />
-
     <InterfaceDefinition Include="**/Platform/Ios/**/*.xib" />
   </ItemGroup>
 
