@@ -1,3 +1,4 @@
+using System.Globalization;
 using XForm.InputConverters;
 using Xunit;
 
@@ -8,7 +9,7 @@ namespace XForm.Tests.Tests
         [Fact]
         public void IntInputConverterTest()
         {
-            var converter = new IntInputConverter();
+            var converter = new IntInputConverter(CultureInfo.InvariantCulture);
             
             Assert.Null(converter.ConvertText(""));
             Assert.Null(converter.ConvertText(null));
@@ -24,7 +25,7 @@ namespace XForm.Tests.Tests
         [Fact]
         public void DoubleInputConverterTest()
         {
-            var converter = new DoubleInputConverter();
+            var converter = new DoubleInputConverter(CultureInfo.InvariantCulture);
             
             Assert.Null(converter.ConvertText(""));
             Assert.Null(converter.ConvertText(null));
