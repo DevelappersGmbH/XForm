@@ -197,3 +197,6 @@ Resource.designer.cs
 # Cake
 tools/*
 !tools/packages.config
+
+# Build
+artifacts
