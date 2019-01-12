@@ -1,16 +1,28 @@
 class BuildContext
 {
+  private readonly ICakeContext _context;
+
   public string Configuration { get; }
+
+  public bool IsRelease => Equals(Configuration, "Release");
 
   public DirectoryPath OutputDir = new DirectoryPath("./artifacts");
   public FilePath SolutionFile => new FilePath("./XForm.sln");
   public FilePath ProjectFile = new FilePath("./XForm/XForm.csproj");
   public FilePath TestProjectFile => new FilePath("./XForm.Tests/XForm.Tests.csproj");
 
+  public FilePath NugetPackageFile => _context.GetFiles("*/**/XForm.*.nupkg").FirstOrDefault();
+
+  public FilePath SignedNugetPackageFile => _context.GetFiles("*/**/XForm.*.signed.nupkg").FirstOrDefault();
+
+  public string NugetApiKey => _context.EnvironmentVariable("NUGET_API_KEY");
+
   public bool IsRunningOnBuildSystem { get; }
 
   public BuildContext(ICakeContext context) 
   {
+    _context = context;
+
     IsRunningOnBuildSystem = context.TravisCI().IsRunningOnTravisCI;
     Configuration = context.Argument("configuration", "Release");
   }
@@ -56,8 +68,6 @@ Task("Build")
   });
 
 Task("RunTests")
-  .IsDependentOn("Clean")
-  .IsDependentOn("Restore")
   .IsDependentOn("Build")
   .Does<BuildContext>(context => {
     var testDir = new DirectoryPath(context.OutputDir + "/Tests/");
@@ -78,7 +88,39 @@ Task("RunTests")
     DotNetCoreTest(testProjectFile.ToString(), settings);
   });
 
+Task("CopyPackage")
+  .IsDependentOn("Build")
+  .Does<BuildContext>(context => {
+    var signedPackageName = $"{context.NugetPackageFile.GetFilenameWithoutExtension()}.signed{context.NugetPackageFile.GetExtension()}";
+
+    var destination = MakeAbsolute(context.OutputDir.GetFilePath(signedPackageName));
+    CopyFile(context.NugetPackageFile, destination);
+
+    Information($"Copied {context.NugetPackageFile} to {destination}");
+  });
+
+Task("PublishNugetPackage")
+  .IsDependentOn("CopyPackage")
+  .WithCriteria<BuildContext>((cakeContext, context) => context.IsRelease)
+  .WithCriteria<BuildContext>((CakeContext, context) => !string.IsNullOrEmpty(context.NugetApiKey))
+  .Does<BuildContext>(context => {
+    var nugetPackageFile = context.SignedNugetPackageFile;
+
+    if (nugetPackageFile == null) {
+      Error("Package was not created or signed.");
+      return;
+    }
+
+    var settings = new NuGetPushSettings {
+      Source = "https://api.nuget.org/v3/index.json",
+      ApiKey = context.NugetApiKey
+    };
+
+    NuGetPush(nugetPackageFile, settings);
+  });
+
 Task("Default")
-  .IsDependentOn("RunTests");
+  .IsDependentOn("RunTests")
+  .IsDependentOn("PublishNugetPackage");
 
 RunTarget(target);
