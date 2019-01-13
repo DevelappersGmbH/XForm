@@ -8,7 +8,7 @@ namespace Sample.IosApp.Views
     [MvxSidebarPresentation(MvxPanelEnum.Center, MvxPanelHintType.ResetRoot, true, MvxSplitViewBehaviour.Detail)]
     public partial class LoginFormView : FormView<LoginFormViewModel>
     {
-        public LoginFormView() : base("SampleLoginFormView", null)
+        public LoginFormView() : base("LoginFormView", null)
         {
         }
 

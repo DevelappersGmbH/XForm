@@ -27,7 +27,7 @@ namespace Sample.Core.ViewModels
                 _optionLabelField.Hidden = !_optionLabelField.Hidden;
             }));
 
-            var numberInputField = new NumberInputField("Number", 3);
+            var numberInputField = new NumberInputField("Number");
             numberInputField.ValueChanged += (sender, args) => _numberLabelField.Value = numberInputField.Value.ToString();
 
             var decimalInputField = new DecimalInputField("Decimal");

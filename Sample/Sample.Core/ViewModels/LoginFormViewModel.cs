@@ -12,27 +12,16 @@ namespace Sample.Core.ViewModels
     {
         private class FormModel: XForm.Forms.FormModel
         {
-            private string _emailAddress;
-            private string _password;
-
             public FormModel(IMvxCommand loginCommand)
             {
                 LoginCommand = loginCommand;
             }
 
             [EmailAddressTextField("E-Mail Address")]
-            public string EmailAddress
-            {
-                get => _emailAddress;
-                set => Set(ref _emailAddress, value);
-            }
+            public string EmailAddress { get; set; }
 
             [PasswordTextField("Password")]
-            public string Password
-            {
-                get => _password;
-                set => Set(ref _password, value);
-            }
+            public string Password { get; set; }
 
             [ButtonField("Login")]
             public IMvxCommand LoginCommand { get; }
