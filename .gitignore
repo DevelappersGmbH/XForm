@@ -193,3 +193,10 @@ FakesAssemblies/
 
 # Android resource file
 Resource.designer.cs
+
+# Cake
+tools/*
+!tools/packages.config
+
+# Build
+artifacts
