@@ -16,12 +16,9 @@ XForm provides tools to create forms quickly and easily. Simply create a form mo
 
 Grab the latest [XForm NuGet package](https://www.nuget.org/packages/XForm/) and install in your solution.
 
-TODO: Setup iOS and android
-
 ### Create your first form
 
 #### Register XForm
-
 
 Call in your setup code for andorid:
 ```csharp
@@ -74,7 +71,7 @@ public class LoginFormModel: XForm.Forms.FormModel
 }
 ```
 
-The attributes above the properties determine which field is displayed. The following attributes are available:
+The attributes above the properties determine which fields are displayed. The following attributes are available:
 
 * LabelFieldAttribute
 * Number input
@@ -107,7 +104,7 @@ With XForm comes the FormView control for the platforms Xamarin.Android and Xama
 
 ## More examples
 
-Complete form examples can be found in the ![Sample Projects](https://github.com/DevelappersGmbH/XForm/tree/master/Sample) folder.
+Complete form examples can be found in the [Sample Projects](Sample) folder.
 
 ## Contribution
 
