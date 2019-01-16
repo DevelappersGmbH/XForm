@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TitleButtonFieldContent">
+            <connections>
+                <outlet property="Button_" destination="Ef1-nW-Fmi" id="lJA-Q8-EFE"/>
+                <outlet property="TitleLabel_" destination="NTk-da-iha" id="FxG-Ds-cQs"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="xIi-ZM-7nw">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="106"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NTk-da-iha">
+                    <rect key="frame" x="16" y="14.5" width="90" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ef1-nW-Fmi">
+                    <rect key="frame" x="116" y="0.0" width="243" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="Ra9-Oi-6Gb"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="NTk-da-iha" firstAttribute="firstBaseline" secondItem="Ef1-nW-Fmi" secondAttribute="firstBaseline" id="LTx-JK-UO6"/>
+                <constraint firstItem="Ef1-nW-Fmi" firstAttribute="top" secondItem="xIi-ZM-7nw" secondAttribute="top" id="Y4R-a0-x9f"/>
+                <constraint firstItem="Ef1-nW-Fmi" firstAttribute="leading" secondItem="NTk-da-iha" secondAttribute="trailing" constant="10" id="Zya-tl-5fM"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ef1-nW-Fmi" secondAttribute="bottom" id="at4-Jh-0Wz"/>
+                <constraint firstAttribute="trailingMargin" secondItem="Ef1-nW-Fmi" secondAttribute="trailing" id="cnl-Uj-4rf"/>
+                <constraint firstItem="NTk-da-iha" firstAttribute="leading" secondItem="xIi-ZM-7nw" secondAttribute="leadingMargin" id="ipX-8K-p4W"/>
+                <constraint firstItem="Ef1-nW-Fmi" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xIi-ZM-7nw" secondAttribute="leadingMargin" constant="100" id="yAu-aa-LI5"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="60" y="-213.19340329835083"/>
+        </view>
+    </objects>
+</document>

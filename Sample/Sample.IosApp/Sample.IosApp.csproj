@@ -92,15 +92,29 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\IconLock.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\IconLock.imageset\IconLock.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\IconLock.imageset\IconLock%402x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\IconLock.imageset\IconLock%403x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\IconUnlock.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\IconUnlock.imageset\IconUnlock.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\IconUnlock.imageset\IconUnlock%402x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\IconUnlock.imageset\IconUnlock%403x.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\" />
     <Folder Include="Resources\" />
+    <Folder Include="Resources\Assets.xcassets\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
-    <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="Views\InputFieldsFormView.xib" />
+    <InterfaceDefinition Include="Views\MainView.xib" />
+    <InterfaceDefinition Include="Views\LoginFormView.xib" />
+    <InterfaceDefinition Include="Views\MenuFormView.xib" />
+    <InterfaceDefinition Include="Views\RegistrationFormView.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -109,16 +123,42 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="ViewController.cs" />
-    <Compile Include="ViewController.designer.cs">
-      <DependentUpon>ViewController.cs</DependentUpon>
+    <Compile Include="Setup.cs" />
+    <Compile Include="Views\Bases\FormView.cs" />
+    <Compile Include="Views\InputFieldsFormView.cs" />
+    <Compile Include="Views\InputFieldsFormView.designer.cs">
+      <DependentUpon>InputFieldsFormView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainView.cs" />
+    <Compile Include="Views\MainView.designer.cs">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginFormView.cs" />
+    <Compile Include="Views\LoginFormView.designer.cs">
+      <DependentUpon>LoginFormView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MenuFormView.cs" />
+    <Compile Include="Views\MenuFormView.designer.cs">
+      <DependentUpon>MenuFormView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RegistrationFormView.cs" />
+    <Compile Include="Views\RegistrationFormView.designer.cs">
+      <DependentUpon>RegistrationFormView.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\XForm.Ios\XForm.Ios.csproj">
-      <Project>{cc3afa55-ea47-4855-bb3c-c64d92adf1e6}</Project>
-      <Name>XForm.Ios</Name>
+    <ProjectReference Include="..\Sample.Core\Sample.Core.csproj">
+      <Project>{eaf3e235-9681-4a1e-aaef-0a140d6119d8}</Project>
+      <Name>Sample.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\XForm\XForm.csproj">
+      <Project>{5AF56109-470C-4E4E-8AAC-1B124BBED62E}</Project>
+      <Name>XForm</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MvvmCross" Version="6.1.2" />
+    <PackageReference Include="MvvmCross.Plugin.Sidebar" Version="6.1.2" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
